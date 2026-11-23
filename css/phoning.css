@@ -1,0 +1,64 @@
+/* GS Banque & Assurance – phoning et prospection : fiche d'appel, contrôle avant l'appel, script, journal. */
+.ap-reperes { margin: 0 0 16px; }
+.ap-reperes > summary, .ap-details > summary { list-style: none; cursor: pointer; min-height: 44px; display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--navy); }
+.ap-reperes > summary::-webkit-details-marker, .ap-details > summary::-webkit-details-marker { display: none; }
+.ap-reperes > summary::after, .ap-details > summary::after { content: ""; margin-left: auto; width: 8px; height: 8px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg); }
+.ap-reperes[open] > summary::after, .ap-details[open] > summary::after { transform: rotate(-135deg); }
+.ap-reperes ul { display: grid; gap: 8px; margin: 8px 0 12px; padding-left: 20px; list-style: disc; max-width: 90ch; }
+.ap-reperes .mention { max-width: 90ch; }
+.ap-liste-choix { max-width: 520px; margin-bottom: 10px; min-width: 0; }
+.ap-liste-choix select, .ap-autre select, .ap-form select, .ap-form input, .ap-form textarea { font: inherit; max-width: 100%; }
+.ap-liste-choix select, .ap-autre select, .ap-form select { min-width: 0; }   /* la liste déroulante se réduit à la largeur de l'écran (320 px) au lieu de déborder */
+.ap-form textarea { width: 100%; }
+.ap-autre { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px 14px; }
+.ap-autre .champ { flex: 1 1 220px; max-width: 460px; min-width: 0; }
+.ap-autre .msg-erreur { flex-basis: 100%; min-height: 0; }
+.ap-rappels .btn { min-height: 40px; padding: 6px 16px; }
+.ap-tab { min-width: 700px; }
+.ap-form { max-width: 880px; }
+.ap-ident { margin: 4px 0 14px; }
+.ap-ident > div { grid-template-columns: 150px minmax(0, 1fr); }
+.ap-etape { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px 14px; margin: 0 0 14px; display: grid; gap: 12px; min-width: 0; }
+.ap-etape > legend { font-weight: 700; color: var(--navy); font-size: 16px; padding: 0 6px; }
+.ap-etape .pf-source { padding: 0; }
+.ap-extra { margin: 0; }
+.ap-moment { grid-template-columns: repeat(2, minmax(0, 220px)); }
+.ap-controle { list-style: none; padding: 0; margin: 0 0 8px; display: grid; gap: 6px; }
+.ap-ck { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 8px; align-items: start; padding: 7px 10px; border-radius: var(--radius); font-size: 14.5px; border-left: 4px solid var(--line-strong); }
+.ap-ck-ico { display: inline-flex; width: 22px; height: 22px; align-items: center; justify-content: center; border-radius: 50%; font-weight: 700; font-size: 14px; line-height: 1; background: #fff; border: 2px solid currentColor; }
+.ap-ck-ok { background: var(--ok-bg); border-left-color: var(--ok); color: var(--ok); }
+.ap-ck-ko { background: var(--bad-bg); border-left-color: var(--bad); color: var(--bad); }
+.ap-ck-warn { background: var(--warn-bg); border-left-color: var(--warn); color: var(--warn); }
+.ap-ck-neutre { background: var(--paper); color: var(--muted); }
+.ap-ck > span:last-child { color: var(--ink); }
+.ap-details { border: 1px solid var(--line); border-radius: 10px; padding: 0 14px; margin: 0 0 14px; background: #fff; }
+.ap-details[open] { padding-bottom: 12px; }
+.ap-details h3 { font-size: 15px; color: var(--navy); margin: 12px 0 4px; }
+.ap-details ul { list-style: disc; padding-left: 22px; display: grid; gap: 2px; margin: 4px 0; }
+.ap-dire { margin: 2px 0; padding: 6px 10px; background: var(--blue-soft); border-left: 4px solid var(--blue); border-radius: var(--radius); max-width: 90ch; }
+.ap-details .mention { margin: 4px 0 0; max-width: 90ch; }
+.ap-obj { display: grid; gap: 10px; margin-top: 8px; }
+.ap-obj dt { font-weight: 700; color: var(--navy); }
+.ap-obj dd { margin: 2px 0 0; max-width: 90ch; }
+.ap-aide-res { margin: 0; padding: 8px 12px; background: var(--paper); border-radius: var(--radius); max-width: 90ch; }
+.lib-fixe { font-weight: 600; font-size: 14px; display: block; }
+.ap-fixe { margin: 6px 0 0; font-weight: 600; color: var(--navy); }
+.ap-ok ul { list-style: disc; padding-left: 20px; margin: 6px 0 0; display: grid; gap: 4px; }
+.ap-ok p { margin: 0 0 4px; }
+.ap-hors { color: var(--bad); font-weight: 700; }
+.ap-ok:focus { outline: 3px solid var(--blue); outline-offset: 2px; }
+#t-form:focus, #t-file:focus, #t-journal:focus { outline: 3px solid var(--blue); outline-offset: 2px; }
+.ap-kpis { margin-top: 0; }
+@media (max-width: 900px) { .ap-moment { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 560px) { .ap-ident > div { grid-template-columns: minmax(0, 1fr); gap: 0; } .ap-etape { padding: 10px 10px 12px; } }
+@media (prefers-reduced-motion: no-preference) { .ap-reperes > summary::after, .ap-details > summary::after { transition: transform .15s; } }
+#z-journal .cg-filtre select { max-width: 100%; min-width: 0; }
+.ap-ed-btns { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 0; }
+.ap-details .champ { margin-top: 12px; }
+.ap-details .champ .mention { margin: 4px 0 0; }
+.ap-details .pf-btns { margin-top: 12px; }
+.ap-obj dd.mention { margin-top: 2px; }
+.ap-avis { margin: 8px 0 0; }
+/* Encadré de l'opportunité O2PC en tête de la fiche d'appel */
+.ap-o2pc { border: 1px solid var(--blue); border-left-width: 5px; border-radius: 8px; background: var(--blue-soft); padding: 12px 14px; display: grid; gap: 6px; margin-bottom: 14px; }
+.ap-o2pc ul { display: grid; gap: 3px; padding-left: 18px; list-style: disc; font-size: 14.5px; }

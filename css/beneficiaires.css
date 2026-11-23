@@ -1,0 +1,22 @@
+/* Clause bénéficiaire (js/beneficiaires_ui.js) : souscription d'une assurance-vie, de GS Décès ou de GS Obsèques. */
+.bf { display: grid; gap: 12px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--panel); padding: 14px 16px; min-width: 0; }
+.bf-titre { font-size: 17px; color: var(--navy); margin: 0; }
+.bf-intro { margin: 0; max-width: 80ch; }
+.bf .champ { margin: 0; }
+.bf select { max-width: 100%; }
+.bf-pers:empty { display: none; }
+.bf-ident { border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 12px; margin: 0; min-width: 0; }
+.bf-ident > legend { font-weight: 600; padding: 0 6px; }
+.bf-grille { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 14px; }
+.bf-grille .champ input { width: 100%; }
+.bf-res { border-top: 1px solid var(--line); padding-top: 10px; display: grid; gap: 8px; }
+.bf-res p, .bf-res ul, .bf-res blockquote { margin: 0; }
+.bf-att { color: var(--muted); max-width: 80ch; }
+.bf-clause { border-left: 4px solid var(--blue); background: var(--blue-soft); padding: 8px 12px; border-radius: 0 var(--radius) var(--radius) 0; max-width: 80ch; }
+.bf-pts { padding-left: 20px; display: grid; gap: 4px; list-style: disc; max-width: 80ch; }
+.bf-pts-t { margin-top: 2px; }
+@media (max-width: 640px) {
+  .bf { padding: 12px; }
+  .bf-grille { grid-template-columns: minmax(0, 1fr); }
+}
+@media print { .bf { display: none; } }

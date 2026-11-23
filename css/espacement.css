@@ -1,0 +1,77 @@
+/* Rythme vertical commun à toutes les pages : respiration entre les blocs, les titres, les paragraphes, les boutons et les champs.
+   Chargé après les feuilles propres à chaque page, avant l'impression. Valeurs de base : 8 – 12 – 16 – 24 px. */
+#app { padding-top: 28px; padding-bottom: 48px; }
+.page-titre { margin-bottom: 24px; gap: 4px 18px; }
+.page-grille { gap: 24px; }
+.fil-ariane { margin-bottom: 14px; }
+
+/* Blocs : une même respiration entre tous les éléments directs, titres compris */
+.bloc-tete { margin-bottom: 16px; gap: 4px 16px; }
+#app .bloc:not(.bloc-travail) > * + * { margin-top: 14px; }
+#app .bloc:not(.bloc-travail) > .bloc-tete + *, #app .bloc:not(.bloc-travail) > h2 + *, #app .bloc:not(.bloc-travail) > h3 + * { margin-top: 0; }
+#app .bloc:not(.bloc-travail) > h3, #app .bloc:not(.bloc-travail) > .bloc-sous-titre { margin-top: 28px; margin-bottom: 10px; }
+#app .bloc:not(.bloc-travail) > h3:first-child { margin-top: 0; }
+#app .bloc:not(.bloc-travail) > h3 + h3 { margin-top: 10px; }
+.note-pied { margin-top: 12px; line-height: 1.55; }
+.mention { line-height: 1.55; }
+#app .bloc > .tab-wrap + p, #app .bloc > .tab-wrap + .note-pied { margin-top: 12px; }
+
+/* Boutons et groupes d'actions */
+.pf-btns { gap: 10px 12px; }
+#app p + .pf-btns, #app ul + .pf-btns, #app dl + .pf-btns, #app div + .pf-btns, #app .pf-btns + p { margin-top: 14px; }
+.btn { padding: 10px 22px; }
+.actions-impr { margin-top: 16px; }
+
+/* Formulaires et champs */
+.formulaire { gap: 18px; padding: 20px 22px; }
+.formulaire .champ, .champ { gap: 6px; }
+.formulaire .ligne { gap: 16px; }
+.aide-champ { line-height: 1.5; }
+.filtres { gap: 10px; margin-bottom: 16px; }
+.filtres-client { margin-top: 0; padding: 10px 12px; }
+
+/* Catalogue : cartes, fiche produit, souscription */
+.cat-grille { gap: 22px; }
+.cat-corps { gap: 10px; padding: 14px 16px 16px; }
+.cat-actions { margin-top: 6px; }
+.cl-choisi { gap: 10px; padding: 14px 16px; margin-top: 14px; }
+.fiche-tete { gap: 26px; margin-bottom: 24px; }
+.fiche-id { gap: 10px; }
+.fiche-id .pf-btns { margin-top: 10px; }
+.fiche-colonnes { gap: 14px 36px; margin-top: 24px; }
+.fiche-colonnes h3, .fiche-colonnes + h3 { margin-bottom: 10px; }
+#bloc-fiche > h3 { margin-top: 28px; margin-bottom: 10px; }
+#bloc-fiche .cat-liste, #bloc-fiche .dp-liste { gap: 6px; }
+.souscr { padding: 18px 20px; gap: 16px; margin-bottom: 22px; }
+.conv-panier { margin: 18px 0; padding: 18px 20px 20px; }
+.conv-articles { gap: 8px; margin-bottom: 14px; }
+
+/* Tableaux : cellules plus aérées */
+.tab-ventes th, .tab-ventes td { padding: 11px 14px; }
+
+@media (max-width: 640px) {
+  #app { padding-top: 16px; padding-bottom: 32px; }
+  .page-titre { margin-bottom: 18px; }
+  .page-grille { gap: 18px; }
+  .bloc-tete { margin-bottom: 14px; }
+  .formulaire { padding: 16px 14px; gap: 16px; }
+  .souscr { padding: 14px; }
+  .cat-grille { gap: 18px; }
+  .fiche-tete { gap: 18px; }
+  .tab-ventes th, .tab-ventes td { padding: 10px 10px; }
+}
+
+/* Sommaire du tableau de bord : reste visible en haut de l'écran pendant le défilement (grands écrans) */
+.sommaire { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: -6px 0 22px; padding: 10px 14px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); }
+.sommaire-lib { font-size: 14px; font-weight: 600; color: var(--muted); }
+.sommaire ul { display: flex; flex-wrap: wrap; gap: 8px; }
+.sommaire a { display: inline-flex; align-items: center; min-height: 36px; padding: 4px 14px; border: 1px solid var(--line-strong); border-radius: 999px; background: #fff; color: var(--navy); font-weight: 600; font-size: 14.5px; text-decoration: none; }
+.sommaire a:hover { border-color: var(--navy); background: var(--blue-soft); }
+#app .bloc[id], #bloc-alertes { scroll-margin-top: 76px; }
+@media (min-width: 1000px) { .sommaire { position: sticky; top: 0; z-index: 6; box-shadow: 0 6px 12px -8px rgba(18, 41, 63, 0.35); } }
+@media (max-width: 640px) {
+  .sommaire { margin-top: 0; padding: 8px 10px; flex-wrap: nowrap; }
+  .sommaire-lib { display: none; }
+  .sommaire ul { flex-wrap: nowrap; overflow-x: auto; padding: 2px 2px 6px; margin-bottom: -4px; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; }
+  .sommaire li { flex: none; scroll-snap-align: start; }
+}

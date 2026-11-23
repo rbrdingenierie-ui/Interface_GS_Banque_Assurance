@@ -1,0 +1,120 @@
+/* GS Banque & Assurance – montage de prêt. S'appuie sur les styles du simulateur de prêt (pr-*) et du reste du site. */
+.mt-debut { align-items: start; }
+.mt-actions { white-space: normal; }
+.mt-conf { font-size: 14px; }
+.mt-danger { color: var(--bad); }
+.champ select { border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 9px 12px; background: #fff; min-height: 44px; font: inherit; width: 100%; }
+.cl-aide { margin-top: 6px; }
+
+/* Étapes du dossier */
+.mt-etapes ol { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; padding: 0; margin: 0 0 16px; }
+.mt-etapes button { width: 100%; display: flex; align-items: center; gap: 10px; text-align: left; border: 1px solid var(--line-strong); background: #fff; border-radius: var(--radius); padding: 8px 12px; min-height: 52px; cursor: pointer; color: var(--navy); font-weight: 600; }
+.mt-etapes button:hover { background: var(--blue-soft); }
+.mt-num { flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--paper); border: 1px solid var(--line-strong); display: grid; place-items: center; font-weight: 700; font-size: 14px; }
+.mt-courante button { background: var(--navy); color: #fff; border-color: var(--navy); }
+.mt-courante button:hover { background: var(--navy-deep); }
+.mt-courante .mt-num { background: #fff; color: var(--navy); border-color: #fff; }
+.mt-verrou { margin: 0 0 14px; padding: 10px 14px; background: var(--blue-soft); color: var(--navy); border-left: 5px solid var(--blue); border-radius: 0 var(--radius) var(--radius) 0; font-weight: 600; }
+.mt-h-etape { font-size: 20px; color: var(--navy); margin: 4px 0 12px; }
+.mt-h-etape:focus, #mt-t-rec:focus, #mt-t-syn:focus { outline: 3px solid var(--blue); outline-offset: 2px; }
+.mt-bas { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px 14px; margin: 18px 0 8px; }
+.mt-bas-droite { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
+.mt-texte { max-width: 80ch; margin: 0 0 8px; }
+
+/* Étape 1 : formulaire et synthèse */
+.mt-grille { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, 410px); gap: 20px; align-items: start; }
+.mt-form.formulaire { max-width: none; background: transparent; padding: 0; gap: 16px; }
+.mt-form .bloc { display: grid; gap: 12px; align-content: start; }
+.mt-form .bloc .bloc-tete { margin-bottom: 0; }
+.mt-form .bloc > .mention, .mt-form .bloc > p { margin: 0; }
+.mt-form .pr-inconnue { min-width: 0; }
+.mt-dates { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+.mt-synthese h2 { margin-bottom: 8px; }
+.mt-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 8px 0 12px; }
+.mt-kpis .kpi dd.val { font-size: 21px; overflow-wrap: anywhere; }
+.mt-recap .mt-kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.mt-usure { margin: 0; padding: 8px 12px; border-left: 5px solid var(--ok); background: var(--ok-bg); border-radius: 0 var(--radius) var(--radius) 0; font-size: 14.5px; }
+.mt-usure-bad { border-left-color: var(--bad); background: var(--bad-bg); color: var(--bad); font-weight: 600; }
+.mt-erreurs { margin: 0 0 12px; padding: 10px 14px; background: var(--bad-bg); color: var(--bad); border-left: 5px solid var(--bad); border-radius: 0 var(--radius) var(--radius) 0; }
+.mt-erreurs ul { list-style: disc; padding-left: 20px; display: grid; gap: 2px; margin-top: 4px; }
+.mt-erreurs .btn-texte { color: var(--bad); text-align: left; border: 0; min-height: 28px; padding: 2px 0; text-decoration: underline; }
+.msg-champ { color: var(--bad); font-size: 13.5px; font-weight: 600; }
+.msg-champ:empty { display: none; }
+
+/* Plan de financement */
+.mt-pf { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 24px; }
+.mt-pf-col { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.mt-pf-ligne { display: grid; grid-template-columns: minmax(0, 1fr) minmax(92px, 130px) 14px; align-items: center; gap: 4px 8px; }
+.mt-pf-ligne > label, .mt-pf-ligne > span:first-child { font-size: 14px; font-weight: 600; }
+.mt-pf-ligne .msg-champ { grid-column: 1 / -1; }
+.mt-pf-ligne input { text-align: right; }
+.mt-eur { color: var(--muted); }
+.mt-pf-auto { grid-template-columns: minmax(0, 1fr) auto; }
+.mt-pf-auto > span:first-child { font-weight: 400; color: var(--muted); }
+.mt-pf-auto output, .mt-pf-total output { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+.mt-pf-total { grid-template-columns: minmax(0, 1fr) auto; border-top: 2px solid var(--navy); padding-top: 6px; font-weight: 700; }
+.mt-pf-total > span:first-child { font-weight: 700; color: var(--navy); }
+.mt-pf-total output { font-weight: 700; color: var(--navy); }
+.mt-pf-eq { grid-column: 1 / -1; margin: 0; font-size: 14px; color: var(--ok); font-weight: 600; }
+
+/* Assurance emprunteur */
+.mt-case { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; min-height: 32px; font-weight: 400; }
+.mt-case input, .formulaire .mt-case input { width: 20px; height: 20px; min-height: 0; padding: 0; margin: 2px 0 0; flex: none; accent-color: var(--navy); }
+.mt-case-ass { align-items: center; }
+.mt-sous { display: block; font-size: 12.5px; color: var(--muted); font-weight: 400; margin-top: 2px; }
+.mt-tab-ass { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+.mt-tab-ass th, .mt-tab-ass td { padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
+.mt-tab-ass thead th { background: #f6f8fa; color: var(--muted); font-size: 13px; font-weight: 700; }
+.mt-tab-ass tbody tr:last-child > * { border-bottom: 0; }
+.mt-tab-ass td select { width: auto; min-width: 84px; min-height: 40px; padding: 6px 8px; }
+.mt-tab-ass .msg-champ { display: block; margin-top: 2px; }
+.mt-tab-ass .mt-prime, .mt-tab-ass tfoot td { text-align: right; white-space: nowrap; font-weight: 600; font-variant-numeric: tabular-nums; }
+.mt-tab-ass tfoot th, .mt-tab-ass tfoot td { border-top: 2px solid var(--navy); border-bottom: 0; color: var(--navy); font-weight: 700; }
+.mt-tab-ass th[scope="row"] { min-width: 150px; }
+
+/* Étape 2 : pièces */
+.mt-compte { font-weight: 700; color: var(--navy); }
+.mt-piece-groupe { margin-bottom: 8px; }
+.mt-pieces { list-style: none; padding: 0; display: grid; gap: 6px; margin: 0; }
+.mt-notes { list-style: disc; padding-left: 22px; display: grid; gap: 4px; max-width: 90ch; margin: 8px 0; font-size: 14.5px; }
+
+/* Étape 3 : analyse */
+.mt-tab th[scope="row"] { width: 38%; min-width: 150px; font-weight: 600; color: var(--navy); }
+.mt-tab td { white-space: normal; text-align: left; }
+.mt-bale { max-width: 320px; margin-top: 12px; }
+
+/* Étape 4 : décision */
+.mt-aide { margin-bottom: 16px; }
+.mt-criteres { list-style: none; padding: 0; margin: 8px 0 0; display: grid; }
+.mt-critere { display: flex; align-items: flex-start; gap: 10px 12px; padding: 9px 0; border-bottom: 1px solid var(--line); }
+.mt-critere:last-child { border-bottom: 0; }
+.mt-critere .chip { flex: none; min-width: 112px; justify-content: center; }
+.mt-passeoutre { padding: 10px 12px; border: 1px solid #c98a00; border-radius: var(--radius); background: var(--warn-bg); color: var(--warn); font-weight: 600; }
+
+@media (min-width: 1100px) and (min-height: 760px) { .mt-synthese { position: sticky; top: 12px; } }
+@media (max-width: 1100px) { .mt-grille { grid-template-columns: minmax(0, 1fr); } .mt-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px) {
+  .mt-etapes ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .mt-pf { grid-template-columns: minmax(0, 1fr); }
+  .mt-recap .mt-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .mt-critere { flex-wrap: wrap; }
+  .mt-bas .btn { width: 100%; }
+  .mt-bas-droite { width: 100%; }
+}
+@media (max-width: 420px) { .mt-kpis, .mt-recap .mt-kpis { grid-template-columns: minmax(0, 1fr); } .mt-etapes ol { grid-template-columns: minmax(0, 1fr); } }
+
+/* Étape 1 : cas particuliers du prêt immobilier (rachat de créance, prêt à taux zéro, prêt relais) ; étape 2 : pièces du document « Documents à fournir… » */
+.mt-options { display: grid; gap: 10px; margin-top: 14px; }
+.mt-options .mt-case { min-height: 0; }
+.mt-case small.mt-sous { max-width: 80ch; }
+.mt-doc-pret { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; max-width: none; margin: 10px 0 16px; }
+.mt-cond { color: var(--muted); font-size: 13px; white-space: nowrap; }
+.mt-autres { margin: 14px 0 6px; max-width: 760px; }
+.mt-autres-ligne { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px 12px; }
+.mt-autres-ligne .champ { flex: 1 1 280px; min-width: 0; margin: 0; }
+.mt-autres-ligne .btn { min-height: 44px; }
+.mt-autres .msg-erreur { color: var(--bad); font-size: 14px; font-weight: 600; margin: 6px 0 0; }
+.mt-autres .msg-erreur:empty { display: none; }
+.mt-autres input[aria-invalid="true"] { border-color: var(--bad); }
+.mt-pieces li.mt-li-autre { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+.mt-autre-retrait { min-height: 44px; padding: 0 6px; }

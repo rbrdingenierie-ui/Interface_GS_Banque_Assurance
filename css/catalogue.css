@@ -1,0 +1,178 @@
+/* GS Banque & Assurance – catalogue de produits : cartes illustrées, fiche, éligibilité, souscription. */
+.cl-q { max-width: 560px; }
+.cat-recherche { max-width: 560px; margin-bottom: 12px; }
+.cat-recherche label { font-size: 14px; font-weight: 600; }
+.cat-recherche input { font: inherit; border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 9px 12px; min-height: 44px; background: #fff; width: 100%; }
+.cl-q label { font-size: 14px; font-weight: 600; }
+.cl-q input { font: inherit; border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 9px 12px; min-height: 44px; background: #fff; width: 100%; }
+.cl-res { max-width: 560px; margin-top: 4px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: #fff; overflow: hidden; }
+.cl-res li + li { border-top: 1px solid var(--line); }
+.cl-res button { display: grid; width: 100%; text-align: left; padding: 8px 12px; min-height: 48px; border: 0; background: #fff; cursor: pointer; font: inherit; color: var(--ink); }
+.cl-res button:hover, .cl-res button:focus-visible { background: var(--blue-soft); }
+.cl-res .rech-vide { padding: 10px 12px; color: var(--muted); }
+.cl-choisi { margin-top: 12px; padding: 12px 14px; background: var(--blue-soft); border-left: 4px solid var(--blue); border-radius: var(--radius); display: grid; gap: 6px; }
+.cl-aide { margin-top: 10px; }
+/* univers : un titre par groupe de produits */
+.cat-univers { margin-top: 30px; }
+.cat-univers:first-of-type { margin-top: 26px; }
+.cat-univers-tete { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 14px; padding-bottom: 8px; border-bottom: 2px solid var(--navy); }
+.cat-univers-tete h3 { margin: 0; font-size: 21px; color: var(--navy); }
+.cat-univers-nb { color: var(--muted); font-size: 14.5px; font-weight: 600; }
+.cat-univers-sous { margin: 8px 0 16px; color: var(--muted); max-width: 78ch; }
+.cat-grille { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.cat-carte { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 10px; background: #fff; overflow: hidden; }
+.cat-actif { border-color: var(--blue); box-shadow: 0 0 0 2px var(--blue); }
+.cat-illu svg, .fiche-illu svg { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
+.cat-corps { display: flex; flex-direction: column; gap: 8px; padding: 12px 14px 14px; flex: 1; }
+.cat-fam { font-size: 13.5px; color: var(--muted); font-weight: 600; }
+.cat-corps h4 { font-size: 17px; color: var(--navy); line-height: 1.25; }
+.cat-accroche { font-size: 14.5px; }
+.cat-faits { display: grid; gap: 4px; font-size: 13.5px; }
+.cat-faits div { display: grid; grid-template-columns: 70px 1fr; gap: 8px; }
+.cat-faits dt { color: var(--muted); }
+.cat-faits dd { overflow-wrap: anywhere; }
+.cat-nb { font-size: 13.5px; color: var(--muted); }
+.cat-verdict { min-height: 1.6em; }
+.cat-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 4px; }
+.cat-actions .btn { min-height: 40px; padding: 6px 14px; flex: 1 1 auto; }
+.cat-comp { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; min-height: 36px; cursor: pointer; }
+.cat-comp input { width: 20px; height: 20px; accent-color: var(--navy); }
+.cat-pastille { display: inline-flex; align-items: center; gap: 2px; background: var(--blue-soft); box-shadow: inset 0 0 0 1px var(--blue); color: var(--navy); border-radius: 999px; padding: 2px 4px 2px 12px; font-size: 14px; font-weight: 600; }
+.tab-cat td, .tab-cat th { text-align: left; vertical-align: top; }
+.tab-cat thead th { text-align: left; }
+.tab-cat tbody th { min-width: 150px; }
+.fiche-tete { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 20px; align-items: start; margin-bottom: 14px; }
+.fiche-illu { border-radius: 10px; overflow: hidden; border: 1px solid var(--line); }
+.fiche-id { display: grid; gap: 8px; }
+.fiche-id h2 { font-size: 26px; color: var(--navy); line-height: 1.2; }
+.fiche-accroche { font-size: 17px; }
+#bloc-fiche > h3 { margin: 18px 0 6px; font-size: 17px; color: var(--navy); }
+.fiche-colonnes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 28px; margin-top: 14px; }
+.fiche-colonnes h3 { font-size: 17px; color: var(--navy); margin-bottom: 6px; }
+.cat-liste { list-style: disc; padding-left: 20px; display: grid; gap: 4px; max-width: 80ch; }
+#bloc-fiche .dp-liste { list-style: disc; padding-left: 20px; display: grid; gap: 4px; max-width: 80ch; }
+.nature { display: inline-block; font-size: 13px; font-weight: 700; padding: 1px 10px; border-radius: 999px; }
+.nature-fictif { background: #eef1f4; color: var(--muted); box-shadow: inset 0 0 0 1px var(--line-strong); }
+.nature-reglemente { background: var(--ok-bg); color: var(--ok); box-shadow: inset 0 0 0 1px var(--ok-zone); }
+.cat-kpis { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 0; }
+.cat-qui { margin-bottom: 8px; }
+.verif { border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; display: grid; gap: 10px; background: #fff; }
+.verif-eligible { border-left: 5px solid var(--ok); }
+.verif-examiner { border-left: 5px solid #bf7a00; }
+.verif-non { border-left: 5px solid var(--bad); }
+.verif-detenu { border-left: 5px solid var(--blue); }
+.verif-verdict { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 10px; }
+.verif-verdict > span:last-child { flex: 1 1 280px; }
+.verif h4 { font-size: 15px; color: var(--navy); margin-top: 4px; }
+.verif-liste { display: grid; gap: 8px; }
+.verif-liste li { display: grid; grid-template-columns: 26px 1fr; gap: 8px; }
+.verif-liste li > div { display: grid; gap: 1px; }
+.verif-liste li > div > span { font-size: 14.5px; color: #34444f; }
+.v-ico { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-size: 13px; font-weight: 700; color: #fff; }
+.v-ok .v-ico { background: var(--ok); } .v-ko .v-ico { background: var(--bad); } .v-doute .v-ico { background: #8a5700; } .v-info .v-ico { background: var(--navy); font-style: italic; }
+.verif-av { font-size: 14.5px; }
+.souscr { margin: 0 0 16px; padding: 14px 16px; border-radius: var(--radius); display: grid; gap: 12px; max-width: none; }
+.souscr h3 { font-size: 18px; color: var(--navy); }
+.souscr-info { background: var(--blue-soft); border-left: 4px solid var(--blue); }
+.souscr-ok { background: var(--ok-bg); border-left: 4px solid var(--ok); }
+.souscr-ko { background: #fff7e8; border-left: 4px solid #bf7a00; }
+.souscr-form { background: var(--paper); border: 1px solid var(--line-strong); }
+.souscr-conf { align-items: flex-start; padding: 2px 0; }
+.souscr-conf input { margin-top: 3px; flex: none; }
+.cp-fam { margin: 16px 0 6px; font-size: 16px; color: var(--navy); }
+.cp-act { white-space: nowrap; }
+.cp-act .btn-texte { min-height: 36px; padding: 4px 10px; margin-right: 6px; }
+.tab-ms tfoot td, .tab-ms tfoot th { background: #f6f8fa; font-weight: 700; }
+@media (max-width: 1000px) { .cat-grille { grid-template-columns: repeat(2, minmax(0, 1fr)); } .fiche-tete { grid-template-columns: minmax(0, 1fr); } .cat-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px) {
+  .cat-grille, .fiche-colonnes { grid-template-columns: minmax(0, 1fr); }
+  .cat-kpis { grid-template-columns: minmax(0, 1fr); }
+  .tab-cat tbody th { min-width: 0; }
+  .cp-act { white-space: normal; padding-top: 6px !important; }
+  .tab-cat td[data-label] { display: block; margin-right: 0; }
+}
+.tab-cp td[data-label="Situation"] .chip, .cat-verdict .chip { white-space: nowrap; }
+.tab-cp thead th:nth-child(2), .tab-cp td[data-label="Situation"] { min-width: 130px; }
+.cat-qui a { color: var(--navy); font-weight: 700; }
+
+/* Contrats des souscriptions (signature électronique ou contrat imprimé) */
+.ct-cell { min-width: 220px; }
+.ct-etat { display: grid; gap: 3px; justify-items: start; }
+.ct-etat .pf-sous { display: block; }
+.ct-actions { display: flex; flex-wrap: wrap; gap: 2px 12px; margin-top: 4px; }
+.ct-msg:empty { display: none; }
+.ct-msg { margin: 0 0 12px; max-width: 900px; display: grid; gap: 8px; }
+.ct-ok, .ct-ko { padding: 8px 12px; border-radius: var(--radius); border-left: 4px solid var(--ok-zone); background: var(--ok-bg); color: var(--ink); }
+.ct-ko { border-left-color: var(--bad-zone); background: var(--bad-bg); }
+.ct-mail { border: 1px solid var(--line-strong); border-radius: var(--radius); background: #fff; padding: 10px 14px; }
+.ct-mail-tete { display: grid; gap: 2px; font-size: 14px; color: var(--muted); border-bottom: 1px solid var(--line); padding-bottom: 6px; margin-bottom: 6px; }
+.ct-mail-corps { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 14.5px; }
+.ct-suite { margin-top: 8px; padding: 10px 14px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; display: grid; gap: 6px; }
+
+/* Convention de compte : réductions affichées par service et simulateur d'économie */
+.conv-inclus { color: var(--ok); font-weight: 600; }
+.conv-sim { margin-top: 18px; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--blue-soft); }
+.conv-sim > h3 { margin: 0 0 4px; font-size: 17px; color: var(--navy); }
+.conv-svc { border: 0; padding: 0; margin: 10px 0 12px; display: grid; gap: 4px; }
+.conv-case { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; align-items: center; gap: 10px; min-height: 44px; padding: 6px 10px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); cursor: pointer; }
+.conv-case:hover { border-color: var(--line-strong); }
+.conv-case input { width: 20px; height: 20px; accent-color: var(--navy); }
+.conv-prix { color: var(--muted); font-size: 14px; white-space: nowrap; }
+.conv-barres { display: grid; gap: 8px; margin: 6px 0 10px; }
+.conv-barre { display: grid; grid-template-columns: 150px minmax(0, 1fr) 90px; align-items: center; gap: 10px; font-size: 15px; }
+.conv-piste { display: block; height: 16px; background: var(--panel); border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+.conv-rempli { display: block; height: 100%; border-radius: 999px; transition: width .25s ease; }
+.conv-unite { background: var(--line-strong); }
+.conv-conv { background: var(--navy); }
+.conv-val { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+.conv-econo { margin: 0; padding: 10px 12px; border-radius: var(--radius); border-left: 4px solid; }
+.conv-gain { background: var(--ok-bg); border-color: var(--ok); color: var(--ok); }
+.conv-perte { background: var(--warn-bg); border-color: var(--warn); color: var(--warn); }
+@media (max-width: 640px) {
+  .conv-barre { grid-template-columns: minmax(0, 1fr) 90px; }
+  .conv-barre .conv-piste { grid-column: 1 / -1; grid-row: 2; }
+  .conv-case { grid-template-columns: 22px minmax(0, 1fr); }
+  .conv-case .conv-prix { grid-column: 2; }
+}
+@media (prefers-reduced-motion: reduce) { .conv-rempli { transition: none; } }
+/* Panier de services dans la souscription d'une convention */
+.conv-panier { margin: 14px 0; padding: 14px 16px 16px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--panel); min-width: 0; }
+.conv-panier > legend { padding: 0 8px; font-weight: 700; color: var(--navy); font-size: 16px; }
+.conv-panier .note-pied { margin: 0 0 10px; }
+.conv-tenue { margin: 0 0 10px; padding: 9px 12px; border-left: 4px solid var(--ok); background: var(--ok-bg); color: var(--ok); border-radius: var(--radius); }
+.conv-articles { display: grid; gap: 6px; margin-bottom: 10px; }
+.conv-art { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto auto; align-items: center; gap: 4px 12px; min-height: 48px; padding: 8px 12px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); cursor: pointer; transition: border-color .15s ease, background-color .15s ease; }
+.conv-art:hover { border-color: var(--line-strong); }
+.conv-art:focus-within { outline: 2px solid var(--navy); outline-offset: 2px; }
+.conv-art input { width: 20px; height: 20px; accent-color: var(--navy); }
+.conv-art-pris { background: var(--blue-soft); border-color: var(--navy); }
+.conv-art .conv-nom { font-weight: 600; min-width: 0; overflow-wrap: anywhere; }
+.conv-etat { font-size: 13.5px; font-weight: 600; color: var(--navy); white-space: nowrap; justify-self: end; min-width: 6.5em; text-align: right; }
+.conv-art:not(.conv-art-pris) .conv-etat { color: var(--muted); font-weight: 500; }
+.conv-actions { margin: 4px 0 12px; }
+.conv-sim-res { margin-top: 0; }
+.conv-cotis { margin: 0 0 8px; }
+.conv-reste { margin: 8px 0 0; font-size: 14px; color: var(--muted); }
+@media (max-width: 640px) {
+  .conv-art { grid-template-columns: 22px minmax(0, 1fr) auto; grid-template-areas: "c n n" "c p e"; gap: 2px 10px; }
+  .conv-art input { grid-area: c; align-self: start; margin-top: 2px; }
+  .conv-art .conv-nom { grid-area: n; }
+  .conv-art .conv-prix { grid-area: p; white-space: normal; }
+  .conv-art .conv-etat { grid-area: e; justify-self: end; text-align: right; min-width: 0; white-space: normal; max-width: 9ch; line-height: 1.25; }
+  /* à l'ouverture de compte, le panier est déjà dans plusieurs cadres : on gagne de la largeur sur téléphone */
+  .conv-panier { padding: 12px 10px 14px; }
+  .op-section .conv-panier { margin-inline: -4px; }
+  .conv-art { padding: 8px 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .conv-art { transition: none; } }
+
+
+/* Filtres du catalogue : situation du client et résultat vide */
+.filtres-client { align-items: center; margin-top: -2px; padding: 8px 10px; background: var(--blue-soft); border-radius: var(--radius); }
+.filtres-lib { font-size: 14px; font-weight: 600; color: var(--navy); margin-right: 2px; }
+.filtre-petit { min-height: 36px; padding: 4px 12px; font-size: 14px; border-width: 1px; }
+.cat-vide { padding: 18px 20px; border: 1px dashed var(--line-strong); border-radius: var(--radius); background: var(--panel); }
+.cat-vide p { margin: 0 0 10px; }
+
+/* sélection d'un client : « Changer de client » respire sous la fiche du client choisi */
+#z-client > .champ { margin-top: 16px; }

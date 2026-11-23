@@ -1,0 +1,397 @@
+/* GS Banque & Assurance – feuille d'impression : seul le document monté par impression.js est imprimé. */
+#doc-impression { display: none; }
+
+@media print {
+  @page {
+    size: A4;
+    margin: 15mm 14mm 18mm;
+    @bottom-left { content: "GS Banque & Assurance – Agence de Paris"; font: 8pt "Segoe UI", Arial, sans-serif; color: #555; }
+    @bottom-right { content: "Page " counter(page) " / " counter(pages); font: 8pt "Segoe UI", Arial, sans-serif; color: #555; }
+  }
+  /* Courrier (e-mail) : même mise en page, avec le seul nom de la banque en bas de page. */
+  @page courrier {
+    size: A4;
+    margin: 15mm 14mm 18mm;
+    @bottom-left { content: "GS Banque & Assurance"; font: 8pt "Segoe UI", Arial, sans-serif; color: #555; }
+    @bottom-right { content: "Page " counter(page) " / " counter(pages); font: 8pt "Segoe UI", Arial, sans-serif; color: #555; }
+  }
+  .dp-courrier { page: courrier; }
+  /* Planche de cartes de visite (carte.css) : A4, marges de 10 mm en haut et en bas et de 20 mm sur les côtés, sans pied de page ; deux colonnes de 85 mm, cinq rangées de 55 mm. */
+  @page cartes { size: A4; margin: 10mm 20mm; @bottom-left { content: ""; } @bottom-right { content: ""; } }
+  html.impression-doc, html.impression-doc body { background: #fff !important; }
+  html.impression-doc body > *:not(#doc-impression) { display: none !important; }
+  html.impression-doc #doc-impression { display: block; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .dp { font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif; font-size: 9.5pt; line-height: 1.4; color: #111; font-variant-numeric: tabular-nums; }
+  .dp h1, .dp h2, .dp h3, .dp p, .dp ul, .dp dl, .dp dd { margin: 0; }
+  .dp ul { padding: 0; list-style: none; }
+  .dp svg { width: 14px; height: 14px; }
+  .dp-entete { display: flex; justify-content: space-between; align-items: flex-start; gap: 12mm; padding-bottom: 4mm; border-bottom: 2.5pt solid #1b3a57; }
+  .dp-marque { display: flex; align-items: center; gap: 3mm; }
+  .dp-marque img { width: 14mm; height: 14mm; }
+  .dp-banque { font-size: 14pt; font-weight: 700; color: #1b3a57; line-height: 1.15; }
+  .dp-agence { font-size: 9.5pt; color: #444; }
+  /* papier à en-tête des lettres de la banque : logo et agence à gauche, adresse à droite */
+  .dp-entete-lettre { align-items: center; }
+  .dp-coord { text-align: right; font-size: 9.5pt; line-height: 1.45; color: #333; }
+  .dp-coord p { margin: 0; }
+  .dp-titre { text-align: right; }
+  .dp-titre h1 { font-size: 16pt; line-height: 1.2; color: #1b3a57; }
+  .dp-titre p { font-size: 9.5pt; color: #333; }
+  .dp-titre .dp-date { color: #555; font-size: 8.5pt; }
+  .dp-titre .dp-auteur { color: #1b3a57; font-size: 9.5pt; }
+  .dp h2 { font-size: 11.5pt; color: #1b3a57; margin: 5mm 0 2mm; padding-bottom: 1mm; border-bottom: 0.75pt solid #1b3a57; break-after: avoid; }
+  .dp h3 { font-size: 10pt; color: #1b3a57; margin: 3mm 0 1.5mm; break-after: avoid; }
+  .dp section, .dp .dp-bloc { break-inside: avoid; }
+  .dp .dp-long { break-inside: auto; }
+  .dp + .dp { break-before: page; }
+  .dp-rel tr.solde-ligne td { background: #e8eef4; border-top: 0.75pt solid #1b3a57; }
+
+  .dp-deux { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin-bottom: 3mm; }
+  .dp-cadre { border: 0.75pt solid #999; border-radius: 2mm; padding: 2.5mm 3.5mm; break-inside: avoid; }
+  .dp-cadre h3 { margin-top: 0; }
+  .dp-cadre p { font-size: 9.5pt; }
+  .dp-cadre .nom { font-weight: 700; font-size: 10.5pt; }
+  .dp-cadre p.dp-iban-l { margin-top: 1.2mm; white-space: nowrap; }
+  .dp-cadre .dp-iban { font-weight: 700; letter-spacing: .02em; font-variant-numeric: tabular-nums; }
+  .dp-chiffres { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5mm; margin: 4mm 0 4mm; }
+  .dp-chiffres.trois { grid-template-columns: repeat(3, 1fr); }
+  .dp-chiffres > div { border-left: 2pt solid #29a3db; padding-left: 2.5mm; }
+  .dp-chiffres dt { font-size: 8pt; color: #444; }
+  .dp-chiffres dd { font-size: 11pt; font-weight: 700; }
+  .dp-chiffres dd small { display: block; font-size: 7.5pt; font-weight: 400; color: #555; }
+  .dp .neg { color: #b3261e; }
+
+  .dp table { width: 100%; border-collapse: collapse; font-size: 9pt; }
+  .dp caption { text-align: left; font-weight: 700; font-size: 9pt; color: #1b3a57; padding-bottom: 1mm; }
+  .dp th, .dp td { padding: 1.3mm 1.8mm; border-bottom: 0.5pt solid #bbb; text-align: right; vertical-align: top; }
+  .dp th:first-child, .dp td:first-child { text-align: left; }
+  .dp thead th { background: #e9eef3; color: #111; font-weight: 700; border-bottom: 1pt solid #1b3a57; font-size: 8.5pt; }
+  .dp thead { display: table-header-group; }
+  .dp tfoot th, .dp tfoot td { font-weight: 700; border-top: 1pt solid #1b3a57; border-bottom: 0; }
+  .dp tr { break-inside: avoid; }
+  .dp td.g, .dp th.g { text-align: left; }
+  .dp td:not(.g):not(.lib):not(:first-child), .dp tfoot td { white-space: nowrap; }
+  .dp caption { padding-bottom: 2mm; }
+  .dp table { margin-bottom: 1mm; }
+  .dp-rel td.lib { text-align: left; overflow-wrap: anywhere; }
+  .dp-rel td.date { white-space: nowrap; text-align: left; }
+  .dp-rel tr.frais td { background: #f4f4f4; }
+  .dp-mention { margin-top: 3mm; font-size: 8pt; color: #444; }
+
+  .dp-fiche { display: grid; grid-template-columns: 34mm 1fr; gap: 1mm 3mm; font-size: 9pt; }
+  .dp-fiche dt { color: #444; }
+  .dp-fiche dd { min-width: 0; overflow-wrap: anywhere; }
+  .dp-cartes { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+  .dp-cartes .carte-info { border: 0.75pt solid #999; border-radius: 2mm; padding: 2.5mm 3.5mm; break-inside: avoid; background: #fff; }
+  .dp-cartes .carte-info h2 { font-size: 10pt; margin: 0 0 1.5mm; border: 0; padding: 0; display: flex; gap: 1.5mm; align-items: center; color: #1b3a57; }
+  .dp-cartes .carte-info .fiche { display: grid; grid-template-columns: 30mm 1fr; gap: 1mm 3mm; font-size: 9pt; border: 0; padding: 0; }
+  .dp-cartes .carte-info .fiche dt { color: #444; }
+  .dp-cartes .carte-info .fiche dd { min-width: 0; overflow-wrap: anywhere; }
+  .dp-cartes .carte-info .large { grid-column: 1 / -1; }
+  .dp-cartes .liste-simple { display: grid; gap: 1.2mm; font-size: 9pt; }
+  .dp-cartes .liste-simple li { display: grid; grid-template-columns: 1fr auto; gap: 3mm; padding-bottom: 1mm; border-bottom: 0.5pt solid #ddd; }
+  .dp-cartes .liste-simple li:last-child { border-bottom: 0; }
+  .dp-cartes .liste-simple .droite { text-align: right; color: #444; }
+  .dp-cartes .equipement { display: grid; gap: 1.2mm; font-size: 9pt; }
+  .dp-cartes .equipement li { display: grid; grid-template-columns: 5mm 1fr; gap: 1mm; }
+  .dp-cartes .equipement small { display: block; color: #444; font-size: 8pt; }
+  .dp-cartes .puce, .dp-cartes .piste-chip { display: inline-block; border: 0.5pt solid #1b3a57; border-radius: 2mm; padding: 0 1.5mm; font-size: 8pt; margin-right: 1mm; }
+  .dp-cartes .opp-pistes { font-size: 8pt; }
+  .dp-notes .note { padding: 1.5mm 0; border-bottom: 0.5pt solid #ddd; break-inside: avoid; }
+  .dp-notes .note-tete { font-size: 8.5pt; color: #444; display: flex; gap: 3mm; }
+  .dp-notes .note-objet { font-weight: 700; }
+  .dp-notes .note-txt { white-space: pre-wrap; }
+
+  .dp .graphe { border: 0.75pt solid #999; border-radius: 2mm; padding: 2mm; break-inside: avoid; }
+  .dp .graphe svg { width: 100%; height: auto; stroke-width: 1; }
+  .dp .graphe .axe { stroke: #bbb; }
+  .dp .graphe .zero { stroke: #b3261e; stroke-dasharray: 4 4; }
+  .dp .graphe .courbe { fill: none; stroke: #1b3a57; stroke-width: 1.6; }
+  .dp .graphe .aire { fill: rgba(41, 163, 219, .14); stroke: none; }
+  .dp .graphe text { font-size: 9px; fill: #333; stroke: none; font-family: "Segoe UI", Arial, sans-serif; }
+  .dp-legende { font-size: 8pt; color: #444; margin: 1mm 0 2mm; }
+
+  .dp .barre { display: inline-block; width: 38mm; height: 2.6mm; background: #dfe6ec; border-radius: 1.3mm; overflow: hidden; vertical-align: middle; }
+  .dp .barre > span { display: block; height: 100%; background: #1b3a57; }
+  .dp-cmp td.b { text-align: left; min-width: 45mm; }
+  .dp-pf td, .dp-pf th { overflow-wrap: anywhere; }
+  .dp-pf.dp-cmp td:first-child, .dp-pf.dp-cmp th:first-child { width: 30mm; }
+  .dp-pf.dp-dossier-oc th:first-child { width: 36mm; overflow-wrap: normal; }   /* dossier d'ouverture de compte : libellés sur une ligne */
+  .dp-pf.dp-contrat th:first-child { width: 58mm; overflow-wrap: normal; }       /* contrat : libellés sur une ligne (« Numéro de compte (IBAN) », « Banque à distance (GS Connect) »), même avec de longues valeurs */
+  .dp-pfl { table-layout: fixed; font-size: 8pt; }
+  .dp-pfl th, .dp-pfl td { padding: 0.9mm 1.2mm; overflow-wrap: anywhere; }
+  .dp-pfl thead th { font-size: 7.5pt; }
+  .dp-pfl th:nth-child(1) { width: 31mm; } .dp-pfl th:nth-child(2) { width: 11mm; } .dp-pfl th:nth-child(3) { width: 28mm; } .dp-pfl th:nth-child(4) { width: 15mm; }
+  .dp-pfl th:nth-child(5) { width: 17mm; } .dp-pfl th:nth-child(6) { width: 15mm; } .dp-pfl th:nth-child(7) { width: 17mm; } .dp-pfl th:nth-child(8) { width: 26mm; } .dp-pfl th:nth-child(9) { width: 22mm; }
+  .dp-pfl th:nth-child(3), .dp-pfl td:nth-child(3) { padding-left: 3mm; }
+  .dp-pfl .num { white-space: nowrap; color: #444; }
+  .dp-pfl td:nth-child(2), .dp-pfl td:nth-child(4), .dp-pfl td:nth-child(9) { white-space: nowrap; }
+  .dp-elig { table-layout: fixed; }
+  .dp-elig th:nth-child(1) { width: 36%; }
+  .dp-elig th:nth-child(2) { width: 17%; }
+  .dp-elig td:nth-child(2) { white-space: nowrap; }
+  .dp-ag td:first-child, .dp-ag th:last-child, .dp-ag td:last-child { white-space: nowrap; }
+  .dp-ag td[colspan] { color: #444; }
+  .dp .dp-texte { font-size: 9.5pt; margin: 1mm 0; }
+  .dp .dp-liste { list-style: disc; padding-left: 5mm; font-size: 9.5pt; }
+  .dp .dp-liste li { margin: 0.6mm 0; }
+  .dp .dp-sous { font-size: 10pt; margin: 3mm 0 1mm; color: #1b3a57; }
+  .dp .dp-analyse { font-size: 9.5pt; margin: 0 0 2mm; border-left: 2pt solid #29a3db; padding-left: 2.5mm; }
+  .dp .dp-actions { border: 1.5pt solid #1b3a57; border-left-width: 4pt; border-radius: 1.5mm; padding: 2mm 3mm; margin: 3mm 0 2mm; break-inside: avoid; background: #eef6fb; }
+  .dp .dp-actions .dp-sous { margin-top: 0; }
+  .dp .dp-actions .dp-analyse { border-left: 0; padding-left: 0; margin-bottom: 0; }
+  .dp .dp-saisie { border: 0.75pt solid #999; border-radius: 2mm; padding: 3mm; min-height: 30mm; white-space: pre-wrap; font-size: 9.5pt; break-inside: auto; }
+  .dp .dp-saisie.vide { color: #666; font-style: italic; }
+  .dp-sans-saut { break-inside: avoid; }
+  .dp-camp { table-layout: fixed; font-size: 8.5pt; }
+  .dp-camp th:nth-child(1) { width: 40mm; } .dp-camp th:nth-child(2) { width: 15mm; } .dp-camp th:nth-child(3) { width: 38mm; }
+  .dp-camp td:nth-child(2) { white-space: nowrap; }
+  .dp-camp-id th { width: 28mm; }
+  .dp-mail-tete { margin: 2mm 0 3mm; font-size: 10pt; }
+  .dp-mail-tete > div { display: flex; gap: 3mm; margin: 0.6mm 0; }
+  .dp-mail-tete dt { width: 14mm; font-weight: 700; color: #444; }
+  .dp-mail-tete dd { margin: 0; }
+  .dp-bloc.dp-signatures { display: block; }
+  .dp-sign-cadres { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; margin-top: 3mm; }
+  .dp-sign-cadres.dp-sign-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .dp-sign-cadres.dp-sign-n { grid-template-columns: repeat(auto-fit, minmax(38mm, 1fr)); }
+  .dp-sign-cadres > div { border: 0.75pt solid #999; border-radius: 2mm; min-height: 38mm; padding: 3mm; font-size: 9.5pt; }
+  .dp-sign-cadres p { margin: 0 0 1mm; }
+  .dp-signatures { break-inside: avoid; }
+  .dp-mail { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 9.5pt; line-height: 1.38; border: 0.75pt solid #999; border-radius: 2mm; padding: 3mm 4mm; break-inside: avoid; }
+}
+
+/* Simulateur d'épargne : tableaux d'évolution et de comparaison (première colonne souple, les autres de largeur fixe pour les montants). */
+@media print {
+  .dp-ep { table-layout: fixed; font-size: 9pt; }
+  .dp-ep th:not(:first-child) { width: 34mm; }
+  .dp-ep td:not(:first-child) { white-space: nowrap; }
+  .dp-ep td[colspan] { white-space: normal; text-align: left; }
+}
+
+/* Simulateur de prêt : tableaux d'amortissement (première colonne = année ou numéro, quatre colonnes de montants) et tableau d'endettement. */
+@media print {
+  .dp-pr { table-layout: fixed; font-size: 9pt; }
+  .dp-pr th:first-child { width: 36mm; }
+  .dp-pr th:not(:first-child) { width: 31mm; }
+  .dp-pr td:not(:first-child) { white-space: nowrap; }
+  .dp-prg th:first-child, .dp-prg td:first-child { width: auto; white-space: normal; }
+  .dp-prg th:not(:first-child) { width: 46mm; }
+  .dp-total td { font-weight: 700; border-top: 1pt solid #1b3a57; }
+}
+
+/* Montage de prêt : note de synthèse, commentaire de financement et offre de crédit. */
+@media print {
+  .dp-fiche-l { grid-template-columns: 64mm 1fr; }
+  .dp-plan { table-layout: fixed; font-size: 9pt; }
+  .dp-plan th:nth-child(1), .dp-plan th:nth-child(3) { width: 36%; }
+  .dp-plan th:nth-child(2), .dp-plan th:nth-child(4) { width: 14%; }
+  .dp-plan td:nth-child(3), .dp-plan th:nth-child(3) { text-align: left; }
+  .dp-plan td:nth-child(1) { border-right: 0.5pt solid #bbb; }
+  .dp-plan td:nth-child(2) { border-right: 1pt solid #1b3a57; }
+  .dp-num { white-space: nowrap; text-align: right; }
+  .dp-avis th { width: 46mm; text-align: left; font-weight: 700; background: #f4f6f8; }
+  .dp-avis td { text-align: left; white-space: normal; }
+  .dp-avis td.dp-vide { height: 18mm; }
+  .dp-signatures { display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; margin-top: 4mm; }
+  .dp-signatures p { font-size: 9.5pt; }
+  .dp-ligne-sign { height: 22mm; border-bottom: 0.75pt solid #333; }
+  .dp .dp-pieces { list-style: none; padding-left: 0; columns: 2; column-gap: 8mm; font-size: 9pt; }
+  .dp .dp-pieces li { break-inside: avoid; }
+
+  /* RIB : trois exemplaires identiques sur une page, séparés par un trait de coupe ; page sans numérotation. */
+  @page rib { size: A4; margin: 12mm 14mm; @bottom-left { content: ""; } @bottom-right { content: ""; } }
+  .dp-rib { page: rib; }
+  .dp-rib-bloc { height: 82mm; padding-top: 3mm; display: flex; flex-direction: column; break-inside: avoid; }
+  .dp-rib-haut { display: flex; justify-content: space-between; align-items: flex-start; gap: 8mm; }
+  .dp-rib-titre { text-align: right; }
+  .dp-rib-t1 { font-size: 11pt; font-weight: 700; color: #1b3a57; }
+  .dp-rib-t2 { font-size: 9.5pt; color: #444; }
+  .dp-rib-corps { display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; margin-top: 6mm; }
+  .dp-rib-corps h3 { font-size: 10pt; color: #1b3a57; margin: 4mm 0 1mm; }
+  .dp-rib-corps > div > h3:first-child { margin-top: 0; }
+  .dp-rib-corps p { font-size: 10pt; }
+  .dp-rib-iban { font-weight: 600; letter-spacing: .02em; }
+  .dp-rib-cles { display: grid; grid-template-columns: auto auto auto auto; gap: 0 5mm; justify-content: start; }
+  .dp-rib-cles dt { font-size: 8pt; color: #444; }
+  .dp-rib-cles dd { font-size: 10pt; font-weight: 600; }
+  .dp-rib-coupe { position: relative; height: 0; border-top: 0.75pt dashed #888; margin: 0; }
+  .dp-rib-coupe svg { position: absolute; left: 0; top: -2.6mm; width: 5mm; height: 5mm; padding-right: 1.5mm; background: #fff; fill: none; stroke: #555; stroke-width: 1.6; stroke-linecap: round; box-sizing: content-box; }
+}
+
+/* Courriers de la banque et documents à signer par le client (documents.js) : lettre sur une page A4, zones à remplir à la main, cadres de signature. */
+@media print {
+  .dp-lettre p { margin: 0 0 2.6mm; font-size: 10pt; line-height: 1.45; }
+  .dp-lettre-dest { margin: 5mm 0 7mm 98mm; font-size: 10.5pt; }
+  .dp-lettre-envoi { text-transform: uppercase; font-size: 9pt; letter-spacing: .02em; }
+  .dp-lettre-refs, .dp-lettre-pj { font-size: 8.5pt; color: #333; }
+  .dp-lettre-date { text-align: right; }
+  .dp-lettre-objet { margin-top: 3mm; }
+  .dp-lettre-sign { margin-top: 6mm; break-inside: avoid; }
+  .dp-lettre .dp-fiche { margin: 1mm 0 4mm; padding: 2mm 3mm; background: #f3f5f7; border: 0.5pt solid #ccc; border-radius: 1.5mm; break-inside: avoid; }
+  .dp-lettre .dp-liste { margin: 0 0 3mm; font-size: 10pt; }
+  .dp-lettre h2 { font-size: 11pt; }
+  .dp-tab { font-size: 9pt; margin: 1mm 0 3mm; }
+  .dp-tab td, .dp-tab th { text-align: left; }
+  .dp-trait { display: inline-block; min-width: 40mm; border-bottom: 0.75pt solid #333; height: 1em; vertical-align: baseline; }
+  .dp-trait-long { min-width: 95mm; }
+  .dp-boite { display: inline-block; width: 4mm; height: 4mm; border: 0.75pt solid #333; margin-right: 2mm; vertical-align: -0.9mm; text-align: center; line-height: 3.4mm; font-size: 9pt; font-weight: 700; }
+  .dp-case { margin: 1.5mm 0; break-inside: avoid; }
+  .dp-lieu { margin-top: 6mm; break-after: avoid; }
+  .dp-mention-sign { font-size: 8pt; color: #555; }
+  .dp-saut { break-after: page; border: 0; height: 0; margin: 0; }
+  .dp-encadre { border: 0.75pt solid #777; border-radius: 1.5mm; padding: 2.5mm 3.5mm; margin: 0 0 3mm; break-inside: avoid; }
+  .dp-signatures > div { break-inside: avoid; }
+  /* « Documents à fournir pour l'étude de votre demande de prêt » : rubriques à deux colonnes de cases (Client, GS), pièces en gras, cadre de signature des candidats emprunteurs */
+  .dp-pret .dp-rub { margin: 0 0 4mm; break-inside: avoid; }
+  .dp-rub-tab { width: 100%; border-collapse: collapse; font-size: 9pt; table-layout: fixed; }
+  .dp-rub-tab th { background: #e4f3fb !important; color: #1b3a57; font-size: 9.5pt; font-weight: 700; padding: 1mm 2mm; text-align: center; }
+  .dp-rub-tab th.dp-rub-col { width: 14mm; font-weight: 600; }
+  .dp-rub-tab td { padding: 0.8mm 2mm; vertical-align: top; text-align: left; border-bottom: 0.5pt solid #d3dbe3; }
+  .dp-rub-tab td.dp-rub-case { width: 14mm; text-align: center; }
+  .dp-rub-tab .dp-boite { margin: 0; }
+  .dp-note-pret { font-style: italic; color: #1b3a57; margin: 4mm 0 3mm; }
+  .dp-rub-tab tr.dp-rub-remarque td { font-style: italic; color: #1b3a57; border-bottom: 0; }
+  .dp-rgpd { font-size: 7.5pt; line-height: 1.35; text-align: justify; }
+  .dp-sign-pret { border: 0.75pt solid #777; min-height: 38mm; padding: 2mm 3mm; width: 115mm; margin-top: 4mm; break-inside: avoid; }
+  /* Le document « crédit à la consommation » tient sur une seule page A4 : cadre de signature un peu plus bas. */
+  .dp-conso .dp-encadre { margin-bottom: 3mm; }
+  .dp-conso .dp-rub { margin-bottom: 3mm; }
+  .dp-conso .dp-note-pret { margin: 3mm 0 2.5mm; }
+  .dp-conso .dp-rgpd { font-size: 7.5pt; line-height: 1.35; margin: 0 0 2mm; }
+  .dp-conso .dp-sign-pret { min-height: 28mm; margin-top: 3mm; }
+  /* « Justificatifs à fournir pour l'ouverture d'un compte courant » : une page, cadre « Votre conseiller », intertitres dans les rubriques, pas de signature. */
+  .dp-ouv { font-size: 9pt; line-height: 1.3; }
+  .dp-ouv p { font-size: 9pt; line-height: 1.32; margin-bottom: 2mm; }
+  .dp-ouv .dp-conseiller { display: flex; flex-wrap: wrap; gap: 1mm 10mm; border: 0.75pt solid #777; border-radius: 1.5mm; padding: 2mm 3.5mm; margin: 0 0 3mm; break-inside: avoid; }
+  .dp-ouv .dp-conseiller p { margin: 0; }
+  .dp-ligne { display: inline-block; height: 3.4mm; border-bottom: 0.5pt solid #333; vertical-align: baseline; }
+  .dp-ligne-long { width: 48mm; }
+  .dp-ligne-court { width: 22mm; }
+  .dp-ouv .dp-texte { margin: 0 0 3mm; }
+  .dp-ouv .dp-encadre { margin-bottom: 3mm; }
+  /* la liste est longue (deux pages) : une rubrique peut passer d'une page à l'autre entre deux pièces, son bandeau (Client, GS) est repris en haut de la page suivante */
+  .dp-pret.dp-ouv .dp-rub { margin-bottom: 3mm; break-inside: auto; }
+  .dp-ouv .dp-rub-tab thead { display: table-header-group; }
+  .dp-ouv .dp-rub-tab tr { break-inside: avoid; }
+  .dp-ouv .dp-rub-tab tr.dp-rub-inter { break-after: avoid; }
+  .dp-ouv .dp-note-pret { margin: 3mm 0 2.5mm; }
+  .dp-ouv .dp-rgpd { font-size: 7.5pt; line-height: 1.35; margin: 0 0 2mm; }
+  .dp-rub-tab tr.dp-rub-inter td { font-weight: 700; color: #1b3a57; border-bottom: 0; padding-top: 1.6mm; }
+  /* Documents à signer par le client et formulaires à remplir (opérations de service) : un ordre simple tient sur une page ; les lignes de signature sont alignées en bas des cadres ;
+     la fin du document (informations, lieu et date, signatures) reste d'un seul bloc : la page 2 ne porte jamais les signatures seules. */
+  .dp-signer, .dp-remplir { font-size: 9pt; line-height: 1.3; }
+  .dp-signer p, .dp-remplir p { font-size: 9pt; line-height: 1.32; margin-bottom: 2mm; }
+  .dp-signer h2, .dp-remplir h2 { margin: 3.5mm 0 1.5mm; }
+  .dp-signer .dp-fiche, .dp-remplir .dp-fiche { font-size: 8.8pt; margin-bottom: 1mm; }
+  .dp-signer .dp-liste, .dp-signer .dp-liste li, .dp-remplir .dp-liste { font-size: 9pt; }
+  .dp-signer .dp-liste li { margin: 0.3mm 0; }
+  .dp-signer .dp-lieu, .dp-remplir .dp-lieu { margin-top: 3mm; }
+  .dp-signer .dp-signatures, .dp-remplir .dp-signatures { margin-top: 2mm; }
+  .dp-signer .dp-signatures > div { display: flex; flex-direction: column; }
+  .dp-signer .dp-ligne-sign, .dp-remplir .dp-ligne-sign { height: 16mm; margin-top: auto; }
+  .dp-signer .dp-mention, .dp-remplir .dp-mention { font-size: 8pt; margin-top: 2mm; }
+  .dp-fin { break-inside: avoid; }
+  section.dp-bloc.dp-signatures { display: block; }
+
+  /* Tampon de l'agence (tampon dateur, dessiné en CSS), signature du conseiller (le nom de l'élève, en écriture manuscrite) et légende sous la ligne (tampon.js). */
+  .dp-zone-cachet { position: relative; height: 22mm; border-bottom: 0.75pt solid #333; }
+  .dp-signer .dp-zone-cachet { height: 16mm; margin-top: auto; }
+  .dp-sign-cadres .dp-zone-cachet { height: 20mm; margin-top: 3mm; }
+  .dp-tampon { position: absolute; right: 1mm; bottom: 1.4mm; display: grid; transform: rotate(-5deg); border: 0.9pt solid #1d4f9f; outline: 0.4pt solid #1d4f9f; outline-offset: 0.6mm; border-radius: 1mm; padding: 0.7mm 2mm; color: #1d4f9f; text-align: center; font-size: 5.6pt; line-height: 1.22; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; opacity: .92; }
+  .dp-tampon-date { font-size: 6.6pt; letter-spacing: .08em; border-top: 0.4pt solid #1d4f9f; margin-top: 0.3mm; padding-top: 0.2mm; }
+  .dp-zone-cachet .dp-signature { position: absolute; left: 2mm; bottom: 0.8mm; margin: 0; font-family: "Segoe Script", "Lucida Handwriting", "Brush Script MT", "Snell Roundhand", "Bradley Hand", cursive; font-size: 14pt; line-height: 1; color: #14327f; transform: rotate(-3deg); white-space: nowrap; }
+  .dp-legende { font-size: 7.5pt !important; color: #555; margin: 1mm 0 0 !important; }
+  .dp-lettre-sign-cachet { width: 84mm; break-inside: avoid; }
+  .dp-lettre-sign-cachet .dp-lettre-ag { margin: 0 0 1.5mm; font-weight: 600; }
+  .dp-lettre-sign-cachet .dp-zone-cachet { height: 20mm; margin-top: 1mm; }
+}
+
+/* Lettre d'injonction (injonction.js) : deux pages A4. Page 1 : la lettre, le tampon de l'agence, la signature du conseiller ; page 2 : dispositions de la loi et déclaration de régularisation à remplir par le client. */
+@media print {
+  .dp-inj p, .dp-inj li { font-size: 9.3pt; line-height: 1.34; }
+  .dp-inj p { margin: 0 0 1.7mm; }
+  .dp-inj .dp-lettre-dest { margin: 1mm 0 4mm 98mm; font-size: 10.5pt; }
+  .dp-inj .dp-lettre-dest p { font-size: 10.5pt; }
+  /* « Lettre recommandée avec avis de réception » : à gauche, à hauteur de l'adresse du destinataire (aucune ligne ajoutée : la lettre doit tenir sur la page) */
+  .dp-inj .dp-lettre-envoi { float: left; width: 62mm; margin: 1.5mm 0 0; }
+  .dp-inj .dp-lettre-refs { font-size: 8.5pt; }
+  .dp-inj .dp-lettre-date { margin-bottom: 2mm; }
+  .dp-inj .dp-lettre-objet { margin: 0 0 2.5mm; }
+  .dp-inj .dp-liste { margin: 0 0 2mm; padding-left: 5mm; }
+  .dp-inj .dp-liste li { margin: 0.4mm 0; }
+  .dp-inj .dp-inj-fort { border-left: 1.5pt solid #1b3a57; padding-left: 3mm; margin: 1mm 0 2.5mm; font-size: 9.8pt; }
+  .dp-inj .dp-signatures { grid-template-columns: 1fr 1fr; margin-top: 2mm; }
+  .dp-inj .dp-signatures > div { grid-column: 2; display: flex; flex-direction: column; }
+  .dp-inj .dp-signatures p { margin: 0 0 1mm; font-size: 9pt; }
+  .dp-inj .dp-inj-p2 { break-before: page; }
+  .dp-inj .dp-inj-p2 h2 { margin: 0 0 3mm; }
+  .dp-inj .dp-inj-p2 h3 { font-size: 10pt; color: #1b3a57; margin: 3.5mm 0 1mm; break-after: avoid; }
+  .dp-inj .dp-inj-num { list-style: decimal; padding-left: 6mm; }
+  .dp-inj .dp-inj-decl { margin-top: 6mm; padding: 4mm 5mm; }
+  .dp-inj .dp-inj-decl h2 { margin: 0 0 2.5mm; border-bottom: 0; padding-bottom: 0; }
+  .dp-inj .dp-inj-sign { margin-top: 5mm; }
+  .dp-inj .dp-inj-decl .dp-ligne-sign { height: 22mm; }
+  .dp-inj .dp-inj-decl .dp-lieu { margin-top: 5mm; }
+  .dp-inj .dp-inj-decl .dp-mention { margin-top: 2mm; }
+  /* lettre complétée par la banque lors d'une régularisation : mention barrée, ligne de signature plus courte, cadre réservé à la banque */
+  .dp-barre { text-decoration: line-through; color: #555; }
+  .dp-inj .dp-inj-decl-ok { margin-top: 4mm; padding: 3mm 5mm; }
+  .dp-inj .dp-inj-decl-ok .dp-ligne-sign { height: 11mm; }
+  .dp-inj .dp-inj-decl-ok .dp-lieu { margin-top: 3mm; }
+  .dp-inj .dp-inj-banque { margin-top: 3mm; padding: 3mm 5mm; border-color: #1b3a57; background: #f3f6fa; }
+  .dp-inj .dp-inj-banque h2 { margin: 0 0 2mm; font-size: 10.5pt; color: #1b3a57; border-bottom: 0; padding-bottom: 0; }
+  .dp-inj .dp-inj-banque .dp-fiche { margin: 0 0 1mm; padding: 0; background: none; border: 0; font-size: 8.6pt; grid-template-columns: 42mm 1fr; }
+  .dp-inj .dp-inj-banque-corps { display: grid; grid-template-columns: minmax(0, 1fr) 56mm; gap: 4mm; align-items: end; }
+  .dp-inj .dp-inj-banque .dp-signatures { grid-template-columns: 1fr; margin: 0; }
+  .dp-inj .dp-inj-banque .dp-signatures > div { grid-column: 1; }
+  .dp-inj .dp-inj-p2-ok p, .dp-inj .dp-inj-p2-ok li { font-size: 8.8pt; line-height: 1.3; }
+  .dp-inj .dp-inj-p2-ok h2 { margin-bottom: 2mm; }
+  .dp-inj .dp-inj-p2-ok h3 { margin: 2.5mm 0 0.8mm; }
+  /* courrier d'information préalable : une page, l'échéance dans un encadré */
+  .dp-info p { margin: 0 0 2.4mm; }
+  .dp-info .dp-lettre-dest { margin: 4mm 0 4mm 98mm; }
+  .dp-info .dp-lettre-ligne { display: flex; justify-content: space-between; align-items: baseline; gap: 6mm; margin-bottom: 2mm; }
+  .dp-info .dp-lettre-ligne p { margin: 0; }
+  .dp-info .dp-lettre-objet { margin: 0 0 4mm; font-size: 10.5pt; }
+  .dp-info .dp-encadre-delai { margin: 3mm 0 4mm; padding: 3.5mm 5mm; border: 0.75pt solid #1b3a57; border-left: 3pt solid #1b3a57; background: #eef3f8; break-inside: avoid; }
+  .dp-info .dp-encadre-delai p { margin: 0; }
+  .dp-info .dp-delai-lib { font-size: 8.5pt; text-transform: uppercase; letter-spacing: .04em; color: #1b3a57; }
+  .dp-info .dp-delai-date { font-size: 13pt; font-weight: 700; color: #1b3a57; margin: 0.5mm 0 1.5mm; }
+  .dp-info .dp-delai-note { font-size: 9pt; color: #333; }
+  .dp-info .dp-fiche { margin: 1mm 0 3mm; }
+  .dp-info .dp-sous-titre { margin: 3mm 0 1.2mm; font-weight: 700; color: #1b3a57; break-after: avoid; }
+  .dp-info .dp-liste { margin: 0 0 2.4mm 4mm; }
+  .dp-info .dp-liste li { margin-bottom: 1mm; list-style: disc; }
+  .dp-info .dp-lettre-sign-cachet { margin-top: 4mm; }
+}
+
+/* Lettre de refus d'ouverture de compte – droit au compte (droit_compte.js) : deux pages A4. Page 1 : la lettre et la signature de l'agence ; page 2 : la suite, les services de base, le mandat à signer. */
+@media print {
+  .dp-dac p, .dp-dac li { font-size: 9.2pt; line-height: 1.33; }
+  .dp-dac p { margin: 0 0 1.7mm; }
+  .dp-dac .dp-lettre-dest { margin: 1mm 0 4mm 98mm; }
+  .dp-dac .dp-lettre-dest p { font-size: 10.5pt; }
+  .dp-dac .dp-lettre-envoi { float: left; width: 62mm; margin: 1.5mm 0 0; }
+  .dp-dac .dp-lettre-refs { font-size: 8.5pt; }
+  .dp-dac .dp-lettre-date { margin-bottom: 2mm; }
+  .dp-dac .dp-lettre-objet { margin: 0 0 2.5mm; }
+  .dp-dac h3 { font-size: 10pt; color: #1b3a57; margin: 3mm 0 1mm; break-after: avoid; }
+  .dp-dac .dp-liste { margin: 0 0 2mm; padding-left: 5mm; }
+  .dp-dac .dp-liste li { margin: 0.4mm 0; }
+  .dp-dac .dp-case { margin: 0.8mm 0; }
+  .dp-dac .dp-signatures { grid-template-columns: 1fr 1fr; margin-top: 2mm; }
+  .dp-dac .dp-signatures > div { grid-column: 2; display: flex; flex-direction: column; }
+  .dp-dac .dp-signatures p { margin: 0 0 1mm; font-size: 9pt; }
+  .dp-dac .dp-dac-p2 { break-before: page; }
+  .dp-dac .dp-dac-p2 h2 { margin: 0 0 3mm; }
+  .dp-dac .dp-dac-mandat { margin-top: 4mm; padding: 4mm 5mm; }
+  .dp-dac .dp-dac-mandat h2 { margin: 0 0 2.5mm; border-bottom: 0; padding-bottom: 0; }
+  .dp-dac .dp-dac-sign { margin-top: 4mm; }
+  .dp-dac .dp-dac-mandat .dp-ligne-sign { height: 20mm; }
+  .dp-dac .dp-dac-mandat .dp-lieu { margin-top: 4mm; }
+  .dp-dac .dp-dac-textes { margin-top: 5mm; font-size: 8.5pt; color: #333; }
+}
+

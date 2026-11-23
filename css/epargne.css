@@ -1,0 +1,54 @@
+/* GS Banque & Assurance – simulateur d'épargne. */
+.ep-client { margin-bottom: 16px; }
+.ep-grille { display: grid; grid-template-columns: minmax(300px, 480px) minmax(0, 1fr); gap: 20px; align-items: start; }
+.ep-form { max-width: none; }
+.ep-form select, .ep-form input { font: inherit; }
+.ep-inconnue { border: 0; padding: 0; margin: 0; min-width: 0; }
+.ep-inconnue legend { font-size: 14px; font-weight: 700; padding: 0; margin-bottom: 6px; color: var(--navy); }
+.ep-radios { display: grid; gap: 6px; }
+.ep-radio { display: flex; align-items: flex-start; gap: 10px; border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 8px 12px; background: #fff; cursor: pointer; min-height: 48px; }
+.ep-radio strong { font-weight: 700; font-size: 15px; }
+.ep-radio small { display: block; font-size: 13.5px; color: var(--muted); font-weight: 400; }
+.formulaire .ep-radio input { width: 20px; height: 20px; min-height: 0; padding: 0; margin: 2px 0 0; flex: none; accent-color: var(--navy); }
+.ep-radio:has(input:checked) { border-color: var(--navy); background: var(--blue-soft); box-shadow: inset 0 0 0 1px var(--navy); }
+.ep-ligne2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+.ep-lib { font-size: 14px; font-weight: 600; }
+.ep-duree-champs { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
+.formulaire .ep-duree-champs input { width: 84px; text-align: right; }
+.ep-duree-champs span { color: var(--muted); font-size: 14.5px; margin-right: 8px; }
+.formulaire input[readonly] { background: #eef2f5; color: var(--muted); }
+.ep-res .bloc-tete { align-items: center; }
+.ep-phrase { font-size: 18px; line-height: 1.45; font-weight: 600; color: var(--navy); max-width: 62ch; margin-bottom: 4px; }
+.ep-kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.ep-kpis .kpi dd.val { font-size: 24px; overflow-wrap: anywhere; }
+.ep-kpis .kpi-inconnue { border-left-color: var(--ok); background: var(--ok-bg); border-radius: 0 var(--radius) var(--radius) 0; padding: 6px 8px 6px 12px; }
+.ep-kpis .kpi-inconnue dd.val { color: var(--ok); }
+.ep-kpis .puce { margin-left: 4px; vertical-align: middle; }
+.ep-alertes { display: grid; gap: 8px; margin: 8px 0 14px; max-width: 90ch; }
+.ep-al { display: flex; gap: 10px; align-items: flex-start; padding: 9px 12px; border-left: 5px solid var(--blue); background: var(--blue-soft); border-radius: 0 var(--radius) var(--radius) 0; font-size: 14.5px; }
+.ep-al-attention { border-left-color: #c98a00; background: var(--warn-bg); color: var(--warn); }
+.ep-al-ico svg { width: 20px; height: 20px; flex: none; margin-top: 1px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.ep-details { border: 1px solid var(--line); border-radius: var(--radius); margin: 4px 0 8px; background: #fff; }
+.ep-details > summary { cursor: pointer; padding: 10px 14px; font-weight: 600; color: var(--navy); min-height: 44px; display: flex; align-items: center; }
+.ep-calc { list-style: decimal; padding: 0 16px 4px 38px; display: grid; gap: 8px; max-width: 90ch; font-size: 14.5px; }
+.ep-details > .mention { padding: 0 14px 12px; max-width: 90ch; }
+.ep-tab { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+.ep-tab th, .ep-tab td { padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.ep-tab thead th { background: #f6f8fa; color: var(--muted); font-size: 13px; font-weight: 700; }
+.ep-tab tbody tr:last-child > * { border-bottom: 0; }
+.ep-tab td, .ep-tab th { text-align: right; white-space: nowrap; }
+.ep-tab th[scope="row"], .ep-tab th.gauche, .ep-tab td.gauche { text-align: left; white-space: normal; }
+.ep-tab .puce { margin-left: 6px; }
+.ep-utilisee th, .ep-utilisee td { background: var(--blue-soft); }
+.ep-perime-msg { margin: 0 0 12px; padding: 10px 14px; background: var(--warn-bg); color: var(--warn); border-left: 5px solid #c98a00; border-radius: 0 var(--radius) var(--radius) 0; font-weight: 600; }
+.ep-perime { outline: 2px dashed #c98a00; outline-offset: 8px; border-radius: 2px; }
+#ep-t-res:focus, #cl-choisi:focus { outline: 3px solid var(--blue); outline-offset: 2px; }
+@media (max-width: 1100px) { .ep-grille { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 700px) { .ep-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ep-ligne2 { grid-template-columns: minmax(0, 1fr) !important; } .ep-phrase { font-size: 16.5px; } }
+@media (max-width: 420px) { .ep-kpis { grid-template-columns: minmax(0, 1fr); } }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+
+/* Compte à terme : grille des taux, un bouton par durée */
+.ep-cat-grille { margin: 0 0 14px; }
+.ep-cat-liste { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.ep-cat-liste .btn { min-height: 44px; }

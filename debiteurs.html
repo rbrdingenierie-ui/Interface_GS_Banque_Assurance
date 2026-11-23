@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GS Banque &amp; Assurance – Opérations débiteurs</title>
+<meta name="description" content="Opérations débiteurs : payer ou rejeter les chèques et les prélèvements, valider les paiements par carte.">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/appels.css">
+<link rel="stylesheet" href="css/icc.css">
+<link rel="stylesheet" href="css/documents.css">
+<link rel="stylesheet" href="css/injonction.css">
+<link rel="stylesheet" href="css/espacement.css">
+<link rel="stylesheet" href="css/print.css">
+<script src="js/identifiants.js"></script>
+<script src="js/acces.js"></script>
+<script src="js/garde.js"></script>
+</head>
+<body>
+<a class="evitement" href="#app">Aller au contenu</a>
+
+<header class="entete">
+  <div class="entete-marque">
+    <span class="logo-tuile"><img src="assets/logo.png" width="52" height="52" alt="Logo GS Banque &amp; Assurance"></span>
+    <div>
+      <p class="marque">GS Banque &amp; Assurance</p>
+      <p class="marque-sous">Poste du Conseiller Clientèle Particuliers</p>
+    </div>
+  </div>
+  <div class="entete-outils">
+    <a class="btn-texte lien-accueil" href="index.html">Accueil</a>
+    <div id="progression" class="progression" hidden></div>
+    <button type="button" class="btn-texte" data-act="aide">Fiche réflexe</button>
+    <button type="button" class="btn-texte" data-act="recommencer" id="btn-recommencer" hidden>Recommencer</button>
+  </div>
+</header>
+
+<main id="app" tabindex="-1">
+  <noscript><p class="bloc">Cette page a besoin de JavaScript pour fonctionner. Activez-le dans votre navigateur, puis rechargez la page.</p></noscript>
+</main>
+
+<dialog id="aide" aria-labelledby="aide-titre">
+  <div class="aide-corps">
+    <div class="aide-tete">
+      <h2 id="aide-titre">Fiche réflexe du Conseiller Clientèle Particuliers</h2>
+      <button type="button" class="btn-texte" data-act="fermer-aide">Fermer</button>
+    </div>
+
+    <h3>Les trois positions d'un compte</h3>
+    <ul>
+      <li><strong>Créditeur</strong> : le solde est de 0 € ou plus.</li>
+      <li><strong>Débiteur dans l'autorisation</strong> : le solde est négatif mais ne dépasse pas l'autorisation de découvert. Ce n'est pas l'état des débiteurs.</li>
+      <li><strong>État des débiteurs</strong> : le solde dépasse l'autorisation de découvert, ou le compte devient débiteur alors qu'il n'a pas d'autorisation.</li>
+    </ul>
+
+    <h3>Ce qui ne se rejette pas</h3>
+    <ul>
+      <li><strong>Paiement par carte</strong> : l'ordre de paiement est irrévocable (art. L133-8 du Code monétaire et financier). On le valide, même si le compte passe à l'état des débiteurs.</li>
+      <li><strong>Chèque de 15 € ou moins</strong> : il ne peut pas être refusé, même sans provision. Il est débité et donne lieu à des intérêts débiteurs.</li>
+    </ul>
+
+    <h3>Chèque et prélèvement : payer ou rejeter ?</h3>
+    <ul>
+      <li>Si la position reste dans la limite autorisée, on paie. Un rejet serait injustifié.</li>
+      <li>Si l'opération fait passer le compte à l'état des débiteurs, le conseiller décide.</li>
+      <li>Critères à examiner : la note Bâle, les rejets des 12 derniers mois, le montant du dépassement comparé aux revenus, le crédit attendu (salaire, pension), l'ancienneté et la situation du client.</li>
+    </ul>
+
+    <h3>Les mentions du dossier client</h3>
+    <ul>
+      <li><strong>OCF</strong>, offre clientèle fragile : le client est protégé par des plafonds de frais. Commission d'intervention de 4 € par opération, 20 € par mois au maximum, et ensemble des frais d'incidents plafonné à 20 € par mois. Un client détecté fragile sans avoir souscrit l'offre bénéficie d'un plafond de 25 € par mois. Carte à autorisation systématique.</li>
+      <li><strong>SC</strong>, compte sous contrôle : le compte est suivi par le conseiller, par exemple après une fraude ou à l'ouverture récente du compte. Il n'est <strong>pas à l'état des débiteurs</strong> : la gestion consiste à le surveiller. Tant que la provision est suffisante, on paie.</li>
+      <li><strong>FCP</strong>, client fiché au FICP (fichier des incidents de remboursement des crédits aux particuliers) : la règle payer ou rejeter ne change pas, et le fichage n'interdit ni le chéquier ni la carte. En revanche, la banque consulte le fichier avant d'accorder un crédit : on ne propose pas de crédit.</li>
+      <li><strong>DAC</strong>, droit au compte : le client a droit aux services bancaires de base, dont une carte à autorisation systématique. Ils n'incluent ni chéquier ni autorisation de découvert.</li>
+    </ul>
+
+    <h3>Opportunité commerciale</h3>
+    <p>Pour chaque dossier, détectez une seule opportunité, ou aucune. Critères de l'agence. Un client sain est un client de note A ou B :</p>
+    <ul>
+      <li><strong>Montée en gamme de carte</strong> : carte Visa Classic, note A ou B, revenus domiciliés d'au moins 2 000 € par mois, usage intensif de la carte.</li>
+      <li><strong>Mise en place d'un découvert</strong> : client sain, revenus réguliers, sans autorisation, dont le compte passe ou frôle le débit.</li>
+      <li><strong>Augmentation du découvert</strong> : client sain, revenus réguliers, déjà titulaire d'une autorisation qui devient juste en fin de mois (utilisation importante, sans être permanente).</li>
+      <li><strong>Mise en place d'un crédit consommation</strong> : besoin de trésorerie permanent (autorisation utilisée en continu ou presque) ou projet d'achat important, client sain.</li>
+      <li><strong>Aucune</strong> : clients OCF, FCP, DAC ou SC, notes C, D, E ou Défaut, rejets récents (plus d'un rejet sur les 180 derniers jours), client déjà équipé.</li>
+    </ul>
+
+    <h3>Frais et conséquences</h3>
+    <ul>
+      <li><strong>Rejet d'un chèque sans provision</strong> : frais de 30 € si le chèque est de 50 € ou moins, de 50 € s'il est supérieur à 50 € (art. D131-25). Le titulaire est informé avant le rejet et invité à approvisionner son compte. Sans régularisation, la banque envoie une lettre d'injonction, et l'interdiction d'émettre des chèques dure 5 ans au plus.</li>
+      <li><strong>Rejet d'un prélèvement</strong> : frais de 20 € au maximum, ou le montant du prélèvement s'il est inférieur à 20 € (art. D133-6).</li>
+      <li><strong>Paiement en irrégularité</strong> (opération payée alors que le compte est à l'état des débiteurs) : commission d'intervention de 8 € par opération, 80 € par mois au maximum (art. R312-4-1). Pour un client OCF : 4 € par opération, 20 € par mois au maximum.</li>
+    </ul>
+
+    <h3>Procédure MURCEF : chèque sans provision</h3>
+    <ul>
+      <li><strong>Quand ?</strong> Pour un chèque de plus de 15 € rejeté pour défaut de provision, c'est-à-dire que le compte ne pouvait pas payer (solde et autorisation de découvert insuffisants). Si la position permettait de payer, le rejet n'est pas fondé : il n'y a pas de procédure.</li>
+      <li><strong>Étape 1 : informer le titulaire.</strong> Validez le dossier, puis cliquez sur « Informer le titulaire » sous le chèque rejeté. Cochez au moins un moyen : courrier d'information, appel téléphonique, e-mail. Le courrier est édité en PDF seulement si vous le cochez ; il indique tout seul la <strong>date limite de régularisation</strong>.</li>
+      <li><strong>Étape 2 : chèque en suspens.</strong> Le chèque est mis en suspens pendant 5 jours ouvrés (hors week-end et jours fériés), jusqu'à 12 h le dernier jour. C'est une règle de l'agence : la loi ne fixe pas de délai. Le titulaire peut régulariser jusque-là.</li>
+      <li><strong>Étape 3 : lettre d'injonction.</strong> « Visualiser la lettre d'injonction » montre la lettre qui est envoyée si le titulaire ne régularise pas avant l'échéance. Une fois l'échéance atteinte, vous validez l'envoi : choisissez la qualité du destinataire, cochez les quatre vérifications, puis éditez le PDF. La lettre de deux pages, envoyée en recommandé avec avis de réception, dit l'interdiction d'émettre des chèques pendant cinq ans (art. L131-73), la restitution des chéquiers, les moyens de régulariser, les sanctions pénales (art. L163-2) et l'inscription au fichier central des chèques (FCC) de la Banque de France. La page 2 contient la déclaration de régularisation que le client remplit et signe.</li>
+      <li><strong>Plus tard.</strong> Les chèques en suspens sont listés sur l'accueil de l'outil : vous pouvez y valider l'envoi de la lettre quand l'échéance est atteinte, même un autre jour. Les deux courriers sont aussi, en modèles à compléter, dans « Courriers et documents ».</li>
+    </ul>
+
+    <h3>Note Bâle</h3>
+    <p>Note de risque attribuée au client, de A (risque très faible) à E (risque très élevé), puis Défaut. Un impayé de plus de 90 jours est l'un des critères du défaut (article 178 du règlement CRR).</p>
+
+    <h3>ICC – Indice de Commercialité Client</h3>
+    <p>Notation interne affichée sous la note Bâle. Elle mesure l'équipement du client à GS, pas son risque : <strong>rouge</strong> (salaire non domicilié et/ou compte non équipé), <strong>orange</strong> (salaire domicilié, compte partiellement équipé : banque au quotidien ou épargne), <strong>jaune</strong> (salaire domicilié, compte équipé, sans assurance), <strong>vert</strong> (au moins 1 assurance), <strong>vert+</strong> (au moins 2 assurances et client sociétaire). Elle ne change ni la règle payer ou rejeter ni les critères de l'opportunité commerciale ci-dessus : elle indique ce qu'il reste à proposer au client. Le détail des critères et la manière de monter d'un niveau sont dans le bloc ICC du dossier.</p>
+
+  </div>
+</dialog>
+
+<script src="js/banque.js"></script>
+<script src="js/identite.js"></script>
+<script src="js/data.js"></script>
+<script src="js/releves.js"></script>
+<script src="js/rules.js"></script>
+<script src="js/quotidien_base.js"></script>
+<script src="js/quotidien_pools.js"></script>
+<script src="js/quotidien_releve.js"></script>
+<script src="js/quotidien_deb_textes.js"></script>
+<script src="js/quotidien_deb.js"></script>
+<script src="js/icc.js"></script>
+<script src="js/icc_vue.js"></script>
+<script src="js/quotidien_deb_asm.js"></script>
+<script src="js/quotidien.js"></script>
+<script src="js/quotidien_charge.js"></script>
+<script src="js/tampon.js"></script>
+<script src="js/documents.js"></script>
+<script src="js/injonction.js"></script>
+<script src="js/impression.js"></script>
+<script src="js/app.js"></script>
+<script src="js/appels.js"></script>
+<script src="js/app_appels.js"></script>
+</body>
+</html>

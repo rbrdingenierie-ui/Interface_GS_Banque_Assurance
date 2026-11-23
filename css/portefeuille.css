@@ -1,0 +1,77 @@
+/* GS Banque & Assurance – portefeuille clients : filtres, tableau, sélection, cibles. */
+.pf-liens { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: -4px 0 14px; font-size: 14.5px; }
+.pf-liens a { color: var(--navy); font-weight: 600; }
+.pf-q { max-width: 560px; margin-bottom: 12px; }
+.pf-q label, .pf-grille label, .pf-tri label { font-size: 14px; font-weight: 600; }
+.pf-q input, .pf-grille select, .pf-tri select { font: inherit; border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 9px 12px; min-height: 44px; background: #fff; width: 100%; color: var(--ink); }
+.pf-details > summary { gap: 8px; }
+.pf-nbf { color: var(--muted); font-weight: 600; font-size: 14px; }
+.pf-corps { padding: 4px 14px 14px; }
+.pf-grille { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 16px; }
+.pf-grille-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.pf-produit { margin: 16px 0 0; padding: 10px 14px 12px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); }
+.pf-produit legend { padding: 0 6px; font-weight: 700; color: var(--navy); font-size: 14.5px; }
+.pf-produit .aide-champ { margin-top: 8px; max-width: 80ch; }
+.pf-puces-zone { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; }
+.pf-puces { display: flex; flex-wrap: wrap; gap: 8px; }
+.pf-puces li { display: inline-flex; align-items: center; gap: 2px; background: var(--blue-soft); box-shadow: inset 0 0 0 1px var(--blue); color: var(--navy); border-radius: 999px; padding: 2px 4px 2px 12px; font-size: 14px; font-weight: 600; }
+.pf-x { min-width: 32px; min-height: 32px; border: 0; background: transparent; color: var(--navy); font-size: 20px; line-height: 1; border-radius: 50%; cursor: pointer; }
+.pf-x:hover { background: #fff; }
+.pf-aucun { margin: 0; }
+.pf-tri { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 12px 16px; margin-top: 14px; max-width: 760px; }
+.pf-vue-cible { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; padding: 10px 14px; margin-bottom: 12px; background: var(--blue-soft); border-left: 4px solid var(--blue); border-radius: var(--radius); }
+.pf-vue-cible .btn { min-height: 40px; padding: 6px 14px; }
+.pf-kpis { margin-top: 0; }
+.pf-barre { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 4px 0 12px; padding: 8px 12px; background: var(--paper); border-radius: var(--radius); }
+.pf-barre .btn { min-height: 40px; padding: 6px 14px; }
+.pf-sel-txt { flex: 1 1 260px; font-weight: 600; color: var(--navy); font-size: 14.5px; }
+.tab-defile { position: relative; overflow-x: auto; }
+.tab-defile:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+.tab-pf { min-width: 980px; }
+.tab-pf td.gauche, .tab-pf th.gauche { text-align: left; }
+.tab-pf td, .tab-pf th { vertical-align: top; }
+.tab-pf th[scope="row"] { text-align: left; min-width: 130px; }
+.tab-pf thead th:nth-child(2), .tab-pf thead th:nth-child(4), .tab-pf thead th:nth-child(5), .tab-pf thead th:nth-child(9), .tab-pf thead th:nth-child(10) { text-align: left; }
+.tab-pf td[data-label="Âge"], .tab-pf td[data-label="Arrondissement"] { white-space: nowrap; }
+.tab-pf th[scope="row"] a { color: var(--navy); font-weight: 700; }
+.tab-pf .pf-coche { width: 44px; text-align: center; padding-right: 0; }
+.tab-pf .pf-coche input { width: 22px; height: 22px; accent-color: var(--navy); cursor: pointer; }
+.pf-sous { display: block; font-size: 13px; color: var(--muted); font-weight: 400; }
+.tab-pf tr.pf-coche-oui > * { background: #f1f8fd; }
+.tab-pf .piste-chip { display: inline-block; margin: 0 4px 4px 0; }
+.pf-act { white-space: nowrap; text-align: left !important; }
+.pf-act a { display: inline-block; margin-right: 10px; color: var(--navy); font-weight: 600; font-size: 14px; min-height: 32px; line-height: 32px; }
+.pf-vide { padding: 16px 0; }
+.pf-form { max-width: 700px; }
+.pf-source { border: 0; margin: 0; padding: 0; display: grid; gap: 6px; }
+.pf-source legend { font-weight: 600; font-size: 14px; padding: 0; margin-bottom: 2px; }
+.pf-radio { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 400 !important; min-height: 32px; }
+.pf-radio input { width: 20px !important; height: 20px; min-height: 0 !important; padding: 0 !important; accent-color: var(--navy); }
+.msg-erreur { color: var(--bad); font-size: 14.5px; font-weight: 600; min-height: 1.4em; }
+.cibles { display: grid; gap: 12px; }
+.cible { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; background: #fff; display: grid; gap: 8px; }
+.cible-actif { border-color: var(--blue); box-shadow: inset 4px 0 0 var(--blue); }
+.cible-edition { background: var(--paper); border-style: dashed; }
+.cible-tete { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 14px; }
+.cible-tete h3 { font-size: 17px; color: var(--navy); }
+.cible-note { font-size: 15px; max-width: 80ch; white-space: pre-wrap; }
+.cible-crit { font-size: 14px; color: var(--muted); max-width: 90ch; }
+.cible-stats { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+.cible-stats dt { font-size: 13px; color: var(--muted); }
+.cible-stats dd { font-weight: 700; font-size: 16px; color: var(--navy); }
+.pf-btns { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.pf-btns .btn { min-height: 40px; padding: 6px 14px; }
+.pf-conf { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+@media (max-width: 1000px) { .pf-grille { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px) {
+  .pf-grille, .pf-grille-2, .pf-tri { grid-template-columns: minmax(0, 1fr); }
+  .tab-pf { min-width: 0; }
+  .tab-pf tbody tr { position: relative; padding: 10px 12px 10px 52px; }
+  .tab-pf .pf-coche { position: absolute; left: 6px; top: 8px; width: 40px; padding: 0; }
+  .tab-pf td[data-label] { display: block; margin-right: 0; }
+  .tab-pf td.gauche[data-label], .tab-pf td[data-label] { display: block; }
+  .tab-pf .pf-sous { display: inline; margin-left: 6px; }
+  .pf-act { padding-top: 6px !important; }
+  .pf-act a { margin-right: 16px; }
+  .pf-barre .btn, .pf-barre .btn-texte { flex: 1 1 100%; }
+}

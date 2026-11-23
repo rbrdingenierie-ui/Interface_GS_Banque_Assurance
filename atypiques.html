@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GS Banque &amp; Assurance – Mouvements atypiques</title>
+<meta name="description" content="Mouvements atypiques : analyser des opérations atypiques, contacter le client, valider l'opération ou la déclarer à TRACFIN.">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/appels.css">
+<link rel="stylesheet" href="css/atypiques.css">
+<link rel="stylesheet" href="css/signalement.css">
+<link rel="stylesheet" href="css/espacement.css">
+<script src="js/identifiants.js"></script>
+<script src="js/acces.js"></script>
+<script src="js/garde.js"></script>
+</head>
+<body>
+<a class="evitement" href="#app">Aller au contenu</a>
+
+<header class="entete">
+  <div class="entete-marque">
+    <span class="logo-tuile"><img src="assets/logo.png" width="52" height="52" alt="Logo GS Banque &amp; Assurance"></span>
+    <div>
+      <p class="marque">GS Banque &amp; Assurance</p>
+      <p class="marque-sous">Poste du Conseiller Clientèle Particuliers</p>
+    </div>
+  </div>
+  <div class="entete-outils">
+    <a class="btn-texte lien-accueil" href="index.html">Accueil</a>
+    <div id="progression" class="progression" hidden></div>
+    <button type="button" class="btn-texte" data-act="aide">Fiche réflexe</button>
+    <button type="button" class="btn-texte" data-act="recommencer" id="btn-recommencer" hidden>Recommencer</button>
+  </div>
+</header>
+
+<main id="app" tabindex="-1">
+  <noscript><p class="bloc">Cette page a besoin de JavaScript pour fonctionner. Activez-le dans votre navigateur, puis rechargez la page.</p></noscript>
+</main>
+
+<dialog id="aide" aria-labelledby="aide-titre">
+  <div class="aide-corps">
+    <div class="aide-tete">
+      <h2 id="aide-titre">Fiche réflexe : opérations atypiques</h2>
+      <button type="button" class="btn-texte" data-act="fermer-aide">Fermer</button>
+    </div>
+
+    <h3>Qu'est-ce qu'une opération atypique ?</h3>
+    <ul>
+      <li>Une opération dont le montant, la fréquence ou la nature ne correspond pas à la situation connue du client : situation personnelle, professionnelle et patrimoniale, habitudes du compte visibles sur le relevé.</li>
+      <li>Atypique ne veut pas dire suspect. Une opération atypique appelle un examen, pas une déclaration automatique.</li>
+      <li>Points d'attention : dépôts d'espèces importants ou fractionnés, chèques de tiers, retraits élevés ou répétés, mouvements sans lien avec l'activité du client.</li>
+    </ul>
+
+    <h3>Examen renforcé (art. L561-10-2 du Code monétaire et financier)</h3>
+    <ul>
+      <li>Contactez le client et demandez l'origine des fonds, avec des justificatifs adaptés à l'opération.</li>
+      <li>Mettez à jour le dossier client avec les explications et les pièces reçues.</li>
+      <li>Une attestation sur l'honneur seule ne suffit pas à lever le doute.</li>
+      <li>Des justificatifs partiels peuvent suffire si l'ensemble reste cohérent avec le profil du client.</li>
+      <li>Consignez votre analyse par écrit : c'est le rôle du commentaire.</li>
+    </ul>
+
+    <h3>Deux décisions possibles</h3>
+    <ul>
+      <li><strong>Valider l'opération comme cohérente</strong> : les explications et les pièces reçues sont plausibles et cohérentes avec la situation du client. Le doute est levé.</li>
+      <li><strong>Déclarer à la cellule TRACFIN de l'établissement</strong> : le doute subsiste après l'examen renforcé (explications incohérentes, pièces qui ne concordent pas, client injoignable ou qui refuse d'expliquer). Le conseiller fait remonter le dossier au déclarant de la banque, qui décide de la déclaration de soupçon à TRACFIN (art. L561-15). La déclaration est faite sans délai.</li>
+    </ul>
+
+    <h3>Confidentialité (art. L561-18)</h3>
+    <p>Ne jamais informer le client ni un tiers qu'une déclaration est envisagée ou a été faite.</p>
+
+    <h3>Communication systématique d'informations (COSI)</h3>
+    <ul>
+      <li>La banque communique automatiquement à TRACFIN les opérations en espèces de plus de 10 000 € par mois civil (par client selon les lignes directrices ACPR-TRACFIN de 2025 ; la FAQ TRACFIN de 2016 parlait d'un comptage par compte).</li>
+      <li>Les dépôts et les retraits sont comptés séparément. Un montant de 10 000 € exactement ne déclenche pas le seuil.</li>
+      <li>Les chèques ne sont pas des espèces, sauf lorsqu'ils servent à retirer des espèces (retrait par chèque au guichet, lettre-chèque) : l'opération est alors un mouvement d'espèces.</li>
+      <li>La COSI n'est pas une déclaration de soupçon et ne dispense pas d'en faire une si le doute persiste.</li>
+    </ul>
+
+    <h3>Justificatifs : lesquels demander ?</h3>
+    <ul>
+      <li>Choisissez des pièces en rapport avec l'origine possible des fonds : vente d'un bien, héritage ou donation, indemnité, recettes d'une activité, etc.</li>
+      <li>Ne demandez pas de pièces sans rapport avec l'opération.</li>
+    </ul>
+
+    <p class="mention">Référence : lignes directrices conjointes ACPR-TRACFIN sur la vigilance (2025).</p>
+  </div>
+</dialog>
+
+<script src="js/banque.js"></script>
+<script src="js/data_atypiques.js"></script>
+<script src="js/releves_atypiques.js"></script>
+<script src="js/rules_atypiques.js"></script>
+<script src="js/signalement.js"></script>
+<script src="js/signalement_ui.js"></script>
+<script src="js/quotidien_base.js"></script>
+<script src="js/quotidien_pools.js"></script>
+<script src="js/quotidien_atyp_releve.js"></script>
+<script src="js/quotidien_atyp_base.js"></script>
+<script src="js/quotidien_atyp_coherent.js"></script>
+<script src="js/quotidien_atyp_declaration.js"></script>
+<script src="js/quotidien_atyp.js"></script>
+<script src="js/quotidien.js"></script>
+<script src="js/quotidien_charge.js"></script>
+<script src="js/app_atypiques.js"></script>
+<script src="js/appels.js"></script>
+<script src="js/app_appels.js"></script>
+</body>
+</html>

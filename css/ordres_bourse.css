@@ -1,0 +1,121 @@
+/* GS Banque & Assurance – page « Ordres de bourse » (ordres_bourse.html). S'appuie sur regul.css (cartes, déroulé), prospects.css (formulaire, cases) et style.css (pastilles). */
+.ob-vue .bloc-tete { flex-wrap: wrap; }
+.ob-bilan { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0 0 16px; }
+.ob-b { border: 1px solid var(--line); border-left-width: 4px; border-radius: var(--radius); padding: 10px 14px; background: #fff; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.ob-b dt { font-size: 13.5px; color: var(--muted); line-height: 1.35; }
+.ob-b dd { margin: 0; font-size: 26px; font-weight: 700; line-height: 1.15; color: var(--ink); }
+.ob-b dd.ob-b-sous { font-size: 13px; font-weight: 400; color: var(--muted); line-height: 1.35; }
+.ob-b-warn { border-left-color: var(--warn-zone); }
+.ob-b-bad { border-left-color: var(--bad); }
+.ob-b-ok { border-left-color: var(--ok-zone); }
+.ob-b-info { border-left-color: var(--blue); }
+.ob-h3 { margin: 4px 0 8px; font-size: 15.5px; color: var(--navy); }
+.ob-h4 { margin: 0 0 6px; font-size: 15.5px; color: var(--navy); }
+.ob-reperes { margin: 0; padding: 12px 14px; border-radius: var(--radius); background: var(--paper); border-left: 4px solid var(--navy); display: grid; gap: 8px; font-size: 14.5px; line-height: 1.5; }
+.ob-reperes div { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: 4px 14px; }
+.ob-reperes dt { font-weight: 600; color: var(--navy); }
+.ob-reperes dd { margin: 0; overflow-wrap: anywhere; }
+
+.ob-filtres { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+.ob-liste { display: grid; gap: 14px; }
+.ob-carte { border-left-color: var(--warn-zone); }
+.ob-carte-traite { border-left-color: var(--ok-zone); }
+
+/* le message tel que le conseiller le reçoit */
+.ob-ctx { margin: 0 0 12px; padding: 10px 14px; border-radius: var(--radius); background: var(--blue-soft); border-left: 4px solid var(--blue); font-size: 14.5px; line-height: 1.5; }
+.ob-ctx p { margin: 0 0 6px; }
+.ob-ctx p:last-child { margin-bottom: 0; }
+.ob-btns { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 4px 0 0; }
+
+/* panneau de traitement */
+.ob-form { max-width: none; margin-top: 10px; padding: 14px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: #fff; display: grid; gap: 14px; }
+.ob-h4-form { font-size: 16.5px; }
+.ob-fs { margin: 0; min-width: 0; }
+.ob-radios { display: grid; gap: 8px; }
+.ob-groupe { display: grid; gap: 8px; margin: 10px 0 0; padding: 0; }
+.ob-groupe-t { margin: 0; font-size: 14.5px; font-weight: 700; color: var(--navy); }
+.ob-sous { display: block; font-weight: 400; font-size: 13.5px; color: var(--muted); line-height: 1.4; }
+.ob-form .op-case input[type="radio"], .ob-form .op-case input[type="checkbox"] { width: 18px; height: 18px; min-height: 0; padding: 0; margin: 2px 0 0; flex: none; accent-color: var(--navy); }
+.ob-form .op-case { font-weight: 400; font-size: 15px; line-height: 1.45; }
+.ob-aide { margin: 0 0 8px; font-size: 14px; color: var(--muted); line-height: 1.45; }
+.ob-procedure { padding: 10px 14px; border-radius: var(--radius); background: var(--blue-soft); border-left: 4px solid var(--blue); font-size: 14.5px; line-height: 1.5; }
+.ob-procedure p { margin: 0; }
+.ob-ctl-t { display: flex; align-items: center; gap: 8px; margin: 0 0 4px !important; font-weight: 700; }
+.ob-procedure .ob-ctl-t { display: block; }
+.ob-champ { min-width: 0; }
+.ob-champ textarea { width: 100%; box-sizing: border-box; }
+.ob-compteur { display: block; margin-top: 4px; font-size: 13.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.ob-controle { display: grid; gap: 10px; }
+.ob-controle:empty { display: none; }
+.ob-controle:focus { outline: 2px solid var(--navy); outline-offset: 2px; }
+.ob-ctl { padding: 10px 14px; border-radius: var(--radius); border-left: 4px solid var(--warn-zone); background: var(--warn-bg, #fff6e5); font-size: 14.5px; line-height: 1.5; margin: 0 0 10px; }
+.ob-controle .ob-ctl { margin: 0; }
+.ob-ctl p { margin: 0; }
+.ob-ctl ul { margin: 4px 0 0; padding-left: 20px; display: grid; gap: 6px; list-style: disc; }
+.ob-ctl svg { flex: none; width: 18px; height: 18px; }
+.ob-nb { white-space: nowrap; }
+.ob-ctl-warn { border-left-color: var(--warn-zone); background: var(--warn-bg, #fff6e5); }
+.ob-ctl-bad { border-left-color: var(--bad); background: var(--bad-bg, #fbe3e0); }
+.ob-ctl-ok { border-left-color: var(--ok-zone); background: var(--ok-bg, #eaf6ee); }
+.ob-ctl-fin { margin: 0; font-size: 14.5px; font-weight: 600; }
+.ob-form .msg-erreur:empty { display: none; }
+.ob-form .msg-erreur ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+
+/* message traité et confirmation */
+.ob-recap { margin-bottom: 12px; }
+.ob-rep { white-space: pre-line; overflow-wrap: anywhere; }
+.ob-liste-r { margin: 0; padding-left: 18px; display: grid; gap: 3px; list-style: disc; }
+.ob-diff { margin: 0 0 10px; }
+.ob-expl { margin: 0 0 10px; padding: 10px 14px; border-radius: var(--radius); background: var(--paper); border-left: 4px solid var(--navy); font-size: 14.5px; line-height: 1.55; }
+.ob-expl p { margin: 0; }
+.ob-conf { margin: 4px 0 0; padding: 12px 14px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--paper); display: grid; gap: 10px; }
+.ob-conf p { margin: 0; font-size: 14.5px; line-height: 1.5; }
+.ob-carte .regul-actions { border-top: 1px solid var(--line); padding-top: 10px; margin-top: 8px; }
+.ob-ok { border-top: 4px solid var(--ok); }
+.ob-ok .bloc-tete h2 { display: flex; align-items: center; gap: 8px; }
+.ob-ok .bloc-tete h2 svg { flex: none; width: 24px; height: 24px; padding: 4px; border-radius: 50%; background: var(--ok); color: #fff; fill: none; stroke: currentColor; stroke-width: 2.4; }
+.ob-ok-txt { margin: 0 0 12px; max-width: 90ch; }
+.ob-regle { border-top: 1px solid var(--line); padding: 8px 2px; }
+.ob-regle:last-of-type { border-bottom: 1px solid var(--line); }
+.ob-regle summary { cursor: pointer; font-weight: 600; font-size: 15px; padding: 4px 0; }
+.ob-regle p { margin: 6px 0 4px; font-size: 14.5px; line-height: 1.55; max-width: 90ch; }
+.ob-rappel { margin: 18px 0 0; font-size: 14px; color: var(--muted); max-width: 90ch; line-height: 1.5; }
+
+
+/* citation du client, dossier, valeur et carnet d'ordres */
+.ob-citation { margin: 0 0 12px; padding: 10px 14px; border-left: 4px solid var(--navy); background: var(--paper); border-radius: var(--radius); font-size: 15px; line-height: 1.55; max-width: 90ch; }
+.ob-citation footer { margin-top: 4px; font-size: 13.5px; color: var(--muted); }
+.ob-faits { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 0 0 12px; }
+.ob-bloc-faits { border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 14px; background: #fff; min-width: 0; }
+.ob-bloc-faits dl { margin: 0; display: grid; gap: 4px; font-size: 14.5px; line-height: 1.45; }
+.ob-bloc-faits dl div { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr); gap: 2px 12px; }
+.ob-bloc-faits dt { color: var(--muted); }
+.ob-bloc-faits dd { margin: 0; overflow-wrap: anywhere; }
+.ob-carnet { width: 100%; border-collapse: collapse; margin: 8px 0 0; font-size: 14px; font-variant-numeric: tabular-nums; }
+.ob-carnet caption { text-align: left; font-weight: 600; color: var(--navy); padding: 0 0 4px; }
+.ob-carnet th, .ob-carnet td { padding: 4px 8px; border-bottom: 1px solid var(--line); text-align: right; }
+.ob-carnet th:first-child, .ob-carnet td:first-child { text-align: left; }
+.ob-carnet thead th { color: var(--muted); font-weight: 600; border-bottom: 2px solid var(--line-strong); }
+.ob-carnet-wrap { overflow-x: auto; max-width: 100%; }
+.ob-carnet-deux { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.ob-champs { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 12px; align-items: start; }
+.ob-champ input[type="text"], .ob-champ input[type="date"] { width: 100%; box-sizing: border-box; }
+.ob-avis { width: 100%; border-collapse: collapse; font-size: 14.5px; font-variant-numeric: tabular-nums; }
+.ob-avis th, .ob-avis td { padding: 5px 8px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+.ob-avis td { text-align: right; }
+.ob-avis th[scope="row"] { font-weight: 400; color: var(--ink); }
+.ob-avis tr.ob-total th, .ob-avis tr.ob-total td { font-weight: 700; border-top: 2px solid var(--line-strong); }
+.ob-statut { margin: 0 0 8px; font-weight: 700; }
+@media (max-width: 900px) { .ob-faits, .ob-carnet-deux { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .ob-bloc-faits dl div { grid-template-columns: 1fr; } }
+
+@media (max-width: 900px) { .ob-bilan { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) {
+  .ob-reperes div { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .ob-bilan { grid-template-columns: 1fr; }
+  .ob-btns .btn, .ob-filtres .btn, .ob-carte .regul-actions .btn { flex: 1 1 100%; justify-content: center; text-align: center; }
+  .ob-form { padding: 10px; }
+}
+@media print { .ob-form, .ob-filtres, .ob-btns { display: none; } }

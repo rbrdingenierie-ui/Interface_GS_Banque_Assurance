@@ -1,0 +1,89 @@
+/* GS Banque & Assurance – page « Avis clients en ligne » (avis_en_ligne.html). S'appuie sur regul.css (cartes, déroulé), prospects.css (formulaire, cases) et style.css (pastilles). */
+.av-vue .bloc-tete { flex-wrap: wrap; }
+.av-bilan { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0 0 16px; }
+.av-b { border: 1px solid var(--line); border-left-width: 4px; border-radius: var(--radius); padding: 10px 14px; background: #fff; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.av-b dt { font-size: 13.5px; color: var(--muted); line-height: 1.35; }
+.av-b dd { margin: 0; font-size: 26px; font-weight: 700; line-height: 1.15; color: var(--ink); }
+.av-b dd.av-b-sous { font-size: 13px; font-weight: 400; color: var(--muted); line-height: 1.35; }
+.av-b-warn { border-left-color: var(--warn-zone); }
+.av-b-bad { border-left-color: var(--bad); }
+.av-b-ok { border-left-color: var(--ok-zone); }
+.av-b-info { border-left-color: var(--blue); }
+.av-h3 { margin: 4px 0 8px; font-size: 15.5px; color: var(--navy); }
+.av-h4 { margin: 0 0 6px; font-size: 15.5px; color: var(--navy); }
+.av-repart { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; max-width: 560px; }
+.av-repart li { display: grid; grid-template-columns: 56px minmax(0, 1fr) 76px; gap: 10px; align-items: center; font-size: 14.5px; }
+.av-r-barre { display: block; height: 12px; border-radius: 6px; background: var(--paper); border: 1px solid var(--line); overflow: hidden; }
+.av-r-barre > span { display: block; height: 100%; background: var(--navy); }
+.av-r-val { text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
+
+.av-filtres { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+.av-liste { display: grid; gap: 14px; }
+.av-carte { border-left-color: var(--warn-zone); }
+.av-carte-retard { border-left-color: var(--bad); }
+.av-carte-traite { border-left-color: var(--ok-zone); }
+.av-note { margin: 0 0 6px; font-size: 14.5px; display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: baseline; }
+.av-etoiles { color: var(--navy); letter-spacing: 2px; font-size: 16px; }
+.av-texte { margin: 0 0 12px; padding: 8px 14px; border-left: 4px solid var(--line-strong); background: var(--paper); border-radius: 0 var(--radius) var(--radius) 0; }
+.av-texte p { margin: 0; font-size: 15px; line-height: 1.55; overflow-wrap: anywhere; max-width: 90ch; }
+.av-btns { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 4px 0 0; }
+a.btn.av-lien { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; background: #fff; color: var(--navy); }
+a.btn.av-lien:hover { background: var(--blue-soft); }
+
+.av-form { max-width: none; margin-top: 10px; padding: 14px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: #fff; display: grid; gap: 14px; }
+.av-h4-form { font-size: 16.5px; }
+.av-recoup { padding: 10px 14px; border-radius: var(--radius); background: var(--paper); border-left: 4px solid var(--navy); font-size: 14.5px; line-height: 1.5; }
+.av-recoup p { margin: 0 0 6px; }
+.av-recoup p:last-child { margin-bottom: 0; }
+.av-cands { margin: 0 0 8px; padding-left: 20px; display: grid; gap: 4px; list-style: disc; }
+.av-cands a { margin-left: 6px; }
+.av-fs { margin: 0; min-width: 0; }
+.av-radios { display: grid; gap: 8px; }
+.av-sous { display: block; font-weight: 400; font-size: 13.5px; color: var(--muted); line-height: 1.4; }
+.av-form .op-case input[type="radio"], .av-form .op-case input[type="checkbox"] { width: 18px; height: 18px; min-height: 0; padding: 0; margin: 2px 0 0; flex: none; accent-color: var(--navy); }
+.av-form .op-case { font-weight: 400; font-size: 15px; line-height: 1.45; }
+.av-procedure { padding: 10px 14px; border-radius: var(--radius); background: var(--blue-soft); border-left: 4px solid var(--blue); font-size: 14.5px; line-height: 1.5; }
+.av-procedure p { margin: 0; }
+.av-ctl-t { display: flex; align-items: center; gap: 8px; margin: 0 0 4px !important; font-weight: 700; }
+.av-procedure .av-ctl-t { display: block; }
+.av-champ { min-width: 0; }
+.av-champ textarea { width: 100%; box-sizing: border-box; }
+.av-compteur { display: block; margin-top: 4px; font-size: 13.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.av-controle { display: grid; gap: 10px; }
+.av-controle:empty { display: none; }
+.av-controle:focus { outline: 2px solid var(--navy); outline-offset: 2px; }
+.av-ctl { padding: 10px 14px; border-radius: var(--radius); border-left: 4px solid var(--warn-zone); background: var(--warn-bg, #fff6e5); font-size: 14.5px; line-height: 1.5; margin: 0 0 10px; }
+.av-controle .av-ctl { margin: 0; }
+.av-ctl p { margin: 0; }
+.av-ctl ul { margin: 4px 0 0; padding-left: 20px; display: grid; gap: 6px; list-style: disc; }
+.av-ctl svg { flex: none; width: 18px; height: 18px; }
+.av-ctl-bad { border-left-color: var(--bad); background: var(--bad-bg, #fbe3e0); }
+.av-ctl-ok { border-left-color: var(--ok-zone); background: var(--ok-bg, #eaf6ee); }
+.av-ctl-fin { margin: 0; font-size: 14.5px; font-weight: 600; }
+.av-form .msg-erreur:empty { display: none; }
+.av-recap { margin-bottom: 12px; }
+.av-rep { white-space: pre-line; overflow-wrap: anywhere; }
+.av-info { display: flex; gap: 8px; align-items: flex-start; margin: 0 0 10px; padding: 10px 14px; border-radius: var(--radius); border-left: 4px solid var(--blue); background: var(--blue-soft); font-size: 14.5px; line-height: 1.5; }
+.av-info svg { flex: none; width: 18px; height: 18px; margin-top: 2px; }
+.av-conf { margin: 4px 0 0; padding: 12px 14px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--paper); display: grid; gap: 10px; }
+.av-conf p { margin: 0; font-size: 14.5px; line-height: 1.5; }
+.av-carte .regul-actions { border-top: 1px solid var(--line); padding-top: 10px; margin-top: 8px; }
+
+.av-ok { border-top: 4px solid var(--ok); }
+.av-ok .bloc-tete h2 { display: flex; align-items: center; gap: 8px; }
+.av-ok .bloc-tete h2 svg { flex: none; width: 24px; height: 24px; padding: 4px; border-radius: 50%; background: var(--ok); color: #fff; fill: none; stroke: currentColor; stroke-width: 2.4; }
+.av-ok-txt { margin: 0 0 12px; max-width: 90ch; }
+.av-regle { border-top: 1px solid var(--line); padding: 8px 2px; }
+.av-regle:last-of-type { border-bottom: 1px solid var(--line); }
+.av-regle summary { cursor: pointer; font-weight: 600; font-size: 15px; padding: 4px 0; }
+.av-regle p { margin: 6px 0 4px; font-size: 14.5px; line-height: 1.55; max-width: 90ch; }
+.av-rappel { margin: 18px 0 0; font-size: 14px; color: var(--muted); max-width: 90ch; line-height: 1.5; }
+
+@media (max-width: 900px) { .av-bilan { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) {
+  .av-bilan { grid-template-columns: 1fr; }
+  .av-repart li { grid-template-columns: 48px minmax(0, 1fr) 64px; gap: 8px; }
+  .av-btns .btn, .av-filtres .btn, .av-carte .regul-actions .btn { flex: 1 1 100%; justify-content: center; text-align: center; }
+  .av-form { padding: 10px; }
+}
+@media print { .av-form, .av-filtres, .av-btns { display: none; } }

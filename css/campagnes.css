@@ -1,0 +1,52 @@
+/* GS Banque & Assurance – campagnes commerciales : liste, formulaire, fiche (indicateurs, calendrier, suivi des clients). */
+.cg-liste { display: grid; gap: 12px; list-style: none; padding: 0; margin: 0; }
+.cg-carte { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; background: #fff; display: grid; gap: 8px; }
+.cg-ouverte { border-color: var(--blue); box-shadow: inset 4px 0 0 var(--blue); }
+.cg-tete { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 12px; }
+.cg-tete h3 { font-size: 17px; color: var(--navy); overflow-wrap: anywhere; }
+.cg-sous { margin: 0; color: var(--muted); font-size: 14.5px; }
+.cg-prog { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 14.5px; }
+.cg-prog .barre { flex: 1 1 160px; max-width: 360px; }
+.cg-carte .ag-liens .btn { min-height: 40px; padding: 6px 16px; }
+.cg-form { max-width: 820px; }
+.cg-ligne { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.cg-form select, .cg-form input, .cg-form textarea { font: inherit; }
+.cg-form textarea { width: 100%; }
+.cg-fixe { margin: 0 0 12px; padding: 8px 12px; background: var(--paper); border-radius: var(--radius); font-size: 14.5px; max-width: 80ch; }
+.cg-resume { margin: 8px 0 4px; padding: 8px 12px; background: var(--blue-soft); border-left: 4px solid var(--blue); border-radius: var(--radius); font-size: 14.5px; max-width: 90ch; }
+.cg-alerte { margin: 8px 0 4px; padding: 8px 12px; background: var(--warn-bg); color: var(--warn); border-left: 4px solid var(--warn); border-radius: var(--radius); font-size: 14.5px; font-weight: 600; max-width: 90ch; }
+.cg-cible { margin: 6px 0 0 28px; max-width: 460px; }
+.cg-carte-id { display: grid; gap: 6px; margin: 4px 0 12px; }
+.cg-carte-id > div { display: grid; grid-template-columns: 100px minmax(0, 1fr); gap: 8px; }
+.cg-carte-id dt { color: var(--muted); font-weight: 600; }
+.cg-carte-id dd { margin: 0; overflow-wrap: anywhere; }
+.cg-carte-id a { color: var(--navy); font-weight: 700; }
+.cg-kpis { margin-top: 8px; }
+.cg-kpis dd.val { overflow-wrap: anywhere; }
+@media (max-width: 400px) { .cg-kpis dd.val { font-size: 22px; } }
+.cg-args { padding-left: 20px; display: grid; gap: 4px; max-width: 90ch; }
+.cg-jalons { list-style: none; padding: 0; margin: 0 0 8px; display: grid; gap: 8px; }
+.cg-jalons li { display: grid; grid-template-columns: 220px minmax(0, 1fr) auto; gap: 4px 14px; align-items: center; padding: 8px 12px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; }
+.cg-j-act .btn-texte { min-height: 36px; }
+.cg-filtre { display: flex; align-items: center; gap: 10px; margin: 0 0 10px; flex-wrap: wrap; }
+.cg-filtre label { font-weight: 600; font-size: 14px; }
+.cg-filtre select { font: inherit; border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 8px 12px; min-height: 44px; background: #fff; }
+.tab-cg { min-width: 760px; }
+.tab-cg td.gauche, .tab-cg th.gauche { text-align: left; }
+.tab-cg td, .tab-cg th { vertical-align: top; }
+.tab-cg .puce { white-space: nowrap; }
+.tab-cg th[scope="row"] { text-align: left; min-width: 170px; }
+.tab-cg th[scope="row"] a { color: var(--navy); font-weight: 700; }
+.cg-act { text-align: left !important; }
+.cg-act > a, .cg-act > button { display: inline-flex; align-items: center; min-height: 36px; margin-right: 12px; color: var(--navy); font-weight: 600; font-size: 14px; }
+.cg-refus { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; }
+.cg-refus select { font: inherit; border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 6px 8px; min-height: 40px; background: #fff; }
+#t-detail .puce { vertical-align: middle; margin-left: 6px; }
+@media (max-width: 900px) {
+  .cg-ligne { grid-template-columns: minmax(0, 1fr); }
+  .cg-jalons li { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .cg-carte-id > div { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .cg-cible { margin-left: 0; }
+}

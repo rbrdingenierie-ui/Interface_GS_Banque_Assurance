@@ -1,0 +1,305 @@
+/* GS Banque & Assurance – alertes du poste : appels entrants simulés, clients au distributeur, répondeur et journal (règles : js/appels.js ; affichage : js/app_appels.js).
+   Les fenêtres d'alerte sont des cartes sombres (bleu nuit de l'en-tête) pour qu'on les repère tout de suite sur n'importe quelle page : chaque carte porte une couleur d'état
+   (vert : appel en cours ou client accueilli ; bleu : client au distributeur ; rouge : client en difficulté ; ambre : message au répondeur) répétée sur le liseré, l'avatar, la pastille et la barre de temps. */
+
+/* ---------- en-tête : disponibilité, appels reçus, répondeur, sonnerie ---------- */
+.appels-barre { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; max-width: 100%; }
+.entete .btn-dispo, .entete .btn-appels, .entete .btn-repondeur, .entete .btn-son { display: inline-flex; align-items: center; gap: 8px; min-height: 38px; }
+.entete .btn-son { justify-content: center; min-width: 42px; padding-left: 8px; padding-right: 8px; }
+.entete .btn-son svg { width: 20px; height: 20px; }
+.dispo-pt { width: 11px; height: 11px; border-radius: 50%; background: #5ee08e; box-shadow: 0 0 0 3px rgba(94, 224, 142, 0.3); flex: none; }
+.entete .btn-dispo[data-dispo="non"] { background: #5a2220; border-color: #f0a29b; }
+.entete .btn-dispo[data-dispo="non"]:hover { background: #6d2a27; }
+.btn-dispo[data-dispo="non"] .dispo-pt { background: #ff9d94; box-shadow: 0 0 0 3px rgba(255, 157, 148, 0.3); }
+.entete .btn-appels[data-manques]:not([data-manques="0"]) { background: #7f4400; border-color: #f2c96b; }
+.entete .btn-appels[data-manques]:not([data-manques="0"]):hover { background: #6a3a00; }
+.entete .btn-repondeur[data-nouveaux]:not([data-nouveaux="0"]) { background: #7f4400; border-color: #f2c96b; }
+.entete .btn-repondeur[data-nouveaux]:not([data-nouveaux="0"]):hover { background: #6a3a00; }
+.entete .btn-repondeur[data-urgents]:not([data-urgents="0"]) { background: #8f1d17; border-color: #ff9d94; }
+.entete .btn-repondeur[data-urgents]:not([data-urgents="0"]):hover { background: #741711; }
+.entete .btn-son[data-son="non"] { opacity: 0.85; }
+
+/* ---------- zone des alertes du poste (en bas à droite) : les cartes s'empilent sans se recouvrir ---------- */
+.poste-alertes {
+  --al-fond: #12293f; --al-fond-haut: #1b3a57; --al-ligne: rgba(255, 255, 255, 0.16);
+  --al-doux: #bcd0e2; --al-vert: #5ee08e; --al-rouge: #ff9d94; --al-bleu: #7fd0ff; --al-ambre: #f2c96b; --al-gris: #9fb3c6; --al-focus: #9fdcff;
+  position: fixed; z-index: 3000;
+  right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px));
+  width: min(384px, calc(100vw - 32px)); max-height: calc(100vh - 32px); overflow-y: auto; overscroll-behavior: contain;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.poste-alertes[hidden] { display: none; }
+/* Sur un écran bas (téléphone, petite fenêtre) la zone défile quand « Sécuriser l'appel » est ouverte : la fenêtre d'appel reste collée en haut de la zone, pour que « Raccrocher » soit toujours à portée,
+   et l'état de l'identification se colle juste dessous (--appel-bas : hauteur de la fenêtre d'appel plus l'écart, mesurée par app_appels.js). */
+.poste-alertes > .appel { position: sticky; top: 0; z-index: 3; }
+
+/* Base commune des trois cartes sombres */
+.appel, .alerte-dab, .alerte-rep {
+  --acc: var(--al-vert);
+  display: grid; gap: 0; padding: 16px 18px 14px;
+  background: linear-gradient(180deg, var(--al-fond-haut) 0, var(--al-fond) 70%); color: #fff;
+  border: 1px solid var(--al-ligne); border-top: 5px solid var(--acc); border-radius: 16px;
+  box-shadow: 0 18px 48px rgba(6, 18, 30, 0.55), 0 2px 6px rgba(6, 18, 30, 0.4);
+  animation: al-entree 0.6s ease-out both;
+}
+.appel[hidden], .alerte-dab[hidden], .alerte-rep[hidden] { display: none; }
+.appel p, .alerte-dab p, .alerte-rep p { margin: 0; }
+.appel-btn:focus-visible, .appel-sec-btn:focus-visible, .appel-lien:focus-visible, .appel-lien-btn:focus-visible, .dab-btn:focus-visible { outline: 3px solid #29a3db; outline-offset: 2px; }
+.appel :focus-visible, .alerte-dab :focus-visible, .alerte-rep :focus-visible { outline-color: var(--al-focus); }
+
+/* Avatar rond : initiales du client, ou l'icône du distributeur */
+.appel-avatar, .dab-avatar, .rep-t-ico {
+  display: grid; place-items: center; flex: none; width: 54px; height: 54px; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.09); border: 2px solid var(--acc); color: #fff;
+  font-size: 18px; font-weight: 700; letter-spacing: 0.03em;
+}
+.dab-avatar svg, .rep-t-ico svg { width: 26px; height: 26px; }
+.appel-avatar:empty { display: none; }
+
+/* Barre de temps : sonnerie qui reste, ou temps avant que le client reparte */
+.appel-barre { height: 5px; margin-top: 14px; border-radius: 5px; background: rgba(255, 255, 255, 0.16); overflow: hidden; }
+.appel-barre[hidden] { display: none; }
+.appel-barre span { display: block; height: 100%; width: 100%; border-radius: inherit; background: var(--acc); transition: width 1s linear; }
+
+/* ---------- fenêtre d'appel ---------- */
+.appel-tete { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 14px; }
+.appel-id { display: grid; gap: 2px; min-width: 0; }
+.appel[data-etat="sonne"] .appel-avatar { animation: appel-pouls 1.3s ease-out infinite; }
+.appel[data-etat="fin"] { --acc: var(--al-gris); }
+.appel-etat { font-size: 13.5px; font-weight: 700; color: var(--acc); display: flex; align-items: center; gap: 8px; }
+.appel[data-etat="sonne"] .appel-etat::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--acc); animation: appel-clignote 1s ease-in-out infinite; flex: none; }
+.appel-nom { font-size: 21px; font-weight: 700; line-height: 1.2; overflow-wrap: anywhere; }
+.appel-tel { font-size: 16px; color: #fff; letter-spacing: 0.03em; font-variant-numeric: tabular-nums; }
+.appel-meta { font-size: 13px; line-height: 1.35; color: var(--al-doux); }
+.appel-tel:empty, .appel-meta:empty { display: none; }
+.appel-minuteur { font-size: 28px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--acc); }
+.appel-minuteur[hidden] { display: none; }
+.appel-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+.appel[data-etat="fin"] .appel-actions { display: none; }
+.appel-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 8px 12px; border: 0; border-radius: 12px; font: inherit; font-size: 16px; font-weight: 700; color: #fff; cursor: pointer; }
+.appel-btn[hidden] { display: none; }
+.appel-prendre { background: #5ee08e; color: #04230f; }
+.appel-prendre:hover { background: #82ebaa; }
+.appel-raccrocher { background: #c62f26; color: #fff; }
+.appel-raccrocher:hover { background: #a9241d; }
+.appel-note-son { margin-top: 10px; padding: 8px 12px; border-radius: 10px; background: rgba(242, 201, 107, 0.16); color: #ffe6ac; font-size: 13px; line-height: 1.4; }
+.appel-note-son[hidden] { display: none; }
+.appel-sec { display: flex; flex-wrap: wrap; gap: 0 16px; margin-top: 8px; }
+.appel-sec-btn, .appel-lien, .appel-lien-btn { background: none; border: 0; padding: 4px 0; min-height: 34px; display: inline-flex; align-items: center; font: inherit; font-size: 14px; color: #124a72; text-decoration: underline; cursor: pointer; }
+.appel-lien-btn { min-height: 0; padding: 0; display: inline; font-size: inherit; font-weight: 700; color: inherit; }
+.appel .appel-sec-btn, .appel .appel-lien, .appel .appel-lien-btn, .alerte-dab .appel-sec-btn, .alerte-dab .appel-lien, .alerte-rep .appel-sec-btn { color: var(--al-bleu); }
+.appel .appel-lien-btn { color: #fff; }
+.appel-sec-btn[hidden], .appel-lien[hidden] { display: none; }
+.appel-sec:not(:has(:not([hidden]))) { display: none; }
+/* pendant la communication : une carte plus basse (avatar, nom, numéro et minuteur côte à côte) pour laisser la place à « Sécuriser l'appel » */
+.appel[data-etat="en_cours"] { padding-bottom: 8px; }
+.appel[data-etat="en_cours"] .appel-avatar { width: 44px; height: 44px; font-size: 16px; }
+.appel[data-etat="en_cours"] .appel-tete { gap: 10px; }
+.appel[data-etat="en_cours"] .appel-nom { font-size: 17px; }
+.appel[data-etat="en_cours"] .appel-meta { display: none; }
+.appel[data-etat="en_cours"] .appel-minuteur { font-size: 24px; }
+.appel[data-etat="en_cours"] .appel-actions { grid-template-columns: 1fr; margin-top: 10px; }
+.appel[data-etat="en_cours"] .appel-btn { min-height: 46px; }
+/* à l'apparition : un halo qui s'éteint (ni déplacement ni transparence : la carte est lisible et à sa place dès la première image) */
+@keyframes al-entree { from { box-shadow: 0 0 0 7px rgba(159, 220, 255, 0.55), 0 18px 48px rgba(6, 18, 30, 0.55); } to { box-shadow: 0 0 0 0 rgba(159, 220, 255, 0), 0 18px 48px rgba(6, 18, 30, 0.55), 0 2px 6px rgba(6, 18, 30, 0.4); } }
+@keyframes appel-pouls { 0% { box-shadow: 0 0 0 0 rgba(94, 224, 142, 0.6); } 100% { box-shadow: 0 0 0 14px rgba(94, 224, 142, 0); } }
+@keyframes appel-clignote { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+@media (prefers-reduced-motion: reduce) {
+  .appel, .alerte-dab, .alerte-rep, .appel[data-etat="sonne"] .appel-avatar, .appel[data-etat="sonne"] .appel-etat::before { animation: none; }
+  .appel-barre span { transition: none; }
+}
+
+/* ---------- journal des appels ---------- */
+.appels-dlg { border: 0; border-radius: 14px; padding: 20px 22px; width: min(760px, calc(100vw - 24px)); max-height: 88vh; overflow: auto; color: var(--ink, #14202b); box-shadow: 0 18px 60px rgba(18, 41, 63, 0.5); }
+.appels-dlg::backdrop { background: rgba(18, 41, 63, 0.55); }
+.appels-dlg h2 { margin: 0 0 4px; font-size: 22px; }
+.appels-sous { margin: 0 0 12px; color: var(--muted, #4f5f6e); font-size: 15px; }
+.appels-vide { margin: 18px 0; color: var(--muted, #4f5f6e); }
+.appels-tableau { max-height: 52vh; overflow: auto; border: 1px solid var(--line, #d3dbe3); border-radius: 10px; }
+.appels-tableau table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.appels-tableau th { position: sticky; top: 0; background: #eef2f5; text-align: left; padding: 8px 12px; font-size: 14px; border-bottom: 1px solid var(--line-strong, #a9b8c6); }
+.appels-tableau td { padding: 8px 12px; border-bottom: 1px solid var(--line, #d3dbe3); vertical-align: top; }
+.appels-tableau tr:last-child td { border-bottom: 0; }
+.appels-tableau td:first-child { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.appels-tableau a { color: #124a72; }
+.appels-manque td:last-child { color: var(--bad, #b3261e); font-weight: 700; }
+.appels-refuse td:last-child { color: var(--warn, #7f4400); font-weight: 600; }
+.appels-dlg-act { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; margin-top: 14px; }
+.appels-dlg .btn-texte { color: var(--navy, #1b3a57); border-color: var(--navy, #1b3a57); background: #fff; min-height: 40px; }
+.appels-dlg .btn-texte:hover:not(:disabled) { background: var(--blue-soft, #e4f3fb); }
+.appels-dlg .btn-texte:disabled { opacity: 0.55; cursor: not-allowed; }
+@media (max-width: 560px) { .appels-tableau td:first-child { white-space: normal; } }
+
+.appels-h3 { margin: 16px 0 2px; font-size: 17px; }
+.appels-note { margin: 12px 0 0; color: var(--muted, #4f5f6e); font-size: 14px; }
+.appels-sim { display: block; font-size: 13px; color: var(--muted, #4f5f6e); }
+
+/* ---------- sécuriser l'appel ---------- */
+.appel-secu {
+  display: grid; gap: 6px; padding: 12px 14px 10px;
+  background: #fff; color: var(--ink, #14202b);
+  border: 1px solid var(--line-strong, #a9b8c6); border-left: 6px solid #29a3db; border-radius: 16px;
+  box-shadow: 0 18px 48px rgba(6, 18, 30, 0.5), 0 2px 6px rgba(6, 18, 30, 0.35);
+}
+.appel-secu[hidden] { display: none; }
+.secu-tete { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.secu-titre { margin: 0; font-size: 17px; }
+.secu-corps { display: grid; gap: 6px; }
+.secu-corps[hidden] { display: none; }
+.secu-intro, .secu-etat, .secu-interdit, .secu-conseil { margin: 0; font-size: 13.5px; line-height: 1.4; }
+.secu-liste { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.secu-item { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 10px; align-items: center; padding: 6px 10px; border: 1px solid var(--line, #d3dbe3); border-radius: 10px; }
+.secu-q { grid-column: 1; margin: 0; font-weight: 700; font-size: 14.5px; line-height: 1.3; }
+.secu-rep { grid-column: 1; margin: 0; font-size: 13.5px; line-height: 1.35; color: var(--muted, #4f5f6e); overflow-wrap: anywhere; }
+.secu-rep strong { color: var(--ink, #14202b); }
+.secu-ok { grid-column: 2; grid-row: 1 / span 2; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-width: 68px; min-height: 44px; font-size: 12.5px; line-height: 1.2; text-align: center; cursor: pointer; }
+.secu-ok input { width: 22px; height: 22px; flex: none; margin: 0; }
+.secu-ok input:focus-visible { outline: 3px solid #29a3db; outline-offset: 2px; }
+.secu-etat { position: sticky; top: var(--appel-bas, 0px); z-index: 1; padding: 6px 10px; border-radius: 8px; background: var(--warn-bg, #fcebc6); color: var(--warn, #7f4400); font-weight: 600; }
+.secu-etat[data-ok="oui"] { background: #d9f0e1; color: #0f4d2e; }
+.secu-interdit { color: #8f1d17; }
+
+/* ---------- client au distributeur ---------- */
+.alerte-dab { --acc: var(--al-bleu); gap: 12px; }
+.alerte-dab[data-probleme="oui"] { --acc: var(--al-rouge); }
+.alerte-dab[data-etat="accueilli"] { --acc: var(--al-vert); }
+.alerte-dab[data-etat="parti"] { --acc: var(--al-gris); }
+.dab-tete { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 14px; }
+.dab-id { display: grid; gap: 3px; min-width: 0; }
+.dab-etat { font-size: 13.5px; font-weight: 700; color: var(--acc); }
+.dab-nom { font-size: 21px; font-weight: 700; line-height: 1.2; overflow-wrap: anywhere; }
+.dab-puces { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
+.dab-puces:not(:has(:not(:empty))) { display: none; }
+.dab-genre { padding: 2px 10px; border-radius: 999px; background: rgba(255, 255, 255, 0.12); border: 1px solid var(--al-ligne); font-size: 12.5px; font-weight: 600; }
+.dab-genre:empty, .dab-reste:empty { display: none; }
+.dab-reste { font-size: 13px; color: var(--al-doux); font-variant-numeric: tabular-nums; }
+/* l'« écran » du distributeur : ce que le client est en train de faire */
+.dab-ecran { padding: 12px 14px; border-radius: 12px; background: #0a1724; border: 1px solid #2c5373; box-shadow: inset 0 0 26px rgba(41, 163, 219, 0.14); }
+.dab-ecran:not(:has(p:not(:empty))) { display: none; }
+.alerte-dab[data-probleme="oui"] .dab-ecran { border-color: #8a3a35; box-shadow: inset 0 0 26px rgba(255, 120, 108, 0.14); }
+.dab-info { font-size: 16px; line-height: 1.45; color: #e8f5ff; }
+.dab-solde { margin-top: 6px; font-size: 14px; color: #9fd4f0; font-variant-numeric: tabular-nums; }
+.dab-info:empty, .dab-solde:empty { display: none; }
+.alerte-dab .appel-barre { margin-top: 0; }
+.dab-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.dab-actions:not(:has(:not([hidden]))) { display: none; }
+.dab-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 8px 12px; border: 0; border-radius: 12px; font: inherit; font-size: 16px; font-weight: 700; color: #06202f; background: #7fd0ff; cursor: pointer; text-align: center; }
+.dab-btn:hover { background: #a6e0ff; }
+.dab-btn-sec { background: transparent; color: #fff; box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.55); }
+.dab-btn-sec:hover { background: rgba(255, 255, 255, 0.12); }
+.dab-btn[hidden] { display: none; }
+.alerte-dab .appel-sec { margin-top: 0; }
+.appels-tableau tr.dab-ignore td:last-child, .appels-tableau tr.dab-parti td:last-child { color: var(--warn, #7f4400); font-weight: 600; }
+
+/* ---------- carte « Nouveau message au répondeur » ---------- */
+.alerte-rep { --acc: var(--al-ambre); gap: 10px; }
+.alerte-rep[data-urgent="oui"] { --acc: var(--al-rouge); }
+.rep-t-tete { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 14px; }
+.rep-t-id { display: grid; gap: 2px; min-width: 0; }
+.rep-t-etat { font-size: 13.5px; font-weight: 700; color: var(--acc); }
+.rep-t-nom { font-size: 19px; font-weight: 700; line-height: 1.2; overflow-wrap: anywhere; }
+.rep-t-texte { padding-left: 12px; border-left: 3px solid var(--acc); font-size: 15px; line-height: 1.5; color: #e8f5ff; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.rep-t-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; }
+.rep-t-lire { flex: 1 1 150px; background: var(--al-ambre); color: #2a1a00; }
+.alerte-rep[data-urgent="oui"] .rep-t-lire { background: #ffb4ab; }
+.rep-t-lire:hover { background: #ffdf9a; }
+
+/* ---------- fenêtre du répondeur ---------- */
+.rep-dlg { width: min(840px, calc(100vw - 24px)); }
+.rep-sous { margin: 0 0 8px; color: var(--muted, #4f5f6e); font-size: 15px; }
+.rep-mention { margin: 0 0 4px; padding: 8px 12px; border-radius: 8px; background: #eef2f5; color: var(--muted, #4f5f6e); font-size: 14px; line-height: 1.45; }
+.rep-liste { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 12px; }
+.rep-msg { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; padding: 14px 16px; background: #fff; border: 1px solid var(--line, #d3dbe3); border-left: 6px solid var(--line-strong, #a9b8c6); border-radius: 12px; }
+.rep-msg[data-nouveau="oui"] { border-left-color: #29a3db; }
+.rep-msg[data-urgent="oui"]:not([data-traite="oui"]) { border-color: #e9847c; border-left-color: #b3261e; background: #fff8f7; }
+.rep-msg[data-traite="oui"] { background: #f4f7f9; border-left-color: #9bd4b2; }
+.rep-av { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--navy, #1b3a57); color: #fff; font-weight: 700; font-size: 15px; letter-spacing: 0.03em; }
+.rep-msg[data-urgent="oui"]:not([data-traite="oui"]) .rep-av { background: #8f1d17; }
+.rep-corps { min-width: 0; }
+.rep-ent { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0 14px; }
+.rep-nom { font-size: 17px; font-weight: 700; overflow-wrap: anywhere; }
+a.rep-nom { color: #124a72; display: inline-flex; align-items: center; min-height: 32px; }
+.rep-tel { color: var(--muted, #4f5f6e); font-variant-numeric: tabular-nums; }
+.rep-meta { margin: 2px 0 8px; display: flex; flex-wrap: wrap; gap: 0 16px; font-size: 14px; color: var(--muted, #4f5f6e); }
+.rep-puces { margin: 0 0 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+.rep-puces:empty { display: none; }
+.rep-puce { padding: 2px 10px; border-radius: 999px; border: 1px solid var(--line-strong, #a9b8c6); background: #fff; font-size: 13px; font-weight: 600; color: var(--ink, #14202b); }
+.rep-puce-urgent { background: #fbe3e0; border-color: #e9847c; color: #8f1d17; }
+.rep-puce-nouveau { background: #e4f3fb; border-color: #29a3db; color: #0d3a5a; }
+.rep-puce-traite { background: #e2f2e9; border-color: #9bd4b2; color: #0f4d2e; }
+.rep-texte { margin: 0 0 10px; padding: 10px 14px; border-left: 4px solid #29a3db; border-radius: 0 8px 8px 0; background: #eef6fb; }
+.rep-texte p { margin: 0; font-size: 16px; line-height: 1.55; }
+.rep-msg[data-traite="oui"] .rep-texte { background: #e9eef2; border-left-color: var(--line-strong, #a9b8c6); color: var(--muted, #4f5f6e); }
+.rep-act { margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.appels-dlg a.btn-texte { display: inline-flex; align-items: center; text-decoration: none; }
+.appels-dlg .rep-suppr { color: #8f1d17; border-color: #8f1d17; }
+.appels-dlg .rep-suppr:hover:not(:disabled) { background: #fbe3e0; }
+.rep-dlg :focus-visible, .appels-dlg :focus-visible { outline: 3px solid #29a3db; outline-offset: 2px; }
+@media (max-width: 560px) {
+  .rep-msg { grid-template-columns: 36px minmax(0, 1fr); gap: 10px; padding: 12px; }
+  .rep-av { width: 36px; height: 36px; font-size: 13px; }
+}
+
+/* ---------- téléphone : les alertes forment une feuille collée en bas de l'écran, boutons larges ---------- */
+@media (max-width: 560px) {
+  .poste-alertes {
+    left: max(8px, env(safe-area-inset-left, 0px)); right: max(8px, env(safe-area-inset-right, 0px)); bottom: max(8px, env(safe-area-inset-bottom, 0px));
+    width: auto; max-height: calc(100vh - 16px); gap: 10px;
+  }
+  .appel, .alerte-dab, .alerte-rep { padding: 14px 14px 12px; border-radius: 16px; }
+  .appel-avatar, .dab-avatar, .rep-t-ico { width: 48px; height: 48px; }
+  .appel-nom, .dab-nom { font-size: 19px; }
+  .appel-btn, .dab-btn { min-height: 54px; }
+}
+
+/* ---------- simulations d'appels (enseignant) ---------- */
+.sim-dlg { width: min(860px, calc(100vw - 24px)); }
+.sim-intro, .sim-p, .sim-meta, .sim-aide, .sim-profil { margin: 4px 0 10px; line-height: 1.5; }
+.sim-meta, .sim-aide { color: var(--muted, #4f5f6e); font-size: 15px; }
+.sim-liste { list-style: none; margin: 12px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 12px; }
+.sim-carte { display: grid; gap: 4px; width: 100%; height: 100%; text-align: left; font: inherit; color: inherit; padding: 12px 14px; background: #fff; border: 1px solid var(--line-strong, #a9b8c6); border-radius: 10px; cursor: pointer; }
+.sim-carte:hover { background: #e4f3fb; border-color: #124a72; }
+.sim-carte:focus-visible, .sim-btn:focus-visible { outline: 3px solid #29a3db; outline-offset: 2px; }
+.sim-carte-titre { font-weight: 700; font-size: 16px; color: #124a72; }
+.sim-carte-meta { font-size: 13px; color: var(--muted, #4f5f6e); }
+.sim-carte-resume { font-size: 15px; line-height: 1.4; }
+.sim-retour { margin: 0 0 6px; }
+.sim-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0 8px; }
+.sim-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 8px 18px; border: 0; border-radius: 10px; font: inherit; font-weight: 700; color: #fff; background: #17663f; cursor: pointer; }
+.sim-btn:hover:not(:disabled) { background: #124f31; }
+.sim-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.sim-alerte { margin: 10px 0; padding: 8px 12px; border-radius: 8px; background: var(--warn-bg, #fcebc6); color: var(--warn, #7f4400); font-size: 15px; line-height: 1.4; }
+.sim-h3 { margin: 18px 0 6px; font-size: 17px; color: #124a72; }
+.sim-id { margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 6px 18px; }
+.sim-id div { display: grid; gap: 0; }
+.sim-id dt { font-size: 13px; color: var(--muted, #4f5f6e); }
+.sim-id dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+.sim-dit { margin: 0; padding: 10px 14px; border-left: 5px solid #124a72; background: #eef2f5; font-size: 17px; line-height: 1.5; }
+.sim-ul, .sim-ol { margin: 4px 0 0; padding-left: 22px; line-height: 1.5; }
+.sim-ul li, .sim-ol li { margin: 3px 0; }
+.sim-t { width: 100%; border-collapse: collapse; font-size: 15px; }
+.sim-t th { text-align: left; background: #eef2f5; padding: 6px 10px; border-bottom: 1px solid var(--line-strong, #a9b8c6); }
+.sim-t td { padding: 6px 10px; border-bottom: 1px solid var(--line, #d3dbe3); vertical-align: top; line-height: 1.4; }
+.sim-t td:first-child { width: 38%; font-weight: 600; }
+.sim-lien { color: #124a72; font-weight: 600; }
+.sim-toast { position: fixed; z-index: 3100; left: 50%; transform: translateX(-50%); top: max(16px, env(safe-area-inset-top, 0px)); max-width: min(560px, calc(100vw - 32px)); margin: 0; padding: 10px 16px; border-radius: 10px; background: #12293f; color: #fff; font-size: 15px; box-shadow: 0 10px 30px rgba(18, 41, 63, 0.4); }
+.sim-toast[hidden] { display: none; }
+@media (max-width: 560px) { .sim-t td:first-child { width: auto; } }
+
+/* script imprimé : visible seulement à l'impression, quand « Imprimer le script » a été demandé */
+.sim-impression { display: none; }
+
+@media print {
+  .poste-alertes, .appel, .appel-secu, .alerte-dab, .alerte-rep, .appels-barre, .appels-dlg, #appel-annonce, .sim-toast { display: none !important; }
+  body.sim-impression-actif > *:not(.sim-impression) { display: none !important; }
+  body.sim-impression-actif .sim-impression { display: block !important; color: #000; background: #fff; font-size: 11pt; line-height: 1.4; }
+  .sim-impression .sim-impr-tete { border-bottom: 2px solid #000; margin-bottom: 8pt; padding-bottom: 6pt; }
+  .sim-impression .sim-impr-tete h1 { margin: 2pt 0; font-size: 16pt; }
+  .sim-impression .sim-impr-tete p { margin: 2pt 0; }
+  .sim-impression .sim-impr-banque { font-weight: 700; }
+  .sim-impression .sim-impr-role { font-style: italic; }
+  .sim-impression .sim-h3 { color: #000; margin: 10pt 0 3pt; font-size: 12pt; break-after: avoid; }
+  .sim-impression .sim-dit { background: none; border-left: 3pt solid #000; }
+  .sim-impression .sim-t th { background: #eee; }
+  .sim-impression .sim-t tr, .sim-impression .sim-id div { break-inside: avoid; }
+}

@@ -1,0 +1,67 @@
+/* GS Banque & Assurance – agenda de l'équipe : grille des disponibilités et annuaire de l'agence. */
+.eq-nav .eq-date { display: grid; gap: 2px; margin-left: auto; }
+.eq-nav .eq-date input { min-height: 40px; }
+.eq-defile { border: 2px solid var(--trait); border-radius: 10px; background: #fff; }
+.eq-grille { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 880px; table-layout: fixed; font-size: 14px; }
+.eq-grille th, .eq-grille td { border-bottom: 1px solid var(--trait-fin); border-right: 1px solid var(--trait-fin); padding: 6px 8px; vertical-align: top; text-align: left; }
+.eq-grille tr > :last-child { border-right: 0; }
+.eq-grille tbody tr:last-child > * { border-bottom: 0; }
+.eq-grille thead th { background: var(--navy); color: #fff; border-bottom: 2px solid var(--trait); border-right-color: rgba(255, 255, 255, .3); position: sticky; top: 0; z-index: 1; }
+.eq-grille thead .eq-poste { color: #fff; }
+.eq-grille thead th.eq-moi { background: #0b6e9f; box-shadow: inset 0 -4px 0 var(--blue); }
+.eq-grille .eq-h { width: 78px; background: var(--bande); color: var(--navy); font-weight: 700; white-space: nowrap; border-right: 2px solid var(--trait); }
+.eq-nom { display: block; font-weight: 700; }
+.eq-poste { display: block; font-weight: 400; font-size: 13px; color: var(--muted); }
+.eq-lib { display: block; font-weight: 600; }
+.eq-sous { display: block; font-size: 12.5px; color: var(--muted); }
+.eq-grille td { height: 64px; }
+.eq-occ { background: #f1f4f8; }
+.eq-g-client .eq-lib { color: var(--navy); }
+.eq-g-fixe { background: repeating-linear-gradient(135deg, #f4f6fa 0 8px, #eaeef5 8px 16px); }
+.eq-g-reunion { background: #e7ecf6; }
+.eq-g-absence { background: #fdf3e0; }
+.eq-g-absence .eq-lib { color: var(--warn); }
+.eq-g-moi { background: #e2f2e9; }
+.eq-g-moi .eq-lib { color: var(--ok); }
+.eq-libre { background: #fff; }
+.eq-libre .eq-lib { color: var(--ok); }
+.eq-seul .eq-lib { color: var(--muted); font-weight: 400; }
+.eq-commun { background: #f3faf6; }
+.eq-reserver { display: inline-flex; align-items: center; min-height: 36px; font-weight: 600; color: var(--ok); text-decoration: underline; text-underline-offset: 3px; }
+.eq-reserver-client { font-weight: 400; color: var(--navy); }
+.eq-reserver:hover { color: var(--navy); }
+.eq-reserver:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+.eq-pause > * { background: #dfe6ed; border-top: 2px solid var(--trait-fin); border-bottom: 2px solid var(--trait-fin); color: var(--muted); font-style: italic; height: auto; padding-block: 4px; }
+.eq-leg { margin-top: 10px; max-width: 100ch; }
+.eq-legende { margin: 10px 0 0; }
+.eq-sw-libre { background: #fff; border-color: var(--line-strong); }
+.eq-sw-commun { background: #f3faf6; border-color: var(--ok); }
+.eq-sw-client { background: #f1f4f8; border-color: #2b8fc7; }
+.eq-sw-moi { background: #e2f2e9; border-color: #2f9e63; }
+.eq-sw-fixe { background: repeating-linear-gradient(135deg, #f4f6fa 0 4px, #eaeef5 4px 8px); border-color: #1b3a57; }
+.eq-sw-reunion { background: #e7ecf6; border-color: #4a5fc1; }
+.eq-sw-absence { background: #fdf3e0; border-color: #e0952b; }
+.eq-g-client { box-shadow: inset 4px 0 0 #2b8fc7; }
+.eq-g-moi { box-shadow: inset 4px 0 0 #2f9e63; }
+.eq-g-fixe { box-shadow: inset 4px 0 0 #1b3a57; }
+.eq-g-reunion { box-shadow: inset 4px 0 0 #4a5fc1; }
+.eq-g-absence { box-shadow: inset 4px 0 0 #e0952b; }
+
+.eq-annuaire { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; list-style: none; padding: 0; }
+.eq-fiche { border: 1px solid var(--line); border-radius: 10px; background: #fff; padding: 12px 14px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.eq-fiche-moi { border-color: var(--blue); box-shadow: 0 0 0 2px var(--blue); }
+.eq-fiche h3 { font-size: 17px; color: var(--navy); display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+.eq-fonction { font-weight: 600; color: var(--navy); }
+.eq-role { font-size: 14px; color: var(--muted); }
+.eq-coord { font-size: 14px; display: grid; gap: 2px; margin: 0; }
+.eq-coord div { display: flex; gap: 8px; flex-wrap: wrap; }
+.eq-coord dt { color: var(--muted); flex: 0 0 92px; }
+.eq-coord dd { margin: 0; flex: 1 1 0; min-width: 0; overflow-wrap: anywhere; }
+.eq-act { margin-top: 4px; display: flex; flex-wrap: wrap; gap: 6px 8px; }
+.eq-act .btn { display: inline-flex; align-items: center; text-decoration: none; min-height: 40px; padding: 6px 14px; }
+
+@media (max-width: 640px) {
+  .eq-nav .eq-date { margin-left: 0; flex: 1 1 100%; }
+  .eq-grille { min-width: 760px; }
+}
+@media print { .eq-defile { display: none; } }

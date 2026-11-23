@@ -1,0 +1,112 @@
+/* GS Banque & Assurance – page de connexion : Paris au coucher du soleil (tour Eiffel, dôme des Invalides, Notre-Dame, Sacré-Cœur, toits en zinc, fenêtres qui s'allument),
+   le formulaire posé devant. Couleurs du logo : marine, bleu ciel, point rouge. Aucune police ni image extérieure (fonctionne hors connexion). */
+.page-connexion { background: #0a1a2b; color: #fff; }
+.scene { --h-ville: clamp(240px, min(43vw, 66vh), 720px); position: relative; min-height: 100vh; min-height: 100dvh; overflow: hidden; isolation: isolate; display: flex; flex-direction: column; }
+.ciel {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(46% 3.4% at 63% calc(100% - var(--h-ville) * .60), rgba(255, 168, 128, 0.30), rgba(255, 168, 128, 0) 72%),
+    radial-gradient(30% 2.2% at 28% calc(100% - var(--h-ville) * .74), rgba(255, 196, 150, 0.22), rgba(255, 196, 150, 0) 70%),
+    radial-gradient(40% 2.4% at 44% calc(100% - var(--h-ville) * 1.12), rgba(150, 120, 170, 0.16), rgba(150, 120, 170, 0) 72%),
+    radial-gradient(75% 38% at 60% calc(100% - var(--h-ville) * .22), rgba(255, 200, 132, 0.95) 0%, rgba(255, 158, 112, 0.62) 34%, rgba(236, 118, 110, 0) 74%),
+    linear-gradient(180deg, #06142a 0%, #0b2846 30%, #1a4a76 52%, #4f739b 68%, #b98f9e 82%, #f1ae7c 100%);
+}
+.ville { overflow: visible; stroke: none; stroke-width: 0; position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; width: 100%; height: var(--h-ville); display: block; }
+.ville .fen { fill: #f8d78e; animation: allume 1.2s ease-out both; }
+.ville .fen-froid { fill: #cfe9f6; }
+.ville .halo { fill-opacity: 0.2; }
+@keyframes allume { 0% { opacity: 0.04; } 55% { opacity: 1; } 100% { opacity: 1; } }
+/* À la connexion réussie, le jour se lève sur la ville. */
+.aube {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: 0; transition: opacity 1s ease-in;
+  background: linear-gradient(180deg, rgba(140, 200, 235, 0) 0%, rgba(150, 210, 240, 0.5) 55%, rgba(255, 238, 200, 0.9) 100%);
+}
+.scene.jour .aube { opacity: 1; }
+
+.contenu {
+  position: relative; z-index: 3; flex: 1 0 auto; width: 100%;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(340px, 430px); column-gap: clamp(32px, 6vw, 96px);
+  padding: clamp(20px, 4vw, 48px) clamp(16px, 5vw, 72px); align-items: center;
+}
+.accroche { align-self: stretch; display: flex; flex-direction: column; gap: clamp(28px, 9vh, 100px); min-width: 0; }
+.marque-bloc { display: flex; align-items: center; gap: 14px; }
+.marque-bloc .logo-tuile { border-radius: 14px; padding: 3px; flex: none; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35); }
+.marque-bloc .logo-tuile img { border-radius: 11px; }
+.marque { font-size: 21px; font-weight: 700; letter-spacing: 0.01em; line-height: 1.2; }
+.marque-sous { font-size: 15px; color: #c3d8e8; }
+.slogan {
+  font-family: Georgia, "Times New Roman", serif; font-weight: 400; line-height: 1.12; letter-spacing: -0.01em;
+  font-size: clamp(34px, 4.2vw, 62px); max-width: 14em; text-wrap: balance; text-shadow: 0 2px 24px rgba(5, 15, 28, 0.55);
+}
+
+.zone-carte { min-width: 0; }
+/* Mention de droits d'auteur, en bas de la scène : une pastille sombre garantit la lisibilité sur le ciel comme sur la ville. */
+.pied-connexion { position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 0 16px 14px; }
+.pied-connexion p { margin: 0; font-size: 13.5px; line-height: 1.4; color: #fff; background: rgba(8, 23, 42, 0.78); padding: 4px 14px; border-radius: 999px; text-align: center; }
+.carte {
+  background: #fff; color: var(--ink); border-radius: 14px; border-top: 4px solid var(--blue);
+  padding: 28px clamp(20px, 3vw, 32px) 22px; box-shadow: 0 28px 70px rgba(2, 10, 20, 0.55);
+}
+.carte h1 { font-size: 27px; line-height: 1.2; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+.intro { color: var(--muted); font-size: 15.5px; margin-bottom: 18px; max-width: 42ch; }
+.info { background: var(--blue-soft); color: var(--navy-deep); border-left: 4px solid var(--blue); border-radius: 4px; padding: 10px 12px; margin-bottom: 16px; font-size: 15px; }
+
+.champ { margin-bottom: 16px; }
+.champ label { display: block; font-weight: 600; font-size: 15px; color: var(--navy-deep); margin-bottom: 6px; }
+.carte input {
+  width: 100%; min-height: 48px; padding: 10px 12px; font-size: 17px; background: #fff; color: var(--ink);
+  border: 1.5px solid var(--line-strong); border-radius: 8px;
+}
+.carte input:hover { border-color: #6f8296; }
+.carte input[aria-invalid="true"] { border-color: var(--bad); background: #fffafa; }
+.champ-mdp { position: relative; }
+.champ-mdp input { padding-right: 104px; }
+.voir {
+  position: absolute; top: 4px; right: 4px; bottom: 4px; min-width: 92px; padding: 0 12px; cursor: pointer;
+  background: var(--blue-soft); color: var(--navy-deep); border: 0; border-radius: 6px; font-size: 15px; font-weight: 600;
+}
+.voir:hover { background: #cde9f7; }
+.maj { margin-top: 6px; font-size: 14px; color: var(--warn); background: var(--warn-bg); border-radius: 4px; padding: 4px 8px; }
+.erreur { background: var(--bad-bg); color: #7a1a14; border-left: 4px solid var(--bad); border-radius: 4px; padding: 10px 12px; margin-bottom: 16px; font-size: 15px; font-weight: 600; }
+.valider {
+  width: 100%; min-height: 52px; font-size: 17px; font-weight: 700; letter-spacing: 0.01em; cursor: pointer;
+  background: var(--navy); color: #fff; border: 0; border-radius: 8px; margin-top: 2px;
+  transition: background 0.15s;
+}
+.valider:hover:not(:disabled) { background: var(--navy-deep); }
+.valider:disabled { cursor: progress; background: #4f6a82; }
+.ok { text-align: center; padding: 18px 0 10px; }
+.ok-titre { font-size: 22px; font-weight: 700; color: var(--ok); margin-bottom: 4px; }
+.ok p:last-child { color: var(--muted); }
+
+.carte :focus-visible, .evitement:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; box-shadow: 0 0 0 2px #fff; }
+.evitement { color: var(--navy-deep); z-index: 10; }
+
+/* Téléphone et petite tablette : la marque et le slogan au-dessus, le formulaire dessous, la ville en fond. */
+@media (max-width: 860px) {
+  .scene { --h-ville: clamp(280px, 78vw, 400px); }
+  .contenu { grid-template-columns: minmax(0, 1fr); row-gap: 26px; align-items: start; align-content: start; padding: 18px 16px calc(var(--h-ville) * .56); }
+  .accroche { gap: 20px; }
+  .slogan { font-size: clamp(30px, 8.4vw, 42px); }
+  .carte { padding: 22px 18px 18px; box-shadow: 0 18px 44px rgba(2, 10, 20, 0.5); }
+  .carte h1 { font-size: 24px; }
+}
+@media (max-width: 360px) { .marque { font-size: 19px; } .marque-bloc .logo-tuile img { width: 52px; height: 52px; } }
+/* Écran large mais peu haut : le paysage est plus bas, pour ne pas passer derrière le slogan. */
+@media (max-height: 700px) and (min-width: 861px) { .scene { --h-ville: clamp(200px, 50vh, 720px); } }
+@media (max-height: 520px) and (min-width: 861px) { .accroche { gap: 20px; } .slogan { font-size: clamp(28px, 3.6vw, 44px); } }
+@media (prefers-reduced-motion: reduce) {
+  .ville .fen { animation: none; }
+  .aube { transition: none; }
+  .valider { transition: none; }
+}
+@media print { .page-connexion { background: #fff; color: #000; } .ville, .ciel, .aube { display: none; } .pied-connexion p { background: none; color: #000; } }
+
+/* Photo de fond choisie dans js/fond.js : elle remplace le ciel et la ville, sous un voile marine qui garde les textes lisibles sur n'importe quelle photo. */
+.scene.avec-photo .ville { display: none; }
+.scene.avec-photo .ciel {
+  background: linear-gradient(180deg, rgba(6, 20, 42, 0.82) 0%, rgba(6, 20, 42, 0.66) 100%), var(--photo-fond) center / cover no-repeat;
+}
+@media (min-width: 900px) {
+  .scene.avec-photo .ciel { background: linear-gradient(90deg, rgba(6, 20, 42, 0.84) 0%, rgba(6, 20, 42, 0.66) 55%, rgba(6, 20, 42, 0.30) 100%), var(--photo-fond) center / cover no-repeat; }
+}

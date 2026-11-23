@@ -1,0 +1,57 @@
+/* GS Banque & Assurance – carte de visite (85 × 55 mm).
+   Toutes les tailles de la carte sont en « cqw » : 1 cqw = 1/100 de la largeur de la carte. Le même dessin sert donc à l'écran (carte réduite sur téléphone)
+   et à l'impression (carte de 85 mm exactement). */
+.cv-page { display: grid; gap: 20px; }
+.cv-cartes { display: flex; flex-wrap: wrap; gap: 18px 24px; align-items: flex-start; }
+.cv-cartes figure { margin: 0; display: grid; gap: 6px; flex: 0 1 auto; min-width: 0; max-width: 100%; }
+.cv-cartes figcaption { font-size: 13.5px; color: var(--muted); }
+
+.cv { container-type: inline-size; width: 85mm; max-width: 100%; aspect-ratio: 85 / 55; position: relative; overflow: hidden; background: #fff; color: #14202b;
+  font-family: var(--font); line-height: 1.25; box-shadow: 0 1px 7px rgba(20, 32, 43, 0.28); border-radius: 1.5mm; box-sizing: border-box; }
+:where(.cv) :is(p, dl, dd, dt) { margin: 0; }
+
+/* recto : bandeau bleu à gauche, marque en haut, nom et fonction, coordonnées en bas */
+/* Le conteneur .cv n'a pas de marge intérieure (elle réduirait la largeur qui sert d'unité) : les marges sont sur .cv-in, qui contient tout le dessin. */
+.cv-in { box-sizing: border-box; position: absolute; inset: 0; display: flex; flex-direction: column; }
+.cv-recto .cv-in { padding: 5.5cqw 4.5cqw 4.5cqw 9cqw; }
+.cv-recto::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3cqw; background: #1b3a57; }
+.cv-marque { display: flex; align-items: center; gap: 2.4cqw; }
+.cv-marque img { width: 10.5cqw; height: 10.5cqw; display: block; }
+.cv-banque { font-weight: 700; font-size: 4cqw; color: #1b3a57; line-height: 1.1; }
+.cv-agence { font-size: 2.9cqw; color: #4f5f6e; }
+.cv-nom { margin-top: 5.5cqw; font-size: 6.4cqw; font-weight: 700; color: #1b3a57; line-height: 1.1; overflow-wrap: anywhere; }
+.cv-nom.cv-long { font-size: 5cqw; }
+.cv-nom.cv-tres-long { font-size: 4cqw; }
+.cv-fonction { margin-top: 1.2cqw; font-size: 3.5cqw; color: #1f5f87; font-weight: 600; }
+.cv-coord { margin-top: auto; font-size: 3.3cqw; display: grid; gap: 0.5cqw; }
+.cv-coord div { display: flex; gap: 2cqw; }
+.cv-coord dt { flex: 0 0 12cqw; color: #4f5f6e; }
+.cv-coord dd.cv-mail { font-size: 2.9cqw; }
+.cv-coord dd { overflow-wrap: anywhere; }
+.cv-pied { margin-top: 2cqw; padding-top: 1.6cqw; border-top: 0.3mm solid #c8d3dd; font-size: 2.7cqw; color: #4f5f6e; }
+
+/* verso : fond bleu nuit, marque centrée, horaires et adresse */
+.cv-verso { background: #1b3a57; color: #fff; text-align: center; }
+.cv-verso .cv-in { align-items: center; justify-content: center; padding: 6cqw; gap: 3cqw; }
+.cv-verso img { width: 20cqw; height: 20cqw; display: block; }
+.cv-verso .cv-banque { color: #fff; font-size: 6cqw; }
+.cv-verso .cv-agence { color: #cfe4f2; font-size: 3.6cqw; }
+.cv-verso .cv-horaires { font-size: 3cqw; color: #e7f1f8; line-height: 1.5; }
+.cv-verso .cv-adresse { font-size: 3cqw; color: #cfe4f2; }
+
+.cv-form { max-width: 560px; }
+.cv-form .champ-nom input { width: 100%; box-sizing: border-box; }
+.cv-aide-num { margin: 0; }
+.cv-form .btn-texte { min-height: 44px; }
+.cv-apercu-msg { font-size: 14.5px; color: var(--muted); }
+.cv-options { display: grid; gap: 8px; }
+.cv-ok { margin: 0 0 12px; padding: 10px 14px; background: var(--ok-bg); color: var(--ok); border-left: 5px solid var(--ok); border-radius: var(--radius); font-weight: 600; }
+.cv-ok:focus, #t-carte:focus, #t-apercu:focus { outline: 3px solid var(--blue); outline-offset: 2px; }
+.cv-ok:empty { display: none; }
+
+/* planche A4 : 2 colonnes × 5 rangées de cartes de 85 × 55 mm, marges de 10 mm en haut et en bas, 20 mm à gauche et à droite */
+#doc-impression .cv-planches { page: cartes; }
+#doc-impression .cv-planche { display: grid; grid-template-columns: repeat(2, 85mm); grid-auto-rows: 55mm; width: 170mm; break-after: page; }
+#doc-impression .cv-planche:last-child { break-after: auto; }
+#doc-impression .cv { box-shadow: none; border-radius: 0; outline: 0.2mm dashed #9aa7b3; outline-offset: -0.1mm; width: 85mm; height: 55mm; }
+/* La page « cartes » (marges de la planche, sans pied de page) est déclarée dans print.css, après la page par défaut : Chromium retient la dernière règle. */

@@ -1,0 +1,219 @@
+/* GS Banque & Assurance – surcouche visuelle du parcours « mouvements atypiques ».
+   Chargée après style.css : elle ne concerne que les écrans de ce parcours.
+   Même palette que le reste de l'application (marine et bleu ciel du logo) ; vert, ambre et rouge
+   gardent leur sens de banque : conforme, à examiner, anomalie. */
+
+/* ---------- accueil : étapes illustrées ---------- */
+.accueil { max-width: 900px; }
+.etapes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 16px; margin-top: 4px; }
+.etapes li { max-width: none; min-height: 118px; padding: 20px 18px 16px 84px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+.etapes li p { max-width: 34ch; font-size: 15px; }
+.etapes li::before { left: 14px; top: -12px; width: 26px; height: 26px; background: var(--navy); color: #fff; box-shadow: 0 0 0 3px #fff; }
+.et-ico { position: absolute; left: 18px; top: 20px; width: 50px; height: 50px; border-radius: 50%; background: var(--blue-soft); color: var(--navy); display: grid; place-items: center; }
+.et-ico svg { width: 24px; height: 24px; }
+
+/* ---------- bandeau client ---------- */
+.client-bandeau { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr); grid-template-areas: "id chiffres" "bas bas"; gap: 16px 32px; align-items: center; background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--navy); border-radius: var(--radius); padding: 18px 22px 16px; margin-bottom: 20px; }
+.cb-id { grid-area: id; display: flex; align-items: center; gap: 16px; min-width: 0; }
+.avatar-lg { width: 60px; height: 60px; font-size: 20px; }
+.cb-nom { font-size: 21px; font-weight: 700; color: var(--navy); line-height: 1.25; }
+.cb-sous { font-size: 14.5px; color: var(--muted); }
+.cb-chiffres { grid-area: chiffres; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 22px; }
+.cb-chiffres > div { border-left: 3px solid var(--blue); padding-left: 12px; min-width: 0; }
+.cb-chiffres dt { font-size: 13px; color: var(--muted); }
+.cb-chiffres dd { font-size: 20px; font-weight: 700; line-height: 1.3; overflow-wrap: anywhere; }
+.cb-chiffres dd.cb-note { font-size: 12.5px; font-weight: 400; color: var(--muted); line-height: 1.3; }
+.cb-bas { grid-area: bas; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 20px; border-top: 1px solid var(--line); padding-top: 14px; }
+.cb-produits { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip-produit { background: var(--paper); color: var(--navy); box-shadow: inset 0 0 0 1px var(--line-strong); }
+.cb-alerte { display: flex; align-items: center; gap: 8px; font-size: 14px; background: var(--warn-bg); color: var(--warn); border-radius: var(--radius); padding: 7px 12px; }
+
+/* ---------- profil et coordonnées ---------- */
+.bloc-profil h2, .bloc-coord h2 { margin-bottom: 8px; }
+.pf { display: grid; grid-template-columns: 38px minmax(0, 1fr); gap: 12px; padding: 14px 0; border-top: 1px solid var(--line); }
+.bloc-profil h2 + .pf { border-top: 0; padding-top: 4px; }
+.pf-ico, .co-ico { width: 38px; height: 38px; border-radius: 50%; background: var(--blue-soft); color: var(--navy); display: grid; place-items: center; }
+.pf-ico svg, .co-ico svg { width: 19px; height: 19px; }
+.pf-titre { font-size: 13.5px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+.pf-corps p { font-size: 14.5px; }
+.pf-corps p + p { margin-top: 6px; }
+.liste-patrimoine { display: grid; gap: 4px; padding: 0; list-style: none; font-size: 14.5px; }
+.liste-patrimoine li { position: relative; padding-left: 16px; }
+.liste-patrimoine li::before { content: ""; position: absolute; left: 2px; top: 0.6em; width: 7px; height: 7px; border-radius: 2px; background: var(--blue); }
+.pf-maj { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; margin-top: 2px; }
+.pf-maj svg { width: 17px; height: 17px; }
+.pf-maj strong { color: var(--ink); }
+.co-liste { display: grid; gap: 12px; margin-bottom: 10px; }
+.co-liste li { display: grid; grid-template-columns: 38px minmax(0, 1fr); gap: 12px; align-items: center; }
+.co-lib { display: block; font-size: 12.5px; color: var(--muted); line-height: 1.3; }
+.co-val { display: block; font-weight: 600; font-size: 14.5px; overflow-wrap: anywhere; }
+.bloc-maj h2 { display: flex; align-items: center; gap: 8px; }
+.bloc-maj h2 svg { flex: none; width: 22px; height: 22px; padding: 3px; border-radius: 50%; background: var(--ok); color: #fff; stroke-width: 3; }
+
+/* ---------- espèces par mois civil : barres et seuil COSI ---------- */
+.cosi-table td { white-space: normal; vertical-align: top; padding-top: 10px; padding-bottom: 10px; }
+.cosi-table th[scope="row"] { vertical-align: top; padding-top: 10px; white-space: nowrap; width: 130px; }
+.cosi-table td { width: 42%; }
+.cosi-val { font-size: 17px; font-weight: 700; }
+.cosi-barre { position: relative; display: block; height: 10px; border-radius: 5px; background: #e3e9ee; margin: 8px 6px 0 0; }
+.cosi-rempli { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 5px; background: var(--blue); }
+.cosi-depasse .cosi-rempli { background: repeating-linear-gradient(135deg, var(--warn-zone) 0 6px, #f6dc9b 6px 12px); box-shadow: inset 0 0 0 1px #d9a93b; }
+.cosi-seuil { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--ink); }
+.cosi-legende { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); margin: 2px 0 8px; }
+.cosi-trait { display: inline-block; width: 2px; height: 14px; background: var(--ink); }
+
+/* ---------- étapes du dossier ---------- */
+.onglets-etapes { background: #f6f8fa; }
+.onglets-etapes .onglet { flex: 1 1 0; min-width: 0; gap: 12px; padding: 12px 18px 10px; text-align: left; }
+.etape-num { flex: none; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: #dce4eb; color: var(--navy); font-weight: 700; font-size: 15px; }
+.etape-num svg { width: 17px; height: 17px; stroke-width: 3; }
+.onglet-releve .etape-num svg { stroke-width: 2; }
+.onglet[aria-selected="true"] .etape-num { background: var(--navy); color: #fff; }
+.onglet.etape-fait .etape-num { background: var(--ok); color: #fff; }
+.etape-txt { display: grid; line-height: 1.25; min-width: 0; }
+.etape-lib { font-weight: 700; }
+.etape-etat { font-size: 13px; font-weight: 500; color: var(--muted); }
+.onglet[aria-selected="true"] .etape-etat { color: var(--navy); }
+
+/* ---------- relevé de compte ---------- */
+.chip-sign { background: var(--blue-soft); color: var(--navy); box-shadow: inset 0 0 0 1px #b9dcef; font-size: 13px; padding: 1px 8px 1px 6px; margin-left: 4px; vertical-align: 1px; white-space: nowrap; }
+.rel-signalee td { background: #f4fafd; }
+.rel-signalee td.rel-date { color: var(--navy); font-weight: 600; }
+.rel-ouverture td { background: var(--blue-soft); color: var(--navy); }
+.rel-ouverture td.rel-date { color: var(--navy); }
+
+/* ---------- opérations : lignes de relevé ---------- */
+.ops { gap: 12px; }
+.op-at { grid-template-columns: 54px 44px minmax(0, 1fr) 124px 232px; gap: 8px 16px; padding: 14px 16px 14px 14px; border-left: 5px solid var(--line-strong); }
+.op-at.est-hab { border-left-color: var(--ok); }
+.op-at.est-aty { border-left-color: #d9a93b; }
+.op-date { display: grid; justify-items: center; align-content: center; width: 54px; padding: 5px 0; background: var(--paper); border-radius: 6px; line-height: 1.1; }
+.op-j { font-size: 16.5px; font-weight: 700; color: var(--navy); white-space: nowrap; }
+.op-m { font-size: 13px; font-weight: 600; color: var(--muted); }
+.op-at .op-ico { width: 44px; height: 44px; }
+.op-at .op-ico svg { width: 21px; height: 21px; }
+.op-ico-credit { background: var(--ok-bg); color: var(--ok); }
+.op-ico-debit { background: var(--blue-soft); color: var(--navy); }
+.op-at .op-lib { font-size: 16px; }
+.op-tag { display: block; width: fit-content; font-size: 12.5px; font-weight: 700; color: var(--navy); background: var(--blue-soft); border-radius: 999px; padding: 0 9px; margin: 2px 0 3px; line-height: 1.6; }
+.op-at .op-montant { font-size: 20px; }
+.op-at .op-choix { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 2px solid var(--line-strong); border-radius: 8px; }
+.op-at .choix { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; border: 0; border-radius: 0; padding: 0 6px; }
+.op-at .choix:first-child { border-radius: 6px 0 0 6px; }
+.op-at .choix:last-child { border-radius: 0 6px 6px 0; border-left: 2px solid var(--line-strong); }
+.op-at .choix svg { width: 18px; height: 18px; }
+.op-at .choix.est-actif svg { stroke-width: 2.6; }
+
+/* ---------- justificatifs : cartes ---------- */
+.pieces .opp-liste { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+.pieces .piece-carte { display: grid; grid-template-columns: 22px 38px minmax(0, 1fr); align-items: center; gap: 10px; padding: 10px 12px; min-height: 66px; font-weight: 500; }
+.piece-ico { width: 38px; height: 38px; border-radius: 8px; background: var(--blue-soft); color: var(--navy); display: grid; place-items: center; }
+.piece-ico svg { width: 20px; height: 20px; }
+.piece-carte.est-actif .piece-ico { background: var(--navy); color: #fff; }
+.piece-lib { font-size: 14.5px; line-height: 1.35; }
+.contact-prevu { border: 1px solid var(--line); background: #fff; margin-top: 18px; }
+.cp-corps { min-width: 0; flex: 1; }
+.cp-liste { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 6px 18px; margin-top: 6px; font-size: 14px; }
+.cp-liste li { display: flex; align-items: flex-start; gap: 8px; min-width: 0; }
+.cp-liste svg { width: 16px; height: 16px; margin-top: 3px; color: var(--navy); }
+.cp-liste span { overflow-wrap: anywhere; }
+
+/* ---------- contact et décision ---------- */
+.cr-tete { display: flex; align-items: center; gap: 14px; }
+.contact-ico-lg { width: 46px; height: 46px; }
+.contact-ico-lg svg { width: 22px; height: 22px; }
+.cr-meta { font-size: 14.5px; }
+.cr-bloc { display: grid; gap: 6px; }
+.cr-titre { font-size: 13.5px; font-weight: 700; color: var(--navy); }
+.demande { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip-doc { background: var(--blue-soft); color: var(--navy); box-shadow: inset 0 0 0 1px #b9dcef; border-radius: 8px; }
+.echange { border-left: 4px solid var(--line-strong); border-radius: 0 var(--radius) var(--radius) 0; padding: 12px 16px; }
+.recues { list-style: none; padding-left: 0; gap: 8px; }
+.recues li { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 8px 12px; }
+.rc-ico { flex: none; width: 32px; height: 32px; border-radius: 8px; background: var(--ok-bg); color: var(--ok); display: grid; place-items: center; }
+.rc-ico svg { width: 18px; height: 18px; }
+.decision .opp-liste { max-width: none; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.choix-decision { display: grid; grid-template-columns: 22px 46px minmax(0, 1fr); align-items: center; gap: 12px; padding: 14px; }
+.choix-decision input { margin-top: 0; }
+.dec-ico { width: 46px; height: 46px; border-radius: 50%; background: var(--blue-soft); color: var(--navy); display: grid; place-items: center; }
+.dec-ico svg { width: 22px; height: 22px; }
+.choix-decision.est-actif .dec-ico { background: var(--navy); color: #fff; }
+
+/* ---------- correction ---------- */
+.score-tuiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 2px 0 6px; }
+.st { display: grid; grid-template-columns: 38px minmax(0, 1fr); column-gap: 12px; align-items: center; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+.st-ico { grid-row: span 2; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; }
+.st-ok .st-ico { background: var(--ok-bg); color: var(--ok); }
+.st-def .st-ico { background: var(--warn-bg); color: var(--warn); }
+.st-ko .st-ico { background: var(--bad-bg); color: var(--bad); }
+.st-lib { font-size: 13px; color: var(--muted); line-height: 1.3; }
+.st-val { font-size: 19px; font-weight: 700; line-height: 1.2; }
+
+/* ---------- bilan ---------- */
+.bilan-tete { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+.anneau { --p: 0; position: relative; flex: none; width: 104px; height: 104px; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(var(--blue) calc(var(--p) * 1%), #e3e9ee 0); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.anneau::before { content: ""; position: absolute; inset: 11px; border-radius: 50%; background: #fff; }
+.anneau span { position: relative; font-size: 22px; font-weight: 700; color: var(--navy); }
+.bilan-table .chip { font-size: 13.5px; white-space: nowrap; padding: 3px 10px; }
+.bilan-table td:nth-child(4) { width: 96px; }
+
+/* ---------- écrans moyens et étroits ---------- */
+@media (max-width: 1020px) {
+  .client-bandeau { grid-template-columns: minmax(0, 1fr); grid-template-areas: "id" "chiffres" "bas"; }
+  .op-at { grid-template-columns: 54px 44px minmax(0, 1fr) auto; }
+  .op-at .op-choix, .op-at .op-verrou { grid-column: 1 / -1; }
+}
+@media (max-width: 760px) {
+  .etapes { grid-template-columns: minmax(0, 1fr); }
+  .score-tuiles { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 640px) {
+  .client-bandeau { padding: 14px 14px 12px; gap: 12px; }
+  .cb-chiffres { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cb-nom { font-size: 19px; }
+  .onglets-etapes .onglet { flex-direction: column; justify-content: flex-start; align-items: center; gap: 4px; padding: 10px 4px 8px; text-align: center; }
+  .etape-txt { justify-items: center; text-align: center; }
+  .etape-lib { font-size: 13.5px; overflow-wrap: anywhere; }
+  .etape-etat { font-size: 12px; }
+  .onglet-releve .etape-etat { display: none; }
+  .op-j { font-size: 15px; }
+  .op-at { grid-template-columns: 50px minmax(0, 1fr) auto; gap: 8px 12px; padding: 12px 12px 12px 10px; }
+  .op-date { width: 50px; grid-row: span 2; }
+  .op-at .op-ico { display: none; }
+  .op-at .op-corps { grid-column: 2; }
+  .op-at .op-montant { grid-column: 3; grid-row: 1; align-self: start; }
+  .op-at .op-choix { grid-column: 1 / -1; }
+  .pieces .piece-carte { min-height: 60px; }
+  .cp-liste { grid-template-columns: minmax(0, 1fr); }
+  .choix-decision { grid-template-columns: 22px 40px minmax(0, 1fr); gap: 10px; padding: 12px; }
+  .dec-ico { width: 40px; height: 40px; }
+  .decision .opp-liste { grid-template-columns: minmax(0, 1fr); }
+  .etapes li { padding: 18px 14px 14px 76px; min-height: 104px; }
+  .anneau { width: 88px; height: 88px; }
+}
+@media (max-width: 420px) {
+  .op-at { grid-template-columns: 46px minmax(0, 1fr); gap: 6px 10px; padding: 12px 10px 12px 8px; }
+  .op-date { width: 46px; grid-row: span 2; }
+  .op-at .op-montant { grid-column: 2; grid-row: 2; text-align: left; align-self: start; }
+  .op-at .op-choix { grid-row: 3; }
+  .op-at .verdict, .op-at .op-expl { grid-column: 1 / -1; }
+}
+@media (max-width: 360px) {
+  .op-at .choix { padding: 0 2px; gap: 4px; font-size: 15px; min-width: 0; }
+  .op-at .choix svg { width: 15px; height: 15px; }
+  .cb-chiffres { grid-template-columns: minmax(0, 1fr); }
+  .onglets-etapes .onglet { padding: 10px 2px 8px; }
+  .etape-lib { font-size: 13px; }
+}
+@media (max-width: 480px) {
+  .onglets-etapes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .onglets-etapes .onglet { flex-direction: row; flex-wrap: nowrap; justify-content: flex-start; align-items: center; gap: 10px; padding: 10px 10px 8px; text-align: left; }
+  .etape-num { width: 30px; height: 30px; }
+  .etape-txt { justify-items: start; text-align: left; }
+  .etape-lib { font-size: 13.5px; overflow-wrap: normal; }
+  .etape-etat { font-size: 12px; }
+  .onglet-releve .etape-etat { display: block; }
+}
+@media print {
+  .client-bandeau, .anneau { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}

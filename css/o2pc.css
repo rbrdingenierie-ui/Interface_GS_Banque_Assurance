@@ -1,0 +1,30 @@
+/* GS Banque & Assurance – O2PC : liste du jour des opportunités commerciales. */
+.intro { max-width: 90ch; color: var(--ink); margin: 6px 0 4px; }
+.o2-creneau { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 0 0 14px; max-width: 90ch; }
+.o2-filtres { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-bottom: 14px; }
+.o2-filtres .champ { flex: 1 1 240px; max-width: 420px; min-width: 0; }
+.o2-filtres select { font: inherit; max-width: 100%; width: 100%; }
+.o2-liste { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 430px), 1fr)); gap: 14px; }
+.o2-carte { border: 1px solid var(--line); border-left: 5px solid var(--blue); border-radius: 8px; background: var(--panel); min-width: 0; }
+.o2-carte.o2-urgent { border-left-color: var(--warn-zone); }
+.o2-carte.o2-fait { background: #f7faf8; border-left-color: var(--ok-zone); }
+.o2-carte article { display: grid; gap: 8px; padding: 14px 16px; min-width: 0; }
+.o2-tete { display: flex; gap: 12px; align-items: flex-start; }
+.o2-rang { flex: 0 0 auto; width: 32px; height: 32px; border-radius: 50%; background: var(--navy); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+.o2-id { min-width: 0; }
+.o2-id h3 { font-size: 17px; line-height: 1.25; margin-bottom: 4px; overflow-wrap: anywhere; }
+.o2-age { font-weight: 400; color: var(--muted); font-size: 14px; white-space: nowrap; }
+.o2-puces { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.o2-theme { background: var(--blue-soft); color: var(--navy); box-shadow: inset 0 0 0 1px #9fd2ea; }
+.o2-motif { font-weight: 600; color: var(--navy); }
+.o2-details { display: grid; gap: 4px; padding-left: 18px; list-style: disc; font-size: 14.5px; }
+.o2-pied { display: grid; gap: 10px; margin-top: 4px; padding-top: 10px; border-top: 1px solid var(--line); }
+.o2-etat { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
+.o2-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.o2-actions .btn { min-height: 44px; display: inline-flex; align-items: center; text-decoration: none; }
+.o2-autres { font-style: italic; }
+.o2-defil { overflow-x: auto; }
+.o2-themes { min-width: 640px; }
+.o2-themes td, .o2-themes th { text-align: left; }
+.o2-themes td:nth-child(3), .o2-themes td:nth-child(4), .o2-themes thead th:nth-child(3), .o2-themes thead th:nth-child(4) { text-align: right; white-space: nowrap; }
+@media (max-width: 520px) { .o2-carte article { padding: 12px; } .o2-actions .btn { flex: 1 1 100%; justify-content: center; } }

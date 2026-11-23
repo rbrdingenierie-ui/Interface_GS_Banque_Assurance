@@ -1,0 +1,47 @@
+/* Questionnaire de santé (js/sante_ui.js) : souscription d'une assurance du catalogue et assurance emprunteur du montage de prêt. */
+.sq { display: grid; gap: 12px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--panel); padding: 14px 16px; min-width: 0; }
+.sq-titre { font-size: 17px; color: var(--navy); margin: 0; }
+.sq-intro { margin: 0; }
+.sq-note { margin: 0; padding: 8px 12px; background: var(--blue-soft); border-left: 4px solid var(--blue); border-radius: 0 var(--radius) var(--radius) 0; font-size: 14.5px; max-width: 80ch; }
+.sq-liste { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.sq-qf { border: 0; padding: 0; margin: 0; min-width: 0; display: grid; gap: 6px; }
+.sq-qf > legend, .sq-l { font-weight: 600; padding: 0; margin-bottom: 4px; max-width: 80ch; }
+.sq-opts { display: flex; flex-wrap: wrap; gap: 6px 10px; }
+.sq-on .sq-opts { flex-wrap: nowrap; }
+.sq-qf:not(.sq-on) .sq-opts { flex-direction: column; align-items: flex-start; }
+.sq-opt { display: flex; gap: 10px; align-items: center; border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 8px 12px; min-height: 44px; background: #fff; cursor: pointer; }
+.sq-on .sq-opt { min-width: 96px; }
+.sq-opt:hover { background: var(--blue-soft); }
+/* Le sélecteur est précis pour passer devant « .formulaire input » (largeur 100 %, hauteur 44 px) du catalogue. */
+.sq .sq-opt input[type="radio"] { flex: 0 0 auto; width: 18px; height: 18px; min-height: 0; margin: 0; padding: 0; }
+.sq-opt:has(input:checked) { border-color: var(--blue); background: var(--blue-soft); box-shadow: inset 0 0 0 1px var(--blue); }
+.sq-opt:has(input:focus-visible) { outline: 3px solid var(--blue); outline-offset: 2px; }
+.sq-mes { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.sq-mes label { font-weight: 400; }
+.sq-mes input { width: 6em; min-height: 44px; }
+.sq-res { border-top: 1px solid var(--line); padding-top: 10px; display: grid; gap: 6px; }
+.sq-res p, .sq-res ul { margin: 0; }
+.sq-att { color: var(--muted); }
+.sq-err { color: var(--bad); font-weight: 600; }
+.sq-verdict { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; }
+.sq-verdict > span:last-child { max-width: 80ch; }
+.sq-motifs { padding-left: 20px; display: grid; gap: 2px; list-style: disc; }
+.sq-imc { font-size: 14.5px; color: var(--muted); }
+
+/* Montage de prêt, étape 2 : la ligne « Questionnaire de santé de … » et son formulaire. */
+.mt-pieces li.mt-li-sante { display: grid; gap: 8px; }
+.mt-sante-ligne { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; }
+.mt-sante-lib { font-weight: 400; }
+.mt-sante-etat { display: grid; gap: 4px; margin-left: 30px; max-width: 80ch; }
+.mt-sante-etat p { margin: 0; }
+.mt-sante-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 2px 0 4px 30px; }
+.mt-sante-form { margin-left: 30px; }
+.mt-sante-form .msg-erreur { color: var(--bad); font-weight: 600; margin: 0; }
+.mt-sante-form .msg-erreur:empty { display: none; }
+@media (max-width: 640px) {
+  .mt-sante-etat, .mt-sante-actions, .mt-sante-form { margin-left: 0; }
+  .sq { padding: 12px; }
+  .sq-mes { display: grid; grid-template-columns: auto minmax(0, 8em); justify-content: start; gap: 8px 10px; }
+  .sq-on .sq-opts { flex-wrap: wrap; }
+}
+@media print { .sq { display: none; } }

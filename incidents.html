@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GS Banque &amp; Assurance – Gestion des incidents</title>
+<meta name="description" content="Gestion des incidents : contacter les clients débiteurs depuis 15, 30, 60 ou 90 jours, enregistrer les moyens de régularisation, décider de la suite et envoyer le courrier.">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/appels.css">
+<link rel="stylesheet" href="css/atypiques.css">
+<link rel="stylesheet" href="css/documents.css">
+<link rel="stylesheet" href="css/incidents.css">
+<link rel="stylesheet" href="css/espacement.css">
+<link rel="stylesheet" href="css/print.css">
+<script src="js/identifiants.js"></script>
+<script src="js/acces.js"></script>
+<script src="js/garde.js"></script>
+</head>
+<body>
+<a class="evitement" href="#app">Aller au contenu</a>
+
+<header class="entete">
+  <div class="entete-marque">
+    <span class="logo-tuile"><img src="assets/logo.png" width="52" height="52" alt="Logo GS Banque &amp; Assurance"></span>
+    <div>
+      <p class="marque">GS Banque &amp; Assurance</p>
+      <p class="marque-sous">Poste du Conseiller Clientèle Particuliers</p>
+    </div>
+  </div>
+  <div class="entete-outils">
+    <a class="btn-texte lien-accueil" href="index.html">Accueil</a>
+    <div id="progression" class="progression" hidden></div>
+    <button type="button" class="btn-texte" data-act="aide">Fiche réflexe</button>
+    <button type="button" class="btn-texte" data-act="recommencer" id="btn-recommencer" hidden>Recommencer</button>
+  </div>
+</header>
+
+<main id="app" tabindex="-1">
+  <noscript><p class="bloc">Cette page a besoin de JavaScript pour fonctionner. Activez-le dans votre navigateur, puis rechargez la page.</p></noscript>
+</main>
+
+<dialog id="aide" aria-labelledby="aide-titre">
+  <div class="aide-corps">
+    <div class="aide-tete">
+      <h2 id="aide-titre">Fiche réflexe : gestion des incidents</h2>
+      <button type="button" class="btn-texte" data-act="fermer-aide">Fermer</button>
+    </div>
+
+    <h3>À quoi sert cet outil ?</h3>
+    <ul>
+      <li>Il suit les comptes qui restent à l'état débiteur après vos décisions sur les « Opérations débiteurs » : un dossier remonte à 15, 30, 60 puis 90 jours de débit.</li>
+      <li>Votre objectif : contacter le client pour trouver une solution qui ramène le compte à zéro (salaire à venir, virement depuis l'épargne, somme à recevoir, aide d'un proche, crédit adapté).</li>
+      <li>Ne confondez pas avec les « Mouvements atypiques » : ici, il ne s'agit pas de lutte contre le blanchiment mais de recouvrer un débit.</li>
+    </ul>
+
+    <h3>La procédure en quatre temps</h3>
+    <ul>
+      <li><strong>Contactez le client</strong> : mobile, fixe, SMS, e-mail, courrier, convocation. Un client injoignable se relance par au moins deux canaux, dont le courrier.</li>
+      <li><strong>Enregistrez les moyens de régularisation</strong> avec le montant et le délai annoncés par le client. N'inscrivez jamais une ressource qu'il n'a pas citée.</li>
+      <li><strong>Décidez de la suite</strong> selon le palier, puis rédigez votre commentaire et validez.</li>
+      <li><strong>Envoyez le courrier</strong> adapté une fois le dossier validé : vous contrôlez le texte, puis vous éditez le PDF.</li>
+    </ul>
+
+    <h3>Que décider à chaque palier ?</h3>
+    <ul>
+      <li><strong>J15</strong> : solution datée, vous suivez ; sinon vous convoquez le client en agence.</li>
+      <li><strong>J30</strong> : un mois de débit, le client doit recevoir une information écrite (montant du dépassement, taux débiteur, frais). Solution datée : suivi ; sinon convocation en agence.</li>
+      <li><strong>J60</strong> : la clôture du compte devient possible. La banque dénonce la convention de compte avec un préavis de deux mois (art. L312-1-1 du Code monétaire et financier). Si une solution datée existe ou si le client est fragile, vous maintenez le compte et renforcez le suivi.</li>
+      <li><strong>J90</strong> : vous clôturez les services (carte, chéquier, banque à distance, autorisation de découvert), vous vous opposez aux prélèvements, puis vous envoyez le compte au service de recouvrement amiable (SRA).</li>
+    </ul>
+
+    <h3>Points de vigilance</h3>
+    <ul>
+      <li>Commissions d'intervention : 8 € par opération et 80 € par mois au plus (4 € et 20 € pour un client fragile). Tous les frais d'incidents d'un client fragile sont plafonnés à 20 € par mois.</li>
+      <li>Au-delà d'un mois de dépassement significatif, l'information écrite du client est obligatoire. Au-delà de trois mois, la banque doit lui proposer sans délai un autre type de crédit. La numérotation des articles du Code de la consommation change avec la réforme du 20 novembre 2026 : citez la loi sans numéro d'article.</li>
+      <li>Un client en difficulté durable se dirige vers l'accompagnement budgétaire ou, si sa situation est déséquilibrée, vers la commission de surendettement de la Banque de France.</li>
+      <li>Le droit au compte reste ouvert au client dont le compte est clôturé (Banque de France, art. L312-1 du Code monétaire et financier).</li>
+    </ul>
+
+    <h3>Documents</h3>
+    <ul>
+      <li>Les courriers de la banque partent après votre validation : vous vérifiez le texte, vous éditez le PDF.</li>
+      <li>L'« engagement de régularisation » est un document que le client lit, date et signe : il reprend les montants et les dates qu'il a annoncés.</li>
+    </ul>
+
+    <p class="mention">Les clients, les comptes et les montants sont imaginaires. Les textes de loi cités sont ceux en vigueur en novembre 2026.</p>
+  </div>
+</dialog>
+
+<script src="js/banque.js"></script>
+<script src="js/identite.js"></script>
+<script src="js/rules_incidents.js"></script>
+<script src="js/data_incidents.js"></script>
+<script src="js/quotidien_base.js"></script>
+<script src="js/quotidien_pools.js"></script>
+<script src="js/quotidien_gdi_releve.js"></script>
+<script src="js/quotidien_gdi.js"></script>
+<script src="js/quotidien.js"></script>
+<script src="js/quotidien_charge.js"></script>
+<script src="js/tampon.js"></script><script src="js/documents.js"></script>
+<script src="js/documents_gdi.js"></script>
+<script src="js/impression.js"></script>
+<script src="js/app_incidents.js"></script>
+<script src="js/appels.js"></script>
+<script src="js/app_appels.js"></script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+/* GS Banque & Assurance – fiche d'entretien client (onglet « Entretien » de la fiche client et volet « Fiche d'entretien » de « Compte Rendu d'Entretien (CRE) »). */
+.en-zone { display: grid; gap: 16px; min-width: 0; }
+.en-tete { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 6px 18px; }
+.en-client { font-size: 17px; color: var(--navy); }
+.en-avancement { font-size: 14px; color: var(--muted); }
+.en-choix { max-width: 460px; margin-bottom: 14px; }
+.en-choix select { border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 9px 12px; min-height: 44px; background: #fff; font: inherit; }
+.en-etape { display: grid; gap: 12px; margin: 0; }
+.en-etape-titre { font-size: 18px; color: var(--navy); display: flex; align-items: center; gap: 10px; margin: 0; }
+.en-etape-titre strong { font-size: 1.25em; color: var(--blue); }
+.en-num { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; background: var(--navy); color: #fff; font-size: 15px; font-weight: 700; }
+.en-intro { max-width: 78ch; color: var(--ink); }
+.en-consigne { max-width: 78ch; font-size: 15px; color: var(--muted); }
+.en-script { border-left: 4px solid var(--blue); background: var(--blue-soft); border-radius: 0 var(--radius) var(--radius) 0; padding: 10px 14px; display: grid; gap: 6px; max-width: 78ch; }
+.en-script p { font-size: 16px; }
+.en-nom { max-width: 360px; }
+.en-nom input { border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 9px 12px; min-height: 44px; background: #fff; font: inherit; }
+/* étape 1 */
+.en-grille-info { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+.en-info { border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 12px; background: #fff; min-width: 0; }
+.en-info h3 { font-size: 14px; color: var(--navy); margin-bottom: 6px; }
+.en-info ul { display: grid; gap: 4px; font-size: 14.5px; }
+.en-info li { overflow-wrap: anywhere; }
+/* étape 3 */
+.en-grille-decouverte { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; align-items: stretch; }
+.en-bloc { border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 12px 14px; background: #fff; display: grid; gap: 10px; min-width: 0; }
+.en-bloc h3 { font-size: 16px; color: var(--navy); border-bottom: 2px solid var(--blue-soft); padding-bottom: 6px; }
+.en-bloc h4 { font-size: 15px; color: var(--navy); margin: 0; }
+.en-rebond { margin-top: 0; }
+.en-questions { display: grid; gap: 6px; }
+.en-q-t { font-size: 15px; font-weight: 600; display: block; }
+.en-sous { display: grid; gap: 2px; margin: 2px 0 0 4px; }
+.en-coche { display: flex; align-items: flex-start; gap: 8px; font-size: 15px; min-height: 28px; cursor: pointer; }
+.en-coche input { flex: none; width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--navy); }
+.en-notes textarea { min-height: 96px; }
+.en-deux { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.en-liens { display: flex; flex-wrap: wrap; gap: 8px 14px; }
+/* calculette */
+.en-calc { gap: 10px; }
+.en-calc-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: 10px; align-items: start; }
+.en-groupe { border: 1px solid var(--line); border-radius: var(--radius); padding: 8px 10px 10px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; min-width: 0; }
+.en-groupe legend { font-size: 14px; font-weight: 700; color: var(--navy); padding: 0 6px; }
+.en-montant { gap: 2px; min-width: 0; grid-template-columns: minmax(0, 1fr); }
+.en-montant label { font-size: 14px; font-weight: 600; }
+.en-saisie { display: flex; align-items: center; gap: 6px; }
+.en-saisie input { flex: 1; min-width: 0; max-width: 200px; border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 8px 10px; min-height: 40px; background: #fff; text-align: right; font: inherit; }
+.en-saisie input[aria-invalid="true"] { border-color: var(--bad); background: var(--bad-bg); }
+.en-src { font-size: 12.5px; color: var(--muted); min-height: 0; }
+.en-src:empty, .en-montant .msg-erreur:empty { display: none; }
+.en-resultats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; background: var(--blue-soft); border-radius: var(--radius); padding: 10px 12px; }
+.en-resultats > div { display: grid; gap: 2px; min-width: 0; }
+.en-resultats .large { grid-column: 1 / -1; }
+.en-resultats dt { font-size: 13px; color: var(--muted); }
+.en-resultats dd { font-size: 16px; font-weight: 700; color: var(--navy); overflow-wrap: anywhere; }
+/* projets */
+.en-projet { max-width: none; padding: 10px 12px; gap: 10px; }
+.en-projet-champs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.en-projet input, .en-form-maj input, .en-form-maj select { border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 9px 12px; min-height: 44px; background: #fff; font: inherit; min-width: 0; }
+.en-projet input[aria-invalid="true"], .en-form-maj [aria-invalid="true"] { border-color: var(--bad); background: var(--bad-bg); }
+/* mise à jour du dossier */
+.en-maj { border-top: 4px solid var(--navy); }
+.en-form-maj { max-width: 860px; }
+.en-pref { max-width: 320px; }
+.en-note-coche { display: flex; align-items: flex-start; gap: 8px; font-weight: 400; }
+.en-note-coche input { width: 20px; height: 20px; min-height: 0; margin: 2px 0 0; accent-color: var(--navy); }
+.en-bas { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
+.en-confirmer { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
+#en-ok:empty { display: none; }
+@media (max-width: 860px) {
+  .en-grille-decouverte, .en-deux { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .en-projet-champs { grid-template-columns: minmax(0, 1fr); }
+  .en-saisie input { max-width: none; }
+  .en-etape-titre { font-size: 17px; }
+}
+
+/* mises à jour déclarées pendant l'entretien et questionnaire MIF */
+.en-decl { border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 14px 12px; margin: 0 0 12px; min-width: 0; display: grid; gap: 8px; }
+.en-decl > legend { font-weight: 700; color: var(--navy); padding: 0 6px; }
+.en-form-maj textarea { border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 9px 12px; width: 100%; font: inherit; }
+.en-conjoint[hidden] { display: none; }
+.en-mif-sec { border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 14px 12px; margin: 0 0 12px; min-width: 0; display: grid; gap: 10px; }
+.en-mif-sec > legend { font-weight: 700; color: var(--navy); padding: 0 6px; }
+.en-mif-q { border: 0; padding: 0; margin: 0; min-width: 0; display: grid; gap: 4px; }
+.en-mif-q legend { font-weight: 600; padding: 0; }
+.en-mif-opts { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+.en-mif-q select { border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 9px 12px; min-height: 44px; max-width: 100%; font: inherit; background: #fff; }
+.en-mif-q [aria-invalid="true"] { border-color: var(--bad); background: var(--bad-bg); }
+.en-mif-niv { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin: 0; }
+.en-mif-niv > div { border: 1px solid var(--line); border-radius: var(--radius); padding: 8px 12px; background: var(--paper); }
+.en-mif-niv dt { color: var(--muted); font-size: 13.5px; }
+.en-mif-niv dd { margin: 2px 0 0; font-weight: 700; color: var(--navy); }
+
+/* grille de l'entretien : zones à remplir sous chaque question */
+.en-questions { gap: 10px; }
+.en-q { display: grid; gap: 8px; min-width: 0; }
+.en-q-grille { border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); padding: 10px 12px 12px; }
+.en-reponses { display: grid; gap: 10px; padding-left: 28px; min-width: 0; }
+.en-champs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr)); gap: 10px 14px; min-width: 0; }
+.en-g { min-width: 0; gap: 3px; grid-template-columns: minmax(0, 1fr); align-content: start; }
+.en-g[hidden], .en-conjoint[hidden] { display: none; }
+.en-g-large { grid-column: 1 / -1; }
+.en-g label { font-size: 14px; font-weight: 600; }
+.en-g input, .en-g select, .en-g textarea { border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 9px 12px; min-height: 44px; background: #fff; font: inherit; width: 100%; min-width: 0; box-sizing: border-box; }
+.en-g textarea { min-height: 84px; resize: vertical; }
+.en-g [aria-invalid="true"] { border-color: var(--bad); background: var(--bad-bg); }
+.en-g .msg-erreur:empty { display: none; }
+.en-conjoint { display: grid; gap: 8px; border-left: 3px solid var(--blue); padding-left: 12px; min-width: 0; }
+.en-sous-bloc { background: #fff; border-color: var(--line); }
+.en-bloc .en-sous-bloc h3 { font-size: 15px; border-bottom: 0; padding-bottom: 0; }
+
+/* aperçu de la validation */
+.en-apercu { display: grid; gap: 8px; max-width: 860px; border: 1px solid var(--line); border-left: 4px solid var(--blue); border-radius: var(--radius); background: var(--blue-soft); padding: 12px 16px; }
+.en-apercu h3 { font-size: 15px; color: var(--navy); margin: 0; }
+.en-diff { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.en-diff li { display: grid; grid-template-columns: minmax(150px, 190px) minmax(0, 1fr) auto minmax(0, 1fr); gap: 4px 10px; align-items: baseline; font-size: 14.5px; }
+.en-avant { color: var(--muted); text-decoration: line-through; overflow-wrap: anywhere; }
+.en-apres { font-weight: 600; overflow-wrap: anywhere; }
+.en-fleche { color: var(--navy); }
+.en-rien, .en-infos-t { margin: 0; font-size: 14.5px; }
+.en-infos { display: grid; gap: 3px; margin: 0; padding: 0; list-style: none; font-size: 14.5px; }
+.en-infos li { overflow-wrap: anywhere; }
+.en-infos li span { color: var(--muted); }
+.en-infos li span::after { content: " :"; }
+@media (max-width: 860px) {
+  .en-diff li { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .en-fleche { display: none; }
+}
+@media (max-width: 560px) {
+  .en-reponses { padding-left: 0; }
+  .en-q-grille { padding: 10px; }
+}
+
+/* messages d'erreur et de confirmation de la fiche (aucune règle commune n'est chargée sur la fiche client) */
+.en-zone .msg-erreur { color: var(--bad); font-size: 14px; font-weight: 600; margin: 0; }
+.en-zone .msg-erreur:empty { display: none; }
+.en-zone .msg-ok { color: var(--ok); font-weight: 600; margin: 0; }
+.en-zone .msg-ok:empty { display: none; }
+.en-apercu .msg-erreur { font-size: 14.5px; }

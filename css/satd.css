@@ -1,0 +1,67 @@
+/* GS Banque & Assurance – page « Saisies administratives (SATD) » (satd.html). S'appuie sur regul.css (cartes, boutons, bilan), prospects.css (déroulé, formulaire) et style.css (pastilles). */
+.satd-bilan { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0 0 16px; }
+.satd-b { border: 1px solid var(--line); border-left-width: 4px; border-radius: var(--radius); padding: 10px 14px; background: #fff; display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 2px; min-width: 0; }
+.satd-b dt { font-size: 13.5px; color: var(--muted); line-height: 1.35; }
+.satd-b dd { margin: 0; font-size: 26px; font-weight: 700; line-height: 1.15; color: var(--ink); }
+.satd-b-warn { border-left-color: var(--warn-zone); }
+.satd-b-ok { border-left-color: var(--ok-zone); }
+.satd-b-info { border-left-color: var(--blue); }
+.satd-b-nul { border-left-color: var(--line-strong); }
+
+.satd-panneau { border-top: 4px solid var(--navy); }
+.satd-form { max-width: none; }
+.satd-grille { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 20px; align-items: start; }
+.satd-grille .champ { min-width: 0; }
+.satd-grille .champ input, .satd-grille .champ select { width: 100%; }
+.satd-pleine { grid-column: 1 / -1; }
+.satd-form .satd-btns { margin-top: 6px; }
+.satd-form .msg-erreur:empty, .satd-ml .msg-erreur:empty { display: none; }
+a.btn.satd-lien { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; background: #fff; color: var(--navy); }
+a.btn.satd-lien:hover { background: var(--blue-soft); }
+.satd-info-client { margin: 0 0 14px; padding: 10px 14px; border-radius: var(--radius); background: var(--paper); border-left: 4px solid var(--navy); font-size: 14.5px; line-height: 1.5; }
+.satd-info-client p { margin: 0; }
+.satd-info-client p + p { margin-top: 4px; }
+.satd-en-cours { background: var(--warn-bg, #fff6e5); border-left-color: var(--warn-zone); }
+
+.satd-calcul { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); }
+.satd-calcul h3 { margin: 0 0 8px; font-size: 17px; color: var(--navy); }
+.satd-table-zone { overflow-x: auto; margin: 0 0 12px; }
+.satd-table { width: 100%; border-collapse: collapse; font-size: 14.5px; min-width: 640px; table-layout: fixed; }
+.satd-table th:first-child, .satd-table td:first-child { width: 21%; }
+.satd-table th, .satd-table td { padding: 8px 12px; border-bottom: 1px solid var(--line); text-align: right; vertical-align: top; font-variant-numeric: tabular-nums; }
+.satd-table th:first-child, .satd-table td:first-child { text-align: left; }
+.satd-table thead th { font-size: 13.5px; color: var(--muted); font-weight: 600; background: var(--paper); vertical-align: bottom; line-height: 1.35; }
+.satd-table tfoot th, .satd-table tfoot td { font-weight: 700; border-bottom: 0; background: var(--paper); }
+.satd-table .satd-debit { color: var(--bad); }
+.satd-resultat { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; margin: 0 0 14px; border-top: 1px solid var(--line); }
+.satd-resultat > div { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 4px 16px; align-items: baseline; padding: 9px 2px; border-bottom: 1px solid var(--line); }
+.satd-resultat dt { font-size: 13.5px; font-weight: 600; color: var(--muted); }
+.satd-resultat dd { margin: 0; font-size: 14.5px; overflow-wrap: anywhere; }
+.satd-alerte { display: flex; gap: 8px; align-items: flex-start; margin: 0 0 12px; padding: 10px 14px; border-radius: var(--radius); border-left: 4px solid var(--warn-zone); background: var(--warn-bg, #fff6e5); font-size: 14.5px; line-height: 1.5; }
+.satd-alerte svg { flex: none; width: 18px; height: 18px; margin-top: 2px; }
+.satd-verif { background: var(--paper); border-color: var(--line); margin: 22px 0 16px; }
+.satd-calcul > .satd-btns { margin-top: 4px; }
+.satd-verif .op-case { font-weight: 400; font-size: 15px; line-height: 1.45; }
+.satd-btns { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.satd-liste-t { margin: 0 0 12px; }
+.satd-carte { border-left-color: var(--warn-zone); }
+.satd-carte-verse { border-left-color: var(--ok-zone); }
+.satd-carte-sans_effet, .satd-carte-mainlevee { border-left-color: var(--line-strong); }
+.satd-docs { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; }
+.satd-carte .regul-actions { border-top: 1px solid var(--line); padding-top: 10px; }
+.satd-docs .btn svg { width: 18px; height: 18px; margin-left: 6px; vertical-align: -3px; }
+.satd-ml { margin: 0; padding: 12px 14px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--paper); display: grid; gap: 10px; }
+.satd-ml p { margin: 0; font-size: 14.5px; line-height: 1.5; }
+.satd-ok { border-top: 4px solid var(--ok); }
+.satd-ok .bloc-tete h2 { display: flex; align-items: center; gap: 8px; }
+.satd-ok .bloc-tete h2 svg { flex: none; width: 24px; height: 24px; padding: 4px; border-radius: 50%; background: var(--ok); color: #fff; fill: none; stroke: currentColor; stroke-width: 2.4; }
+.satd-ok-liste { margin: 0 0 12px; padding-left: 20px; display: grid; gap: 6px; max-width: 90ch; list-style: disc; }
+.satd-ok-imprimer { margin: 0 0 10px; font-weight: 600; }
+.satd-rappel { margin: 18px 0 0; font-size: 14px; color: var(--muted); max-width: 90ch; line-height: 1.5; }
+@media (max-width: 860px) { .satd-bilan { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .satd-grille { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 560px) {
+  .satd-bilan { grid-template-columns: 1fr; }
+  .satd-resultat > div { grid-template-columns: 1fr; gap: 2px; }
+  .satd-btns .btn, .satd-docs .btn { flex: 1 1 100%; justify-content: center; text-align: center; }
+}

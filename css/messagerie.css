@@ -1,0 +1,45 @@
+/* GS Banque & Assurance – messagerie : signature, formulaire d'e-mail type, aperçu, modification du texte et journal des envois. */
+.ms-form { max-width: 820px; }
+.ms-ligne { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.ms-form-ident { max-width: 640px; }
+.ms-ident-ok > p:first-child { font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+.ms-sig { border-left: 4px solid var(--line-strong); padding: 6px 0 6px 14px; margin: 10px 0; font-size: 14.5px; max-width: 80ch; }
+.ms-sig p { margin: 0; overflow-wrap: anywhere; }
+.ms-sig-nom { font-weight: 700; color: var(--navy); }
+.ms-sig-mentions { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.ms-sig-txt { white-space: pre-wrap; font-size: 13.5px; color: #34444f; }
+.ms-modeles { margin-top: 12px; }
+.ms-radio { align-items: flex-start; padding: 6px 4px; }
+.ms-radio input { margin-top: 3px; flex: none; }
+.ms-radio > span { display: block; }
+.ms-indispo > span { color: var(--muted); }
+.ms-raison { display: block; font-size: 13.5px; color: #8a4b00; margin-top: 2px; }
+.ms-camp { margin: 0 0 12px; padding: 8px 12px; background: var(--blue-soft); border-left: 4px solid var(--blue); border-radius: var(--radius); font-size: 14.5px; }
+.ms-apercu { margin: 16px 0 4px; padding: 14px 16px; border: 1px solid var(--line-strong); border-radius: 10px; background: #fff; max-width: 820px; }
+.ms-apercu-vide { background: var(--paper); border-style: dashed; }
+.ms-entete { display: grid; gap: 4px; margin-bottom: 10px; }
+.ms-entete > div { display: grid; grid-template-columns: 70px minmax(0, 1fr); gap: 8px; }
+.ms-entete dt { color: var(--muted); font-weight: 600; }
+.ms-entete dd { margin: 0; overflow-wrap: anywhere; }
+.ms-texte { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 15px; line-height: 1.55; max-width: 80ch; }
+.ms-pied { font-size: 13px; color: var(--muted); margin-top: 8px; max-width: 80ch; }
+.ms-journal { display: grid; gap: 12px; list-style: none; padding: 0; margin: 0 0 12px; }
+.ms-j { border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; background: #fff; display: grid; gap: 6px; }
+.ms-j-tete { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
+.ms-j-qui { margin: 0; overflow-wrap: anywhere; }
+.ms-j-qui a { color: var(--navy); font-weight: 700; }
+.ms-j-det > summary { cursor: pointer; min-height: 36px; display: inline-flex; align-items: center; color: var(--navy); font-weight: 600; }
+.ms-j-det[open] { padding-bottom: 6px; }
+.ms-form select, .ms-form textarea, .ms-form-ident input { font: inherit; }
+.ms-form textarea { width: 100%; }
+@media (max-width: 700px) {
+  .ms-ligne { grid-template-columns: minmax(0, 1fr); }
+  .ms-entete > div { grid-template-columns: minmax(0, 1fr); gap: 0; }
+}
+.ms-case { align-items: flex-start; padding: 6px 0; }
+.ms-case input { margin-top: 2px; flex: none; }
+.ms-verrou { border: 0; margin: 0; padding: 0; min-width: 0; display: grid; gap: 12px; }
+.ms-verrou:disabled { opacity: .65; }
+.ms-modifier { margin: 12px 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; }
+.ms-edition .champ { margin: 10px 0; }
+.ms-edition textarea { font-family: inherit; line-height: 1.5; }

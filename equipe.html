@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GS Banque &amp; Assurance – Agenda de l’équipe</title>
+<meta name="description" content="Agendas partagés de l’équipe de l’agence de Paris : disponibilités des collègues et prise de rendez-vous avec eux.">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/appels.css">
+<link rel="stylesheet" href="css/banque.css">
+<link rel="stylesheet" href="css/portefeuille.css">
+<link rel="stylesheet" href="css/agenda.css">
+<link rel="stylesheet" href="css/equipe.css">
+<link rel="stylesheet" href="css/espacement.css">
+<link rel="stylesheet" href="css/print.css">
+<script src="js/identifiants.js"></script>
+<script src="js/acces.js"></script>
+<script src="js/garde.js"></script>
+</head>
+<body>
+<a class="evitement" href="#app">Aller au contenu</a>
+
+<header class="entete">
+  <a class="entete-marque" href="index.html">
+    <span class="logo-tuile"><img src="assets/logo.png" width="52" height="52" alt=""></span>
+    <span>
+      <span class="marque" style="display:block">GS Banque &amp; Assurance</span>
+      <span class="marque-sous" style="display:block">Poste du Conseiller Clientèle Particuliers</span>
+    </span>
+  </a>
+  <div class="entete-outils">
+    <a class="btn-texte lien-accueil" href="index.html">Accueil</a>
+    <form class="recherche" role="search" onsubmit="return false">
+      <label class="sr" for="rech">Rechercher un client (nom, numéro ou IBAN), un produit ou un outil. Raccourci : touche barre oblique.</label>
+      <input id="rech" type="search" placeholder="Client, IBAN, produit, outil" autocomplete="off" aria-controls="rech-res" aria-keyshortcuts="/">
+      <ul id="rech-res" class="rech-res" hidden></ul>
+      <p id="rech-statut" class="sr" role="status"></p>
+    </form>
+  </div>
+</header>
+
+<main id="app" tabindex="-1">
+  <noscript><p class="bloc">Cette page a besoin de JavaScript pour fonctionner. Activez-le dans votre navigateur, puis rechargez la page.</p></noscript>
+</main>
+
+<script src="js/banque.js"></script>
+<script src="js/risque.js"></script>
+<script src="js/placements.js"></script>
+<script src="js/produits.js"></script>
+<script src="js/data_clients.js"></script>
+<script src="js/dossier.js"></script>
+<script src="js/mouvements.js"></script>
+<script src="js/synthese.js"></script>
+<script src="js/icones.js"></script>
+<script src="js/rib.js"></script><script src="js/recherche.js"></script>
+<script src="js/equipe.js"></script>
+<script src="js/agenda.js"></script>
+<script src="js/app_equipe.js"></script>
+<script src="js/appels.js"></script>
+<script src="js/app_appels.js"></script>
+</body>
+</html>

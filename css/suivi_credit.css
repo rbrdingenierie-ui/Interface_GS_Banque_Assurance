@@ -1,0 +1,99 @@
+/* GS Banque & Assurance – page « Suivi d'un crédit en cours » (suivi_credit.html). S'appuie sur regul.css (cartes, boutons, bilan), prospects.css (déroulé, formulaire) et style.css (pastilles). */
+.sc-bilan { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 0 0 16px; }
+.sc-b { border: 1px solid var(--line); border-left-width: 4px; border-radius: var(--radius); padding: 10px 14px; background: #fff; display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 2px; min-width: 0; }
+.sc-b dt { font-size: 13.5px; color: var(--muted); line-height: 1.35; }
+.sc-b dd { margin: 0; font-size: 26px; font-weight: 700; line-height: 1.15; color: var(--ink); }
+.sc-b-warn { border-left-color: var(--warn-zone); }
+.sc-b-ok { border-left-color: var(--ok-zone); }
+.sc-b-info { border-left-color: var(--blue); }
+.sc-b-nul { border-left-color: var(--line-strong); }
+
+.sc-panneau { border-top: 4px solid var(--navy); }
+.sc-form { max-width: none; }
+.sc-grille { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 20px; align-items: start; }
+.sc-grille .champ { min-width: 0; }
+.sc-grille .champ input, .sc-grille .champ select { width: 100%; }
+.sc-pleine { grid-column: 1 / -1; }
+.sc-form .sc-btns { margin-top: 6px; }
+.sc-form .msg-erreur:empty, .sc-ml .msg-erreur:empty { display: none; }
+a.btn.sc-lien { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; background: #fff; color: var(--navy); }
+a.btn.sc-lien:hover { background: var(--blue-soft); }
+.sc-info-client { margin: 0 0 14px; padding: 10px 14px; border-radius: var(--radius); background: var(--paper); border-left: 4px solid var(--navy); font-size: 14.5px; line-height: 1.5; }
+.sc-info-client p { margin: 0; }
+.sc-info-client p + p { margin-top: 4px; }
+.sc-en-cours { background: var(--warn-bg, #fff6e5); border-left-color: var(--warn-zone); }
+
+.sc-calcul { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); }
+.sc-calcul h3 { margin: 0 0 8px; font-size: 17px; color: var(--navy); }
+.sc-table-zone { overflow-x: auto; margin: 0 0 12px; }
+.sc-table { width: 100%; border-collapse: collapse; font-size: 14.5px; min-width: 760px; }
+.sc-table th, .sc-table td { padding: 8px 12px; border-bottom: 1px solid var(--line); text-align: right; vertical-align: top; font-variant-numeric: tabular-nums; }
+.sc-table th:first-child, .sc-table td:first-child { text-align: left; }
+.sc-table thead th { font-size: 13.5px; color: var(--muted); font-weight: 600; background: var(--paper); vertical-align: bottom; line-height: 1.35; }
+.sc-table tfoot th, .sc-table tfoot td { font-weight: 700; border-bottom: 0; background: var(--paper); }
+.sc-table .sc-debit { color: var(--bad); }
+.sc-resultat { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; margin: 0 0 14px; border-top: 1px solid var(--line); }
+.sc-resultat > div { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 4px 16px; align-items: baseline; padding: 9px 2px; border-bottom: 1px solid var(--line); }
+.sc-resultat dt { font-size: 13.5px; font-weight: 600; color: var(--muted); }
+.sc-resultat dd { margin: 0; font-size: 14.5px; overflow-wrap: anywhere; }
+.sc-alerte { display: flex; gap: 8px; align-items: flex-start; margin: 0 0 12px; padding: 10px 14px; border-radius: var(--radius); border-left: 4px solid var(--warn-zone); background: var(--warn-bg, #fff6e5); font-size: 14.5px; line-height: 1.5; }
+.sc-alerte svg { flex: none; width: 18px; height: 18px; margin-top: 2px; }
+.sc-verif { background: var(--paper); border-color: var(--line); margin: 22px 0 16px; }
+.sc-calcul > .sc-btns { margin-top: 4px; }
+.sc-verif .op-case { font-weight: 400; font-size: 15px; line-height: 1.45; }
+.sc-btns { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.sc-liste-t { margin: 0 0 12px; }
+.sc-carte { border-left-color: var(--warn-zone); }
+.sc-carte-verse { border-left-color: var(--ok-zone); }
+.sc-carte-sans_effet, .sc-carte-mainlevee { border-left-color: var(--line-strong); }
+.sc-docs { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; }
+.sc-carte .regul-actions { border-top: 1px solid var(--line); padding-top: 10px; }
+.sc-docs .btn svg { width: 18px; height: 18px; margin-left: 6px; vertical-align: -3px; }
+.sc-ml { margin: 0; padding: 12px 14px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--paper); display: grid; gap: 10px; }
+.sc-ml p { margin: 0; font-size: 14.5px; line-height: 1.5; }
+.sc-ok { border-top: 4px solid var(--ok); }
+.sc-ok .bloc-tete h2 { display: flex; align-items: center; gap: 8px; }
+.sc-ok .bloc-tete h2 svg { flex: none; width: 24px; height: 24px; padding: 4px; border-radius: 50%; background: var(--ok); color: #fff; fill: none; stroke: currentColor; stroke-width: 2.4; }
+.sc-ok-liste { margin: 0 0 12px; padding-left: 20px; display: grid; gap: 6px; max-width: 90ch; list-style: disc; }
+.sc-ok-imprimer { margin: 0 0 10px; font-weight: 600; }
+.sc-rappel { margin: 18px 0 0; font-size: 14px; color: var(--muted); max-width: 90ch; line-height: 1.5; }
+
+@media (max-width: 640px) { .sc-grille { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 640px) { .sc-bilan { grid-template-columns: 1fr; } }
+@media (max-width: 560px) {
+  .sc-resultat > div { grid-template-columns: 1fr; gap: 2px; }
+  .sc-btns .btn, .sc-docs .btn { flex: 1 1 100%; justify-content: center; text-align: center; }
+}
+
+/* Suivi d'un crédit en cours : tableaux, résultat, repères et règles. */
+.sc-table th[scope="row"] { font-weight: 600; }
+.sc-sous { font-weight: 400; font-size: 13px; color: var(--muted); }
+.sc-comparaison { min-width: 640px; }
+.sc-comparaison th:first-child, .sc-comparaison td:first-child { width: 34%; }
+.sc-frais { min-width: 0; max-width: 720px; }
+.sc-frais th[scope="row"] { width: 72%; }
+.sc-info-client { margin: 0 0 14px; padding: 10px 14px; border-radius: var(--radius); background: var(--paper); border-left: 4px solid var(--navy); font-size: 14.5px; line-height: 1.5; }
+.sc-info-client p { margin: 0 0 8px; }
+.sc-info-client .sc-table-zone { margin: 0; }
+.sc-vide { margin: 0 0 14px; padding: 10px 14px; border-radius: var(--radius); background: var(--paper); border-left: 4px solid var(--line-strong); font-size: 14.5px; line-height: 1.5; }
+.sc-radios { display: grid; gap: 6px; }
+.sc-lib { font-weight: 600; font-size: 14.5px; }
+.sc-liste-cr { border: 0; padding: 0; margin: 0; min-width: 0; display: grid; gap: 8px; }
+.sc-liste-cr legend { font-weight: 600; font-size: 14.5px; padding: 0; margin-bottom: 6px; }
+.sc-verdict { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; margin: 0 0 12px; font-size: 15.5px; }
+.sc-verdict span:last-child { max-width: 80ch; }
+.sc-h4 { margin: 16px 0 8px; font-size: 15.5px; color: var(--navy); }
+.sc-reperes { list-style: none; margin: 0 0 12px; padding: 0; display: grid; gap: 8px; }
+.sc-reperes li { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; font-size: 14.5px; }
+.sc-regles { margin: 0 0 14px; padding-left: 20px; display: grid; gap: 8px; max-width: 90ch; list-style: disc; font-size: 14.5px; line-height: 1.5; }
+.sc-alerte-info { border-left-color: var(--blue); background: var(--blue-soft); }
+.sc-dec { margin: 0 0 12px; padding: 12px 14px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--paper); display: grid; gap: 10px; }
+.sc-dec p { margin: 0; font-size: 14.5px; line-height: 1.5; }
+.sc-dec .msg-erreur:empty { display: none; }
+.sc-carte-accepte { border-left-color: var(--ok-zone); }
+.sc-carte-renonce { border-left-color: var(--line-strong); }
+.sc-carte-propose { border-left-color: var(--warn-zone); }
+.sc-carte-verse { border-left-color: var(--ok-zone); }
+.sc-form .op-case input[type="radio"], .sc-form .op-case input[type="checkbox"], .sc-dec .op-case input[type="checkbox"] { width: 18px; height: 18px; min-height: 0; padding: 0; margin: 2px 0 0; flex: none; accent-color: var(--navy); }
+.sc-form .op-case, .sc-dec .op-case { font-weight: 400; font-size: 15px; line-height: 1.45; }
+@media print { .sc-form, .sc-calcul, .sc-dec { display: none; } }

@@ -1,0 +1,6 @@
+/* Mesure de protection juridique du client (fiche client) : carte pleine largeur, bandeau d'attention à gauche. */
+.carte-protection { grid-column: 1 / -1; border-left: 5px solid var(--warn-zone); }
+.carte-protection h2 svg { color: var(--warn); }
+.carte-protection .prot-def { margin: 4px 0 0; font-size: 14.5px; line-height: 1.55; max-width: 90ch; }
+.carte-protection .sous-titre { font-size: 15px; color: var(--navy); margin: 14px 0 8px; }
+.carte-protection .mention { margin: 12px 0 0; }

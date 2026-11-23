@@ -1,0 +1,122 @@
+/* GS Banque & Assurance – « Interro BDF » : saisie de l'interrogation, écrans de réponse (FCC, FICP), fenêtre de réponse, impression.
+   Les écrans (FCC et FICP, présentés de la même façon) reprennent les couleurs des consultations de la Banque de France ; ils ne portent aucun logo. */
+:root {
+  /* couleurs relevées sur les écrans de la Banque de France (consultations du FCC et du FICP) */
+  --bdf-bleu: #3366cc;        /* bandeau du FCC, titres, libellés, filets */
+  --bdf-bande: #ddeeff;       /* bandes de rubriques */
+  --bdf-creme: #ffffed;       /* lignes de données */
+  --bdf-rouge: #d3141a;       /* réponse de la Banque de France */
+}
+.bdf-cle-ligne { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; margin: 0; }
+.bdf-cle { font-family: "Consolas", "Menlo", "Courier New", monospace; font-size: 18px; font-weight: 700; letter-spacing: .06em; color: var(--navy); background: var(--blue-soft); border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 3px 10px; }
+.bdf-cle-item { display: inline-flex; flex-wrap: wrap; gap: 6px; align-items: baseline; }
+.bdf-cle-role { color: var(--muted); font-size: 14px; }
+.bdf-cle-vide { color: var(--muted); font-size: 15px; }
+.bdf-cle-info { margin: 0 0 10px; }
+.bdf-cle-ligne, .bdf-form .op-aide { font-size: 15px; line-height: 1.5; }
+.bdf-client select { max-width: 100%; }
+
+/* synthèse en tête de réponse */
+.bdf-synthese { display: grid; gap: 6px; margin: 0 0 12px; }
+.bdf-syn { border-left: 6px solid var(--line-strong); background: #fff; border-radius: var(--radius); padding: 8px 12px; font-size: 16px; }
+.bdf-syn-ok { border-left-color: var(--ok); background: var(--ok-bg); color: var(--ok); }
+.bdf-syn-bad { border-left-color: var(--bad); background: var(--bad-bg); color: var(--bad); }
+
+/* écrans de réponse : présentation des consultations de la Banque de France */
+.bdf-ecrans { display: grid; gap: 22px; }
+.bdf-ecran { background: #fff; border: 1px solid #c8d6f1; color: #000; font: 14px/1.4 Arial, Helvetica, sans-serif; overflow: hidden; padding-bottom: 12px; }
+.bdf-sigle { font: italic 800 34px/1 Arial, Helvetica, sans-serif; letter-spacing: .02em; color: #fff; }
+.bdf-banniere { display: flex; align-items: center; gap: 16px; background: var(--bdf-bleu); color: #fff; padding: 12px 16px; }
+.bdf-banniere p { margin: 0; font: 700 13px/1.35 Arial, Helvetica, sans-serif; text-transform: uppercase; }
+.bdf-banniere-fcc p { max-width: 34ch; }
+.bdf-banniere-ficp p { max-width: 62ch; }
+.bdf-banniere .bdf-banniere-sous { margin-top: 6px; font: 400 15px/1.3 "Times New Roman", Times, serif; text-transform: none; }
+.bdf-tete { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 16px; margin: 14px 14px 0; padding-bottom: 4px; border-bottom: 1px solid var(--bdf-bleu); }
+.bdf-titre { margin: 0; font: 700 20px/1.3 Arial, Helvetica, sans-serif; color: #000; }
+.bdf-horodate { margin: 0; font: 700 13px Arial, Helvetica, sans-serif; color: #000; }
+.bdf-soustitre { margin: 26px 14px 0; padding-top: 14px; border-top: 1px solid var(--bdf-bleu); font-weight: 700; font-size: 15px; }
+.bdf-reponse { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 4px 12px; align-items: baseline; margin: 14px 14px 0; padding: 7px 10px; border: 1px solid var(--bdf-bleu); }
+.bdf-reponse-lib { color: var(--bdf-bleu); font-weight: 700; }
+.bdf-reponse .bdf-rouge { text-align: center; }
+.bdf-rouge, .bdf-lignes dd.bdf-rouge { color: var(--bdf-rouge); font-weight: 700; }
+.bdf-cadre { margin: 14px 14px 0; border: 1px solid var(--bdf-bleu); background: var(--bdf-creme); }
+.bdf-cadre-t { margin: 0; padding: 11px 10px; background: var(--bdf-bleu); color: #fff; border: 2px solid var(--bdf-bleu); box-shadow: inset 0 0 0 2px #fff; font: 700 21px/1.2 "Times New Roman", Times, serif; text-align: center; text-transform: uppercase; }
+.bdf-cadre-s { margin: 0; padding: 6px 10px; background: var(--bdf-bande); color: var(--bdf-bleu); font: 700 15px/1.3 "Times New Roman", Times, serif; text-align: center; text-transform: uppercase; }
+.bdf-lignes { display: grid; grid-template-columns: minmax(130px, 210px) minmax(0, 1fr) minmax(130px, 200px) minmax(0, 190px); gap: 3px 12px; align-items: baseline; margin: 0; padding: 6px 12px; }
+.bdf-lignes-cle { background: var(--bdf-bande); padding-top: 8px; padding-bottom: 8px; }
+.bdf-lignes-cle dt { text-transform: uppercase; }
+.bdf-ligne { display: contents; }
+.bdf-seule dd { grid-column: span 3; }
+.bdf-ligne dt { font: 700 14px/1.35 "Times New Roman", Times, serif; color: var(--bdf-bleu); }
+.bdf-ligne dd { margin: 0; min-width: 0; overflow-wrap: anywhere; font-weight: 700; text-transform: uppercase; }
+.bdf-tab { width: calc(100% - 24px); margin: 6px 12px 10px; border-collapse: collapse; background: #fff; font-size: 14px; }
+.bdf-tab th, .bdf-tab td { border: 1px solid var(--bdf-bleu); padding: 4px 8px; text-align: left; font-weight: 700; }
+.bdf-tab thead th { background: var(--bdf-bande); color: var(--bdf-bleu); font-family: "Times New Roman", Times, serif; font-size: 15px; }
+.bdf-confid { margin: 18px 14px 0; font-size: 12.5px; font-weight: 700; color: #000; text-align: center; }
+/* mention « simulation à des fins pédagogiques » : en tout petit, en bas de la page de l'outil (et en pied de page des documents imprimés, voir plus bas) */
+.bdf-mention-simulation { margin: 4px 0 0; padding: 0 2px; font-size: 11px; line-height: 1.4; color: var(--muted); text-align: center; }
+
+/* boutons sous les écrans : « Retour saisie » en pastille noire, « Imprimer page » en lien souligné avec l'imprimante */
+.bdf-btns { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 16px; }
+.bdf-retour { min-height: 44px; padding: 6px 24px; border: 0; border-radius: 18px; background: #000; color: #fff; font: 700 15px Arial, Helvetica, sans-serif; cursor: pointer; }
+.bdf-retour:hover { background: #333; }
+.bdf-btns .btn-secondaire { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 6px 8px; border: 0; background: none; color: var(--ink, #000); font: 700 15px Arial, Helvetica, sans-serif; text-decoration: underline; cursor: pointer; }
+.bdf-btns .btn-secondaire svg { width: 24px; height: 24px; }
+.bdf-retour:focus-visible, .bdf-btns .btn-secondaire:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+
+/* journal et identités d'entraînement */
+.bdf-res-ok { color: var(--ok); font-weight: 600; }
+.bdf-res-bad { color: var(--bad); font-weight: 600; }
+.bdf-journal code, .bdf-entrain code { font-family: "Consolas", "Menlo", "Courier New", monospace; }
+
+/* fenêtre « Réponse de la Banque de France » */
+.bdf-dlg { width: min(860px, 96vw); max-height: 92vh; border: 0; border-radius: 12px; padding: 0; color: var(--ink); box-shadow: 0 18px 60px rgba(18, 41, 63, .35); overflow: auto; }
+.bdf-dlg::backdrop { background: rgba(18, 41, 63, .55); }
+.bdf-dlg-corps { padding: 16px 18px 18px; }
+.bdf-dlg-tete { margin-bottom: 8px; }
+.bdf-dlg-tete h2 { margin: 0; font-size: 20px; color: var(--navy); }
+.bdf-dlg-tete h2:focus { outline: none; }
+
+/* impression : les écrans FCC et FICP tiennent chacun sur une page au plus ; page nommée « bdf » : pied de page avec la mention de simulation, en petits caractères */
+@media print {
+  @page bdf {
+    size: A4;
+    margin: 15mm 14mm 18mm;
+    @bottom-left { content: "GS Banque & Assurance"; font: 8pt "Segoe UI", Arial, sans-serif; color: #555; }
+    @bottom-center { content: "Simulation à des fins pédagogiques – aucune valeur réelle"; font: 6.5pt "Segoe UI", Arial, sans-serif; color: #6b6b6b; }
+    @bottom-right { content: "Page " counter(page) " / " counter(pages); font: 8pt "Segoe UI", Arial, sans-serif; color: #555; }
+  }
+  .dp-doc-bdf { page: bdf; }
+  .dp-doc-bdf .dp-titre h1 { text-wrap: balance; }
+  .dp-bdf .bdf-ecran { break-inside: avoid; page-break-inside: avoid; margin: 0 0 12px; padding-bottom: 4px; font-size: 10.5px; line-height: 1.3; }
+  .dp-bdf .bdf-sigle { font-size: 26px; }
+  .dp-bdf .bdf-banniere { padding: 7px 12px; }
+  .dp-bdf .bdf-banniere p { font-size: 10px; }
+  .dp-bdf .bdf-tete { margin: 8px 12px 0; }
+  .dp-bdf .bdf-titre { font-size: 14px; }
+  .dp-bdf .bdf-horodate { font-size: 10.5px; }
+  .dp-bdf .bdf-soustitre { margin: 10px 12px 0; padding-top: 6px; font-size: 11.5px; }
+  .dp-bdf .bdf-reponse { margin: 8px 12px 0; padding: 4px 8px; }
+  .dp-bdf .bdf-cadre { margin: 8px 12px 0; }
+  .dp-bdf .bdf-cadre-t { padding: 7px 8px; font-size: 15px; }
+  .dp-bdf .bdf-cadre-s { padding: 3px 8px; font-size: 11px; }
+  .dp-bdf .bdf-lignes { grid-template-columns: 172px minmax(0, 1fr) 160px minmax(0, 100px); gap: 1px 10px; padding: 3px 10px; }
+  .dp-bdf .bdf-lignes-cle { padding-top: 4px; padding-bottom: 4px; }
+  .dp-bdf .bdf-ligne dt { font-size: 11.5px; }
+  .dp-bdf .bdf-ligne dd { font-size: 10.5px; }
+  .dp-bdf .bdf-tab { table-layout: fixed; width: calc(100% - 20px); margin: 4px 10px 6px; font-size: 10.5px; }
+  .dp-bdf .bdf-tab th, .dp-bdf .bdf-tab td { padding: 2px 6px; text-align: left; border: 1px solid var(--bdf-bleu); white-space: normal; font-weight: 700; }
+  .dp-bdf .bdf-tab thead th { background: var(--bdf-bande); color: var(--bdf-bleu); font-size: 11px; border: 1px solid var(--bdf-bleu); }
+  .dp-bdf .bdf-confid { margin-top: 8px; font-size: 10px; }
+}
+@media (max-width: 560px) {
+  .bdf-lignes { grid-template-columns: minmax(110px, 42%) minmax(0, 1fr); gap: 3px 10px; }
+  .bdf-seule dd { grid-column: auto; }
+  .bdf-cadre-t { font-size: 17px; }
+  .bdf-reponse { grid-template-columns: 1fr; }
+  .bdf-reponse .bdf-rouge { text-align: left; }
+  .bdf-tete { flex-direction: column; }
+  .bdf-cadre, .bdf-reponse, .bdf-tete, .bdf-soustitre { margin-left: 8px; margin-right: 8px; }
+  .bdf-tab { display: block; overflow-x: auto; width: calc(100% - 16px); margin-left: 8px; margin-right: 8px; }
+}
+@media (prefers-reduced-motion: reduce) { .bdf-dlg { scroll-behavior: auto; } }

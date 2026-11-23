@@ -1,0 +1,74 @@
+/* GS Banque & Assurance – lettre d'injonction de l'outil « Payer ou rejeter » : bloc de la correction, fenêtre de validation, aperçu ; fenêtre d'identité de l'élève (identite.js). */
+
+/* bloc sous le chèque rejeté */
+.inj-bloc { grid-column: 1 / -1; display: grid; gap: 8px; margin-top: 4px; padding: 12px 14px; background: var(--blue-soft); border: 1px solid var(--line-strong); border-left: 4px solid var(--navy); border-radius: var(--radius); }
+.inj-bloc p { margin: 0; font-size: 15px; max-width: 80ch; }
+.inj-etat { display: flex; align-items: flex-start; gap: 8px; color: var(--ok); font-weight: 600; }
+.inj-etat svg { flex: none; width: 18px; height: 18px; margin-top: 1px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.inj-note { grid-column: 1 / -1; display: flex; align-items: flex-start; gap: 8px; margin: 4px 0 0; font-size: 14.5px; color: var(--muted); }
+.inj-note svg { flex: none; width: 18px; height: 18px; margin-top: 1px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.inj-btns { display: flex; flex-wrap: wrap; gap: 10px; }
+/* les trois étapes de la procédure MURCEF */
+.inj-etapes { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 10px; }
+.inj-etape { display: grid; gap: 8px; padding: 10px 12px; background: #fff; border: 1px solid var(--line-strong); border-left: 4px solid var(--line-strong); border-radius: var(--radius); }
+.inj-etape.inj-fait { border-left-color: var(--ok); }
+.inj-etape.inj-encours { border-left-color: var(--navy); }
+.inj-bloc .inj-etape-t { max-width: 80ch; }
+/* rappel du délai (date limite calculée) */
+.inj-delai { padding: 10px 12px; background: var(--blue-soft); border: 1px solid var(--line-strong); border-left: 4px solid var(--navy); border-radius: var(--radius); font-size: 15px; line-height: 1.45; }
+.inj-corps .inj-delai { margin: 0; }
+/* accueil de l'outil : chèques en suspens */
+.inj-suspens { display: grid; gap: 10px; margin: 22px 0 6px; padding: 14px 16px; background: #fff; border: 1px solid var(--line-strong); border-radius: var(--radius); }
+.inj-suspens h2 { margin: 0; font-size: 19px; color: var(--navy); }
+.inj-suspens .mention { margin: 0; }
+.inj-suspens li { align-items: center; gap: 12px 16px; }
+
+/* fenêtre de validation */
+.inj-dlg { width: min(860px, 96vw); }
+.inj-corps { padding: 20px 24px 24px; display: grid; gap: 14px; }
+.inj-tete { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.inj-tete h2 { margin: 0; font-size: 21px; line-height: 1.25; color: var(--navy); }
+.inj-corps p { margin: 0; }
+.inj-resume { font-size: 15px; }
+.inj-corps select { font: inherit; min-height: 46px; padding: 9px 12px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: #fff; color: var(--ink); width: 100%; max-width: 100%; }
+.inj-corps .aide-champ { font-size: 13.5px; color: var(--muted); }
+.inj-verifs { margin: 0; border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 8px 14px 12px; background: #fff; min-width: 0; }
+.inj-verifs legend { font-weight: 700; padding: 0 6px; color: var(--navy); }
+.inj-verifs ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.inj-verif { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; font-size: 15px; line-height: 1.4; cursor: pointer; }
+.inj-verif input { width: auto; min-height: 0; margin-top: 3px; flex: none; accent-color: var(--navy); }
+.inj-corps .msg-erreur { color: var(--bad); font-size: 14.5px; font-weight: 600; }
+.inj-corps .msg-erreur:empty { display: none; }
+.inj-apercu-titre { margin: 4px 0 0; font-size: 16px; color: var(--navy); }
+.inj-apercu { max-height: 52vh; overflow: auto; margin: 0; max-width: none; }
+.inj-apercu .dp-inj-p2 { margin-top: 18px; padding-top: 16px; border-top: 2px dashed var(--line-strong); }
+.inj-apercu .dp-inj-fort { border-left: 3px solid var(--navy); padding-left: 10px; }
+.inj-apercu .dp-inj-decl { margin-top: 12px; }
+.inj-apercu .dp-inj-sign { margin-top: 10px; }
+.apercu-doc .dp-barre { text-decoration: line-through; color: var(--muted); }
+.apercu-doc .dp-inj-banque { margin-top: 12px; background: var(--blue-soft); border-color: var(--navy); }
+.apercu-doc .dp-inj-banque h2 { margin: 0 0 8px; font-size: 1rem; color: var(--navy); }
+.inj-apercu .dp-inj-num { list-style: decimal; }
+.inj-apercu .dp-signatures { grid-template-columns: 1fr 1fr; }
+.inj-apercu .dp-signatures > div { grid-column: 2; }
+.inj-apercu .dp-lettre-envoi { margin: 0 0 8px; }
+.inj-nom-vide { color: #4f5f6e; font-style: italic; }
+@media (max-width: 700px) {
+  .inj-corps { padding: 16px 14px 18px; }
+  .inj-apercu .dp-signatures { grid-template-columns: minmax(0, 1fr); }
+  .inj-apercu .dp-signatures > div { grid-column: 1; }
+}
+
+/* fenêtre d'identité de l'élève (identite.js) */
+.id-dlg { width: min(480px, 94vw); }
+.id-dlg-corps { padding: 22px 24px 24px; display: grid; gap: 12px; }
+.id-dlg-corps h2 { margin: 0; font-size: 21px; line-height: 1.25; color: var(--navy); }
+.id-dlg-corps p { margin: 0; }
+.id-aide { font-size: 14.5px; line-height: 1.45; color: var(--muted); }
+.id-champ { display: grid; gap: 6px; }
+.id-champ label { font-size: 15px; font-weight: 600; }
+.id-champ input { font: inherit; min-height: 46px; padding: 9px 12px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: #fff; color: var(--ink); width: 100%; }
+.id-champ input[aria-invalid="true"] { border-color: var(--bad); outline: 2px solid var(--bad); outline-offset: 0; }
+.id-err { color: var(--bad); font-size: 14.5px; font-weight: 600; min-height: 1.4em; }
+.id-btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.id-btns .btn { flex: 1 1 170px; }

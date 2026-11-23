@@ -1,0 +1,77 @@
+/* GS Banque & Assurance – ouverture de compte pour un prospect : formulaire du dossier, état de validation, fiche. */
+.op-form { display: grid; gap: 14px; max-width: 960px; }
+.op-section { border: 1px solid var(--line); border-radius: 10px; background: #fff; padding: 12px 16px 16px; display: grid; gap: 12px; min-width: 0; }
+.op-section > legend { font-weight: 700; color: var(--navy); font-size: 17px; padding: 0 6px; }
+.op-grille { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px 16px; align-items: start; }
+.op-grille .champ { min-width: 0; }
+.op-grille .champ input, .op-grille .champ select { width: 100%; }
+.op-large { grid-column: span 2; }
+.op-radio { border: 0; padding: 0; margin: 0; min-width: 0; display: grid; gap: 6px; }
+.op-radio > legend { font-weight: 600; padding: 0; margin-bottom: 4px; }
+.op-opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.op-opt { display: flex; flex: 1 1 auto; max-width: 360px; gap: 8px; align-items: center; border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 8px 14px; min-height: 44px; background: #fff; cursor: pointer; }
+.op-opt:hover { background: var(--blue-soft); }
+.op-opt input { width: 18px; height: 18px; flex: none; margin: 0; }
+@media (max-width: 560px) { .op-opts { flex-direction: column; } .op-opt { width: 100%; } }
+.op-opt:has(input:checked) { border-color: var(--blue); background: var(--blue-soft); box-shadow: inset 0 0 0 1px var(--blue); }
+.op-opt:has(input:focus-visible) { outline: 3px solid var(--blue); outline-offset: 2px; }
+.op-case { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; font-weight: 400; font-size: 15px; line-height: 1.45; }
+.op-case input[type="checkbox"] { width: 18px; height: 18px; min-height: 0; padding: 0; margin: 2px 0 0; flex: 0 0 auto; accent-color: var(--navy); }
+.op-form [aria-invalid="true"] { border-color: var(--bad); }
+.op-aide { color: var(--muted); max-width: 90ch; }
+.op-info { padding: 10px 14px; border-left: 4px solid var(--blue); background: var(--blue-soft); border-radius: var(--radius); max-width: 900px; display: grid; gap: 6px; }
+.op-info ul { margin: 0; padding-left: 20px; }
+.op-warn { border-left-color: var(--warn-zone); background: var(--warn-bg); }
+.op-msg { color: var(--ok); font-weight: 600; margin: 0 0 8px; }
+.op-msg:empty { display: none; }
+.op-etat { margin: 0 0 10px; max-width: 90ch; }
+.op-fiche { display: grid; gap: 6px; margin: 12px 0; max-width: 960px; }
+.op-fiche > div { display: grid; grid-template-columns: 180px 1fr; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--line); }
+.op-fiche dt { color: var(--muted); font-weight: 600; }
+.op-fiche dd { margin: 0; overflow-wrap: anywhere; }
+.op-liste .cp-act { white-space: nowrap; }
+@media (max-width: 640px) {
+  .op-large { grid-column: span 1; }
+  .op-fiche > div { grid-template-columns: 1fr; gap: 2px; }
+}
+
+/* Déroulé d'une ouverture de compte (page d'accueil de l'outil) */
+.op-deroule { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; counter-reset: none; }
+.op-deroule li { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); min-width: 0; }
+.op-deroule-num { flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--navy); color: #fff; font-weight: 700; font-size: 14px; display: grid; place-items: center; }
+.op-deroule-txt { display: grid; gap: 4px; min-width: 0; font-size: 14.5px; }
+.op-deroule-txt strong { color: var(--navy); }
+.op-deroule-txt span { color: var(--muted); }
+@media (max-width: 1000px) { .op-deroule { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .op-deroule { grid-template-columns: minmax(0, 1fr); gap: 10px; } }
+
+/* Compte droit au compte (DAC) : compte imposé, liste des services bancaires de base */
+.op-fixe-lib { display: block; font-weight: 600; margin-bottom: 4px; }
+.op-fixe { margin: 0; padding: 10px 12px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--blue-soft); font-size: 15px; line-height: 1.4; }
+.op-liste-dac { margin: 8px 0 8px 1.2em; padding: 0; display: grid; gap: 4px; font-size: 15px; line-height: 1.4; }
+
+/* Consultation de la Banque de France (ouverture de compte) */
+.op-bdf .pf-btns { margin: 4px 0 10px; }
+.op-bdf-etat { margin: 0; padding: 10px 14px; border-radius: var(--radius); border: 1px solid var(--line-strong); border-left-width: 5px; background: #fff; font-size: 15px; line-height: 1.5; max-width: 860px; }
+.op-bdf-etat p { margin: 0 0 6px; }
+.op-bdf-etat ul { list-style: none; margin: 4px 0 6px; padding: 0; display: grid; gap: 6px; }
+.op-bdf-etat li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.op-bdf-attente { border-left-color: var(--warn-zone); background: var(--paper); }
+.op-bdf-ok { border-left-color: var(--ok-zone); }
+.op-bdf-alerte { border-left-color: var(--warn-zone); }
+.op-bdf-ko { border-left-color: var(--bad); color: var(--ink); }
+.op-bdf-ecrans { margin: 8px 0 0; }
+.op-bdf-ecrans summary { cursor: pointer; font-weight: 600; color: var(--navy); min-height: 32px; display: flex; align-items: center; }
+.op-bdf-ecrans .bdf-ecrans { margin-top: 8px; display: grid; gap: 14px; }
+.op-bdf-ecrans .bdf-simu { margin: 8px 0 0; font-size: 11px; color: var(--muted); }
+
+/* compte joint ou indivis : second titulaire (mêmes blocs que le premier, reconnaissables à leur filet) */
+.op-second, .op-indivision { border-left: 4px solid var(--navy); }
+.op-bdf.op-second-bdf { border-left: 4px solid var(--navy); }
+
+/* fiche client : famille, à compléter après l'ouverture du compte */
+.op-fam { margin: 18px 0; display: grid; gap: 10px; }
+.op-fam > h3 { margin: 0; }
+.op-fam-form { max-width: 960px; display: grid; gap: 14px; }
+.op-fam-enfant { display: grid; gap: 8px; padding: 10px 12px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); }
+.op-fam-enfant .btn-texte { justify-self: start; }

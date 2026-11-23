@@ -1,0 +1,116 @@
+/* GS Banque & Assurance – onglet « Opérations de service » de la fiche client (virements, cartes, chèques, prélèvements, espèces). */
+.op-zone { display: grid; gap: 16px; }
+.op-intro { margin: 0; color: var(--muted); max-width: 70ch; }
+.op-zone .bloc { margin: 0; }
+.op-zone .kpis { margin: 0; }
+.op-kpis.kpis-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.op-msg { border-radius: var(--radius); padding: 0; font-weight: 600; }
+.op-msg:empty { display: none; }
+.op-msg-ok, .op-msg-ko { padding: 10px 14px; }
+.op-msg-ok { background: var(--ok-bg); color: var(--ok); box-shadow: inset 0 0 0 1px var(--ok-zone); }
+.op-msg-ko { background: var(--bad-bg); color: var(--bad); box-shadow: inset 0 0 0 1px var(--bad-zone); }
+
+.op-tab th, .op-tab td { vertical-align: top; }
+.op-tab th.gauche, .op-tab td.gauche { text-align: left; }
+.op-tab code { font-size: 13.5px; background: var(--paper); padding: 1px 6px; border-radius: 4px; word-break: break-all; }
+.op-detail { max-width: 36ch; overflow-wrap: anywhere; }
+.op-actions { white-space: normal; min-width: 150px; }
+.op-actions .btn { margin: 0 4px 4px 0; }
+.op-ref { font-weight: 700; color: var(--navy); font-variant-numeric: tabular-nums; }
+
+/* choix de l'opération */
+.op-tuiles { list-style: none; margin: 0 0 8px; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+.op-tuile { width: 100%; height: 100%; text-align: left; display: grid; gap: 4px; align-content: start; padding: 12px 14px; background: #fff; color: var(--ink); border: 1px solid var(--line-strong); border-left: 4px solid var(--blue); border-radius: var(--radius); font: inherit; cursor: pointer; transition: background-color .15s; }
+.op-tuile strong { color: var(--navy); font-size: 15.5px; }
+.op-tuile span { font-size: 13.5px; color: var(--muted); line-height: 1.4; }
+.op-tuile:hover { background: var(--blue-soft); }
+.op-tuile-sel { background: var(--blue-soft); border-color: var(--navy); border-left-color: var(--navy); box-shadow: inset 0 0 0 1px var(--navy); }
+
+/* formulaire */
+.op-form-bloc .bloc-tete { align-items: center; }
+.op-form { max-width: 780px; }
+.op-champs { display: grid; gap: 12px; }
+.op-form .aide-champ { font-size: 13.5px; color: var(--muted); }
+.op-form .msg-erreur { color: var(--bad); font-size: 14px; font-weight: 600; }
+.op-form .msg-erreur:empty { display: none; }
+.op-form [aria-invalid="true"] { border-color: var(--bad); box-shadow: 0 0 0 1px var(--bad); }
+.op-form input[type="checkbox"] { width: auto; min-height: 0; margin-top: 3px; flex: none; accent-color: var(--navy); }
+.op-case { display: flex; gap: 10px; align-items: flex-start; font-weight: 400 !important; font-size: 15px !important; line-height: 1.4; }
+.op-champ-case { padding: 2px 0; }
+.op-coches { border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 8px 12px 10px; background: #fff; min-width: 0; }
+.op-coches legend { font-size: 14px; font-weight: 600; padding: 0 6px; }
+.op-coches-liste { display: grid; gap: 8px; }
+.op-info { margin: 0; padding: 10px 12px; background: var(--warn-bg); color: var(--warn); border-radius: var(--radius); font-weight: 600; }
+.op-erreurs { background: var(--bad-bg); color: var(--bad); border-radius: var(--radius); padding: 10px 14px; box-shadow: inset 0 0 0 1px var(--bad-zone); }
+.op-erreurs ul { margin: 6px 0 0; padding-left: 20px; }
+.op-erreurs a { color: var(--bad); font-weight: 600; }
+div.op-erreurs:empty, #op-err.msg-erreur:empty { display: none; }
+.op-exemples { margin: 8px 0 14px; max-width: 780px; border: 1px solid var(--line); border-radius: var(--radius); padding: 6px 12px; background: #fff; }
+.op-exemples summary { cursor: pointer; font-weight: 600; color: var(--navy); min-height: 32px; display: flex; align-items: center; }
+.op-exemples .tab-wrap { margin-top: 8px; }
+
+/* contrôles réussis */
+.op-apercu { background: #fff; border: 1px solid var(--ok-zone); border-left: 4px solid var(--ok); border-radius: var(--radius); padding: 10px 14px; }
+.op-apercu h3 { margin: 0 0 6px; color: var(--ok); font-size: 15px; }
+.op-resume { display: grid; grid-template-columns: minmax(130px, 34%) minmax(0, 1fr); gap: 4px 14px; margin: 0 0 8px; font-size: 14.5px; }
+.op-resume dt { color: var(--muted); }
+.op-resume dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.op-alertes { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 6px; }
+.op-alertes li { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; background: var(--blue-soft); border-radius: var(--radius); padding: 7px 10px; }
+.op-al-ico { flex: none; width: 18px; height: 18px; margin-top: 1px; color: var(--navy); }
+.op-al-ico svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* document préparé */
+.op-vue .apercu-doc { margin-top: 14px; }
+.op-conf { display: inline-flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 4px 10px; background: var(--bad-bg); border-radius: var(--radius); font-weight: 600; color: var(--bad); }
+.btn-danger { background: var(--bad); border-color: var(--bad); color: #fff; }
+.btn-danger:hover:not(:disabled) { background: #8e1d17; }
+.btn-petit { min-height: 36px; padding: 4px 12px; font-size: 14px; }
+
+/* documents à faire remplir */
+
+@media (max-width: 700px) {
+  .op-kpis.kpis-3 { grid-template-columns: minmax(0, 1fr); }
+  .op-tuiles { grid-template-columns: minmax(0, 1fr); }
+  .op-resume { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .op-resume dt { margin-top: 6px; }
+}
+
+.apercu-doc .op-nom-vide { color: #4f5f6e; font-style: italic; }
+
+/* vérification d'identité : encadrée en tête de chaque formulaire */
+.op-groupe { border: 1px solid var(--line-strong); border-left: 4px solid var(--navy); border-radius: var(--radius); padding: 8px 14px 14px; background: #fff; min-width: 0; margin: 0; display: grid; gap: 12px; }
+.op-groupe legend { font-size: 14.5px; font-weight: 700; color: var(--navy); padding: 0 6px; }
+
+/* page « Opérations de service » (operations.html) : choix du client, identité du client, accès au dossier */
+.pg-op-choix { display: grid; gap: 6px; max-width: 560px; margin-bottom: 18px; }
+.pg-op-choix label { font-size: 14px; font-weight: 600; }
+.pg-op-choix select { font: inherit; width: 100%; min-width: 0; border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 9px 12px; min-height: 44px; background: #fff; color: var(--ink); }
+.pg-op-client { font-size: 16px; margin: 0 0 8px; color: var(--ink); overflow-wrap: anywhere; }
+#op-hote > .en-liens { margin-bottom: 18px; }
+#op-hote > .en-liens .btn-texte, #cd-hote > .en-liens .btn-texte { background: #fff; color: var(--navy); border-color: var(--navy); font-weight: 600; }
+#op-hote > .en-liens .btn-texte:hover, #cd-hote > .en-liens .btn-texte:hover { background: var(--blue-soft); }
+
+/* page « Courriers et documents » (courriers.html) : même présentation que la page des opérations */
+#cd-hote > .en-liens { margin-bottom: 18px; }
+.cd-dossiers { margin: 0 0 14px; }
+
+/* Boutons de l'onglet et de la page « Courriers et documents » */
+.cd-btns { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 12px 0 14px; }
+.cd-btns .btn { min-height: 44px; }
+.cd-choix { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; margin: 0 0 12px; }
+.cd-choix-lib { font-size: 14px; font-weight: 600; margin-right: 4px; }
+.cd-choix-btn { font: inherit; font-weight: 600; min-height: 44px; padding: 8px 16px; border: 1.5px solid var(--navy); border-radius: var(--radius); background: #fff; color: var(--navy); cursor: pointer; }
+.cd-choix-btn:hover { background: var(--blue-soft); }
+.cd-choix-btn[aria-pressed="true"] { background: var(--navy); color: #fff; }
+.cd-autres { margin: 0 0 14px; max-width: 760px; }
+.cd-autres-liste { margin: 0 0 10px; }
+.cd-autre-form { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px 12px; }
+.cd-autre-form .champ { flex: 1 1 280px; min-width: 0; margin: 0; }
+.cd-autre-form .btn { min-height: 44px; }
+.cd-autre-form .msg-erreur { flex: 1 1 100%; margin: 0; color: var(--bad); font-size: 14px; font-weight: 600; }
+.cd-autre-form .msg-erreur:empty { display: none; }
+.cd-autre-form input[aria-invalid="true"] { border-color: var(--bad); }
+.cd-attention { border-left: 4px solid #b26a00; background: #fff6e5; padding: 8px 12px; border-radius: 0 var(--radius) var(--radius) 0; color: #3b2a00; }
+.mt-doc-info { border-left: 4px solid var(--navy); padding-left: 10px; }

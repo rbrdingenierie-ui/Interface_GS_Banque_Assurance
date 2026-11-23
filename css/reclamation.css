@@ -1,0 +1,94 @@
+/* GS Banque & Assurance – réclamations : explication des mots, formulaire, liste de suivi (page « Réclamations » et onglet de la fiche client). */
+
+/* ---- explication des mots ---- */
+.rec-mots details > summary { list-style: none; cursor: pointer; min-height: 44px; display: flex; align-items: center; gap: 10px; }
+.rec-mots details > summary::-webkit-details-marker { display: none; }
+.rec-mots details > summary::after { content: ""; margin-left: auto; width: 8px; height: 8px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg); }
+.rec-mots details[open] > summary::after { transform: rotate(-135deg); }
+.rec-mots summary h2 { margin: 0; }
+.rec-glossaire { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px 20px; margin-top: 10px; }
+.rec-glossaire > div { padding: 10px 14px; background: var(--paper); border-left: 4px solid var(--blue); border-radius: var(--radius); }
+.rec-glossaire dt { font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+.rec-glossaire dd { margin: 0; font-size: 14.5px; max-width: 80ch; }
+
+/* ---- formulaire ---- */
+.rec-intro { max-width: 90ch; margin-bottom: 12px; }
+.rec-form { max-width: 820px; gap: 16px; }
+.rec-fs { border: 1px solid var(--line); border-radius: var(--radius); background: #fff; padding: 12px 16px 16px; margin: 0; display: grid; gap: 12px; min-width: 0; }
+.rec-fs > legend { font-weight: 700; color: var(--navy); font-size: 16px; padding: 0 6px; }
+.rec-sous-fs { background: transparent; }
+.rec-ligne2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+.rec-court { max-width: 260px; }
+.rec-radio { align-items: flex-start; padding: 4px 0; }
+.rec-radio input { margin-top: 2px; flex: none; }
+.rec-radio > span { display: grid; gap: 1px; min-width: 0; }
+.rec-r-lib { font-weight: 600; }
+.rec-r-ex { display: block; }
+.rec-note { color: var(--navy); font-size: 14.5px; margin: 0; }
+.rec-note:empty { display: none; }
+.rec-gest { margin-left: 28px; }
+.rec-cl-ok { margin-top: 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 12px; }
+.rec-form [aria-invalid="true"] { border-color: var(--bad) !important; box-shadow: 0 0 0 1px var(--bad); }
+.rec-ok { margin: 0 0 16px; padding: 12px 16px; background: var(--ok-bg); color: var(--ink); border-left: 5px solid var(--ok); border-radius: var(--radius); display: grid; gap: 6px; max-width: 90ch; }
+.rec-ok strong { color: var(--ok); }
+.rec-ok:focus, #t-form:focus, #t-suivi:focus { outline: 3px solid var(--blue); outline-offset: 2px; }
+.rec-ok-liens { display: flex; flex-wrap: wrap; gap: 6px 10px; }
+.rec-ok-liens .btn-texte { min-height: 40px; display: inline-flex; align-items: center; }
+
+/* ---- liste de suivi ---- */
+.rec-suivi { display: grid; gap: 12px; }
+.rec-filtres { display: flex; flex-wrap: wrap; gap: 8px; }
+.rec-filtre { min-height: 40px; padding: 6px 14px; border: 1px solid var(--line-strong); border-radius: 20px; background: #fff; color: var(--navy); font: inherit; font-weight: 600; cursor: pointer; }
+.rec-filtre:hover { background: var(--blue-soft); }
+.rec-filtre[aria-pressed="true"] { background: var(--navy); color: #fff; border-color: var(--navy); }
+.rec-msg { margin: 0; }
+.rec-liste-cartes { display: grid; gap: 10px; list-style: none; padding: 0; margin: 0; }
+.rec-carte { border: 1px solid var(--line); border-left: 5px solid var(--blue); border-radius: var(--radius); background: #fff; min-width: 0; }
+.rec-transmise { border-left-color: var(--warn); }
+.rec-close { border-left-color: var(--line-strong); background: #f7f9fb; }
+.rec-det > summary { list-style: none; cursor: pointer; min-height: 56px; padding: 10px 14px; display: grid; grid-template-columns: 8.5em minmax(0, 1fr) auto; gap: 2px 14px; align-items: center; }
+.rec-det > summary::-webkit-details-marker { display: none; }
+.rec-det > summary:focus-visible { outline: 3px solid var(--blue); outline-offset: -3px; }
+.rec-ref { font-weight: 700; color: var(--navy); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rec-titre { min-width: 0; overflow-wrap: anywhere; }
+.rec-puces { display: flex; flex-wrap: wrap; gap: 4px 6px; justify-content: flex-end; }
+.rec-ech { grid-column: 2 / -1; font-size: 14px; color: var(--muted); }
+.rec-corps { padding: 4px 14px 14px; display: grid; gap: 12px; border-top: 1px solid var(--line); }
+.rec-dl { display: grid; gap: 8px; margin: 8px 0 0; }
+.rec-dl > div { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 2px 14px; }
+.rec-dl dt { font-weight: 600; color: var(--navy); font-size: 14.5px; }
+.rec-dl dd { margin: 0; overflow-wrap: anywhere; }
+.rec-dl dd p + p { margin-top: 6px; }
+.rec-sous { color: var(--muted); font-size: 13.5px; font-weight: 400; }
+.rec-dest, .rec-liste { margin: 0; padding-left: 18px; display: grid; gap: 2px; }
+.rec-liste { list-style: disc; }
+.rec-dl a { color: var(--navy); font-weight: 600; }
+.rec-dest { list-style: none; padding-left: 0; }
+.rec-h4 { font-size: 15px; color: var(--navy); margin: 4px 0 0; }
+.rec-chrono { margin: 0; padding-left: 0; list-style: none; display: grid; gap: 4px; font-size: 14.5px; }
+.rec-chrono li { padding: 4px 10px; background: var(--paper); border-radius: var(--radius); overflow-wrap: anywhere; }
+.rec-quand { font-weight: 600; color: var(--navy); margin-right: 6px; white-space: nowrap; }
+.rec-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.rec-actions .btn-texte { min-height: 40px; display: inline-flex; align-items: center; text-decoration: none; }
+.rec-action { max-width: 640px; background: var(--paper); }
+.rec-case { align-items: flex-start; }
+.rec-case input { margin-top: 2px; flex: none; }
+
+@media (max-width: 760px) {
+  .rec-ligne2 { grid-template-columns: minmax(0, 1fr) !important; }
+  .rec-det > summary { grid-template-columns: minmax(0, 1fr); }
+  .rec-ech { grid-column: 1; }
+  .rec-puces { justify-content: flex-start; }
+  .rec-dl > div { grid-template-columns: minmax(0, 1fr); }
+  .rec-gest { margin-left: 0; }
+  .rec-court { max-width: none; }
+}
+@media (min-width: 900px) {
+  .rec-glossaire { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ---- fiche client : réclamations à suivre ---- */
+.carte-reclam { grid-column: 1 / -1; border-left: 5px solid var(--bad); }
+.carte-reclam h2 svg { color: var(--bad); }
+.carte-info > .bloc-tete h2 { margin-bottom: 0; }
+.carte-info > .bloc-tete .btn { display: inline-flex; align-items: center; text-decoration: none; }

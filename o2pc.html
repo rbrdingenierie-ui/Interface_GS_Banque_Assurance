@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GS Banque &amp; Assurance – O2PC : opportunités commerciales</title>
+<meta name="description" content="O2PC de GS Banque &amp; Assurance : la liste quotidienne des clients à appeler lors de la session de proactivité, selon douze thèmes (majorité, arrivée de fonds, plafond d'épargne, échéances, crédits, assurances, PEA, assurance-vie).">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/appels.css">
+<link rel="stylesheet" href="css/banque.css">
+<link rel="stylesheet" href="css/portefeuille.css">
+<link rel="stylesheet" href="css/catalogue.css">
+<link rel="stylesheet" href="css/agenda.css">
+<link rel="stylesheet" href="css/campagnes.css">
+<link rel="stylesheet" href="css/phoning.css">
+<link rel="stylesheet" href="css/icc.css">
+<link rel="stylesheet" href="css/o2pc.css">
+<link rel="stylesheet" href="css/espacement.css">
+<link rel="stylesheet" href="css/print.css">
+<script src="js/identifiants.js"></script>
+<script src="js/acces.js"></script>
+<script src="js/garde.js"></script>
+</head>
+<body>
+<a class="evitement" href="#app">Aller au contenu</a>
+
+<header class="entete">
+  <a class="entete-marque" href="index.html">
+    <span class="logo-tuile"><img src="assets/logo.png" width="52" height="52" alt=""></span>
+    <span>
+      <span class="marque" style="display:block">GS Banque &amp; Assurance</span>
+      <span class="marque-sous" style="display:block">Poste du Conseiller Clientèle Particuliers</span>
+    </span>
+  </a>
+  <div class="entete-outils">
+    <a class="btn-texte lien-accueil" href="index.html">Accueil</a>
+    <button type="button" class="btn-texte" data-act="aide">Fiche réflexe</button>
+    <form class="recherche" role="search" onsubmit="return false">
+      <label class="sr" for="rech">Rechercher un client (nom, numéro ou IBAN), un produit ou un outil. Raccourci : touche barre oblique.</label>
+      <input id="rech" type="search" placeholder="Client, IBAN, produit, outil" autocomplete="off" aria-controls="rech-res" aria-keyshortcuts="/">
+      <ul id="rech-res" class="rech-res" hidden></ul>
+      <p id="rech-statut" class="sr" role="status"></p>
+    </form>
+  </div>
+</header>
+
+<main id="app" tabindex="-1">
+  <noscript><p class="bloc">Cette page a besoin de JavaScript pour fonctionner. Activez-le dans votre navigateur, puis rechargez la page.</p></noscript>
+</main>
+
+<dialog id="aide" aria-labelledby="aide-titre">
+  <div class="aide-corps">
+    <div class="aide-tete">
+      <h2 id="aide-titre">Fiche réflexe : les opportunités O2PC</h2>
+      <button type="button" class="btn-texte" data-act="fermer-aide">Fermer</button>
+    </div>
+
+    <h3>À quoi sert cette liste ?</h3>
+    <ul>
+      <li>Pendant la session de proactivité, le conseiller appelle une dizaine de clients choisis dans le portefeuille parce qu'un événement de leur vie ou de leur dossier ouvre une occasion commerciale : c'est une « opportunité O2PC ».</li>
+      <li>La liste change chaque jour, comporte au plus un thème par client et mélange les thèmes. Un client appelé est laissé de côté pendant quatorze jours.</li>
+      <li>Les opportunités qui ne peuvent pas attendre (majorité récente, fonds arrivés, échéance proche) passent en tête.</li>
+    </ul>
+
+    <h3>Avant d'appeler</h3>
+    <ul>
+      <li>Ouvrez le dossier du client (lien « Fiche client ») : relisez ses produits, ses derniers mouvements et son ICC.</li>
+      <li>Le bouton « Appeler » ouvre la fiche d'appel avec le client, le motif et le produit déjà proposés. Vous restez libre de les modifier.</li>
+      <li>Vérifiez le fondement de l'appel. Quand l'appel porte sur un contrat que le client détient déjà, l'exception au consentement s'applique. Dans les autres cas, il faut l'accord préalable du client : saisissez sa date dans la fiche d'appel.</li>
+      <li>Respectez les créneaux et le quota : quatre appels de démarchage au plus par client sur 30 jours, tentatives sans réponse comprises.</li>
+    </ul>
+
+    <h3>Les thèmes « crédit »</h3>
+    <ul>
+      <li>« Client non détenteur d'un crédit renouvelable » et « Prêt détenu à la concurrence » : on présente l'idée au téléphone, on ne conclut jamais le crédit. Proposez un rendez-vous, puis montez le dossier dans « Montage de prêt ».</li>
+      <li>Le taux proposé est celui en vigueur, communiqué dans la newsletter.</li>
+      <li>La banque ne propose pas de crédit renouvelable à son catalogue : le Prêt personnel GS en tient lieu dans cette simulation.</li>
+    </ul>
+
+    <h3>Après l'appel</h3>
+    <ul>
+      <li>Enregistrez le résultat dans la fiche d'appel : l'appel apparaît alors dans le journal et le client est retiré de la liste jusqu'à nouvel examen.</li>
+      <li>Un client qui demande à ne plus être appelé disparaît définitivement des listes de démarchage.</li>
+    </ul>
+  </div>
+</dialog>
+
+<script src="js/banque.js"></script><script src="js/identite.js"></script>
+<script src="js/risque.js"></script>
+<script src="js/placements.js"></script>
+<script src="js/produits.js"></script>
+<script src="js/data_clients.js"></script>
+<script src="js/dossier.js"></script>
+<script src="js/mouvements.js"></script>
+<script src="js/synthese.js"></script>
+<script src="js/analyse.js"></script>
+<script src="js/eligibilite.js"></script>
+<script src="js/icones.js"></script>
+<script src="js/rib.js"></script><script src="js/recherche.js"></script>
+<script src="js/impression.js"></script>
+<script src="js/catalogue.js"></script>
+<script src="js/equipe.js"></script>
+<script src="js/agenda.js"></script>
+<script src="js/portefeuille.js"></script>
+<script src="js/campagnes.js"></script>
+<script src="js/phoning.js"></script>
+<script src="js/icc.js"></script>
+<script src="js/o2pc.js"></script>
+<script src="js/app_o2pc.js"></script>
+<script src="js/appels.js"></script>
+<script src="js/app_appels.js"></script>
+</body>
+</html>

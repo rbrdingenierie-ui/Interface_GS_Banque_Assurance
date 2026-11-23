@@ -1,0 +1,105 @@
+/* GS Banque & Assurance – page « Messages suspects » (messages_suspects.html). S'appuie sur regul.css (cartes, déroulé), prospects.css (formulaire, cases) et style.css (pastilles). */
+.ms-vue .bloc-tete { flex-wrap: wrap; }
+.ms-bilan { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0 0 16px; }
+.ms-b { border: 1px solid var(--line); border-left-width: 4px; border-radius: var(--radius); padding: 10px 14px; background: #fff; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.ms-b dt { font-size: 13.5px; color: var(--muted); line-height: 1.35; }
+.ms-b dd { margin: 0; font-size: 26px; font-weight: 700; line-height: 1.15; color: var(--ink); }
+.ms-b dd.ms-b-sous { font-size: 13px; font-weight: 400; color: var(--muted); line-height: 1.35; }
+.ms-b-warn { border-left-color: var(--warn-zone); }
+.ms-b-bad { border-left-color: var(--bad); }
+.ms-b-ok { border-left-color: var(--ok-zone); }
+.ms-b-info { border-left-color: var(--blue); }
+.ms-h3 { margin: 4px 0 8px; font-size: 15.5px; color: var(--navy); }
+.ms-h4 { margin: 0 0 6px; font-size: 15.5px; color: var(--navy); }
+.ms-reperes { margin: 0; padding: 12px 14px; border-radius: var(--radius); background: var(--paper); border-left: 4px solid var(--navy); display: grid; gap: 8px; font-size: 14.5px; line-height: 1.5; }
+.ms-reperes div { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: 4px 14px; }
+.ms-reperes dt { font-weight: 600; color: var(--navy); }
+.ms-reperes dd { margin: 0; overflow-wrap: anywhere; }
+
+.ms-filtres { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+.ms-liste { display: grid; gap: 14px; }
+.ms-carte { border-left-color: var(--warn-zone); }
+.ms-carte-urgent { border-left-color: var(--bad); }
+.ms-carte-traite { border-left-color: var(--ok-zone); }
+
+/* le message tel que le conseiller le reçoit */
+.ms-msg { margin: 0 0 12px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: #fff; overflow: hidden; }
+.ms-msg-tete { margin: 0; padding: 10px 14px; background: var(--paper); border-bottom: 1px solid var(--line); display: grid; gap: 4px; font-size: 14px; line-height: 1.45; }
+.ms-msg-tete div { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 2px 12px; }
+.ms-msg-tete dt { color: var(--muted); }
+.ms-msg-tete dd { margin: 0; overflow-wrap: anywhere; }
+.ms-msg-corps { margin: 0; padding: 12px 14px; font-size: 15px; line-height: 1.55; white-space: pre-line; overflow-wrap: anywhere; max-width: 90ch; }
+.ms-appel .ms-msg-corps { font-style: normal; border-left: 4px solid var(--line-strong); background: #fff; }
+.ms-lien { margin: 0; padding: 8px 14px; border-top: 1px dashed var(--line-strong); background: var(--paper); font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
+.ms-lien code, .ms-msg-tete code { font-size: 13.5px; padding: 1px 4px; border-radius: 4px; background: #fff; border: 1px solid var(--line); overflow-wrap: anywhere; }
+.ms-ctx { margin: 0 0 12px; padding: 10px 14px; border-radius: var(--radius); background: var(--blue-soft); border-left: 4px solid var(--blue); font-size: 14.5px; line-height: 1.5; }
+.ms-ctx p { margin: 0 0 6px; }
+.ms-ctx p:last-child { margin-bottom: 0; }
+.ms-urgence { font-weight: 600; color: var(--ink); }
+.ms-btns { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 4px 0 0; }
+a.btn.ms-lien-btn { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; background: #fff; color: var(--navy); }
+a.btn.ms-lien-btn:hover { background: var(--blue-soft); }
+
+/* panneau de traitement */
+.ms-form { max-width: none; margin-top: 10px; padding: 14px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: #fff; display: grid; gap: 14px; }
+.ms-h4-form { font-size: 16.5px; }
+.ms-fs { margin: 0; min-width: 0; }
+.ms-radios { display: grid; gap: 8px; }
+.ms-groupe { display: grid; gap: 8px; margin: 10px 0 0; padding: 0; }
+.ms-groupe-t { margin: 0; font-size: 14.5px; font-weight: 700; color: var(--navy); }
+.ms-sous { display: block; font-weight: 400; font-size: 13.5px; color: var(--muted); line-height: 1.4; }
+.ms-form .op-case input[type="radio"], .ms-form .op-case input[type="checkbox"] { width: 18px; height: 18px; min-height: 0; padding: 0; margin: 2px 0 0; flex: none; accent-color: var(--navy); }
+.ms-form .op-case { font-weight: 400; font-size: 15px; line-height: 1.45; }
+.ms-aide { margin: 0 0 8px; font-size: 14px; color: var(--muted); line-height: 1.45; }
+.ms-procedure { padding: 10px 14px; border-radius: var(--radius); background: var(--blue-soft); border-left: 4px solid var(--blue); font-size: 14.5px; line-height: 1.5; }
+.ms-procedure p { margin: 0; }
+.ms-ctl-t { display: flex; align-items: center; gap: 8px; margin: 0 0 4px !important; font-weight: 700; }
+.ms-procedure .ms-ctl-t { display: block; }
+.ms-champ { min-width: 0; }
+.ms-champ textarea { width: 100%; box-sizing: border-box; }
+.ms-compteur { display: block; margin-top: 4px; font-size: 13.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.ms-controle { display: grid; gap: 10px; }
+.ms-controle:empty { display: none; }
+.ms-controle:focus { outline: 2px solid var(--navy); outline-offset: 2px; }
+.ms-ctl { padding: 10px 14px; border-radius: var(--radius); border-left: 4px solid var(--warn-zone); background: var(--warn-bg, #fff6e5); font-size: 14.5px; line-height: 1.5; margin: 0 0 10px; }
+.ms-controle .ms-ctl { margin: 0; }
+.ms-ctl p { margin: 0; }
+.ms-ctl ul { margin: 4px 0 0; padding-left: 20px; display: grid; gap: 6px; list-style: disc; }
+.ms-ctl svg { flex: none; width: 18px; height: 18px; }
+.ms-ctl-bad { border-left-color: var(--bad); background: var(--bad-bg, #fbe3e0); }
+.ms-ctl-ok { border-left-color: var(--ok-zone); background: var(--ok-bg, #eaf6ee); }
+.ms-ctl-fin { margin: 0; font-size: 14.5px; font-weight: 600; }
+.ms-form .msg-erreur:empty { display: none; }
+.ms-form .msg-erreur ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+
+/* message traité et confirmation */
+.ms-recap { margin-bottom: 12px; }
+.ms-rep { white-space: pre-line; overflow-wrap: anywhere; }
+.ms-liste-r { margin: 0; padding-left: 18px; display: grid; gap: 3px; list-style: disc; }
+.ms-diff { margin: 0 0 10px; }
+.ms-expl { margin: 0 0 10px; padding: 10px 14px; border-radius: var(--radius); background: var(--paper); border-left: 4px solid var(--navy); font-size: 14.5px; line-height: 1.55; }
+.ms-expl p { margin: 0; }
+.ms-conf { margin: 4px 0 0; padding: 12px 14px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--paper); display: grid; gap: 10px; }
+.ms-conf p { margin: 0; font-size: 14.5px; line-height: 1.5; }
+.ms-carte .regul-actions { border-top: 1px solid var(--line); padding-top: 10px; margin-top: 8px; }
+.ms-ok { border-top: 4px solid var(--ok); }
+.ms-ok .bloc-tete h2 { display: flex; align-items: center; gap: 8px; }
+.ms-ok .bloc-tete h2 svg { flex: none; width: 24px; height: 24px; padding: 4px; border-radius: 50%; background: var(--ok); color: #fff; fill: none; stroke: currentColor; stroke-width: 2.4; }
+.ms-ok-txt { margin: 0 0 12px; max-width: 90ch; }
+.ms-regle { border-top: 1px solid var(--line); padding: 8px 2px; }
+.ms-regle:last-of-type { border-bottom: 1px solid var(--line); }
+.ms-regle summary { cursor: pointer; font-weight: 600; font-size: 15px; padding: 4px 0; }
+.ms-regle p { margin: 6px 0 4px; font-size: 14.5px; line-height: 1.55; max-width: 90ch; }
+.ms-rappel { margin: 18px 0 0; font-size: 14px; color: var(--muted); max-width: 90ch; line-height: 1.5; }
+
+@media (max-width: 900px) { .ms-bilan { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) {
+  .ms-reperes div { grid-template-columns: 1fr; }
+  .ms-msg-tete div { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .ms-bilan { grid-template-columns: 1fr; }
+  .ms-btns .btn, .ms-filtres .btn, .ms-carte .regul-actions .btn { flex: 1 1 100%; justify-content: center; text-align: center; }
+  .ms-form { padding: 10px; }
+}
+@media print { .ms-form, .ms-filtres, .ms-btns { display: none; } }
